@@ -20,7 +20,24 @@
   --accent:#00e5b0;--accent2:#00ff88;--text:#e8f5e8;--muted:#4a6b4a;
   --mono:'Share Tech Mono',monospace;
 }
-body{background:var(--bg);color:var(--text);font-family:'Tajawal',sans-serif;min-height:100vh;max-width:480px;margin:0 auto}
+body{background:var(--bg);color:var(--text);font-family:'Tajawal',sans-serif;min-height:100vh}
+.page{max-width:1200px;margin:0 auto}
+@media(min-width:768px){
+  .pc-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;align-items:start;padding:0 24px}
+  .pc-col-left{min-width:0}
+  .pc-col-right{min-width:0}
+  .card{margin:14px 0 0}
+  .result-card{margin:14px 0 0}
+  .stats-row{margin:14px 0 0}
+  .info-box{margin:14px 0 0}
+  .hero{padding:28px 40px 36px}
+  .hero-title{font-size:36px}
+  .pros-section{padding:0 24px;margin-top:14px}
+}
+@media(max-width:767px){
+  .pc-grid{display:block}
+  .pros-section{display:block}
+}
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(0,229,176,.07) 0%,transparent 60%);pointer-events:none;z-index:0}
 .page{position:relative;z-index:1;padding-bottom:80px}
 
@@ -231,6 +248,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   </div>
 
 
+  <div class="pros-section">
   <!-- PROS SECTION -->
   <div class="card" style="animation-delay:.22s;margin-top:14px">
     <div class="card-header">
@@ -373,44 +391,166 @@ function copyResult(){
 
 const PROS = {
   cs2: [
-    {name:'s1mple',   team:'NAVI',        country:'🇺🇦', sens:3.09, dpi:400,  zoom:1.0,  color:'#e53935'},
-    {name:'ZywOo',    team:'Vitality',    country:'🇫🇷', sens:2.0,  dpi:400,  zoom:1.0,  color:'#fdd835'},
-    {name:'NiKo',     team:'G2',          country:'🇧🇦', sens:1.21, dpi:400,  zoom:1.0,  color:'#1e88e5'},
-    {name:'device',   team:'Astralis',    country:'🇩🇰', sens:1.5,  dpi:400,  zoom:1.0,  color:'#43a047'},
-    {name:'sh1ro',    team:'Cloud9',      country:'🇷🇺', sens:1.6,  dpi:400,  zoom:1.0,  color:'#8e24aa'},
-    {name:'ropz',     team:'FaZe',        country:'🇪🇪', sens:0.8,  dpi:800,  zoom:1.0,  color:'#f4511e'},
+    {name:'s1mple',    team:'NAVI',             country:'🇺🇦', sens:3.09, dpi:400,  color:'#e53935'},
+    {name:'ZywOo',     team:'Vitality',         country:'🇫🇷', sens:2.0,  dpi:400,  color:'#fdd835'},
+    {name:'NiKo',      team:'G2',               country:'🇧🇦', sens:1.21, dpi:400,  color:'#1e88e5'},
+    {name:'device',    team:'Astralis',         country:'🇩🇰', sens:1.5,  dpi:400,  color:'#43a047'},
+    {name:'sh1ro',     team:'Cloud9',           country:'🇷🇺', sens:1.6,  dpi:400,  color:'#8e24aa'},
+    {name:'ropz',      team:'FaZe',             country:'🇪🇪', sens:0.8,  dpi:800,  color:'#f4511e'},
+    {name:'broky',     team:'FaZe',             country:'🇸🇰', sens:1.06, dpi:400,  color:'#ff7043'},
+    {name:'Karrigan',  team:'FaZe',             country:'🇩🇰', sens:2.15, dpi:400,  color:'#ab47bc'},
+    {name:'Electronic',team:'NAVI',             country:'🇷🇺', sens:1.8,  dpi:400,  color:'#26a69a'},
+    {name:'Perfecto',  team:'NAVI',             country:'🇷🇺', sens:1.55, dpi:400,  color:'#ec407a'},
+    {name:'b1t',       team:'NAVI',             country:'🇺🇦', sens:1.3,  dpi:800,  color:'#29b6f6'},
+    {name:'Magisk',    team:'Astralis',         country:'🇩🇰', sens:1.35, dpi:400,  color:'#66bb6a'},
+    {name:'dupreeh',   team:'Astralis',         country:'🇩🇰', sens:2.1,  dpi:400,  color:'#ffa726'},
+    {name:'gla1ve',    team:'Astralis',         country:'🇩🇰', sens:1.45, dpi:400,  color:'#ef5350'},
+    {name:'apEX',      team:'Vitality',         country:'🇫🇷', sens:1.0,  dpi:400,  color:'#42a5f5'},
+    {name:'misutaaa',  team:'Vitality',         country:'🇫🇷', sens:1.05, dpi:400,  color:'#26c6da'},
+    {name:'hunter',    team:'G2',               country:'🇧🇦', sens:1.35, dpi:400,  color:'#d4e157'},
+    {name:'jks',       team:'G2',               country:'🇦🇺', sens:2.1,  dpi:400,  color:'#ff7043'},
+    {name:'HooXi',     team:'G2',               country:'🇩🇰', sens:1.55, dpi:400,  color:'#7e57c2'},
+    {name:'Twistzz',   team:'FaZe',             country:'🇨🇦', sens:1.12, dpi:400,  color:'#26a69a'},
+    {name:'rain',      team:'FaZe',             country:'🇳🇴', sens:1.4,  dpi:400,  color:'#5c6bc0'},
+    {name:'XANTARES',  team:'ENCE',             country:'🇹🇷', sens:1.85, dpi:800,  color:'#ff5722'},
+    {name:'blameF',    team:'Astralis',         country:'🇩🇰', sens:1.2,  dpi:400,  color:'#8d6e63'},
+    {name:'Ax1Le',     team:'Cloud9',           country:'🇷🇺', sens:1.6,  dpi:800,  color:'#78909c'},
+    {name:'Hobbit',    team:'Cloud9',           country:'🇰🇿', sens:1.25, dpi:400,  color:'#a5d6a7'},
   ],
   valorant: [
-    {name:'TenZ',     team:'Sentinels',   country:'🇨🇦', sens:0.408,dpi:800,  zoom:1.0,  color:'#e53935'},
-    {name:'Shroud',   team:'MIBR',        country:'🇨🇦', sens:0.78, dpi:450,  zoom:1.0,  color:'#1e88e5'},
-    {name:'yay',      team:'NRG',         country:'🇺🇸', sens:0.536,dpi:800,  zoom:1.0,  color:'#43a047'},
-    {name:'Aspas',    team:'LOUD',        country:'🇧🇷', sens:1.07, dpi:800,  zoom:1.0,  color:'#fdd835'},
-    {name:'Chronicle',team:'Team Vitality',country:'🇬🇪',sens:0.35, dpi:800,  zoom:1.0,  color:'#8e24aa'},
-    {name:'cNed',     team:'NIP',         country:'🇹🇷', sens:0.88, dpi:800,  zoom:1.0,  color:'#f4511e'},
+    {name:'TenZ',      team:'Sentinels',        country:'🇨🇦', sens:0.408,dpi:800,  color:'#e53935'},
+    {name:'Shroud',    team:'MIBR',             country:'🇨🇦', sens:0.78, dpi:450,  color:'#1e88e5'},
+    {name:'yay',       team:'NRG',              country:'🇺🇸', sens:0.536,dpi:800,  color:'#43a047'},
+    {name:'Aspas',     team:'LOUD',             country:'🇧🇷', sens:1.07, dpi:800,  color:'#fdd835'},
+    {name:'Chronicle', team:'Vitality',         country:'🇬🇪', sens:0.35, dpi:800,  color:'#8e24aa'},
+    {name:'cNed',      team:'NIP',              country:'🇹🇷', sens:0.88, dpi:800,  color:'#f4511e'},
+    {name:'ScreaM',    team:'Team Liquid',      country:'🇧🇪', sens:0.78, dpi:400,  color:'#26a69a'},
+    {name:'Derke',     team:'NIP',              country:'🇫🇮', sens:0.38, dpi:800,  color:'#ec407a'},
+    {name:'Nats',      team:'Fnatic',           country:'🇷🇺', sens:0.55, dpi:800,  color:'#ff7043'},
+    {name:'Leo',       team:'Fnatic',           country:'🇸🇪', sens:0.22, dpi:800,  color:'#ab47bc'},
+    {name:'Boaster',   team:'Fnatic',           country:'🇬🇧', sens:0.5,  dpi:800,  color:'#29b6f6'},
+    {name:'Menos',     team:'LOUD',             country:'🇧🇷', sens:0.75, dpi:800,  color:'#66bb6a'},
+    {name:'saadhak',   team:'LOUD',             country:'🇦🇷', sens:0.41, dpi:800,  color:'#ffa726'},
+    {name:'Marved',    team:'OpTic',            country:'🇨🇦', sens:0.7,  dpi:800,  color:'#ef5350'},
+    {name:'Victor',    team:'NRG',              country:'🇺🇸', sens:0.395,dpi:800,  color:'#42a5f5'},
+    {name:'crashies',  team:'NRG',              country:'🇺🇸', sens:0.68, dpi:800,  color:'#d4e157'},
+    {name:'s0m',       team:'NRG',              country:'🇺🇸', sens:0.45, dpi:800,  color:'#ff7043'},
+    {name:'ShahZaM',   team:'Sentinels',        country:'🇺🇸', sens:0.39, dpi:800,  color:'#7e57c2'},
+    {name:'SicK',      team:'Sentinels',        country:'🇺🇸', sens:0.5,  dpi:800,  color:'#26a69a'},
+    {name:'dapr',      team:'Sentinels',        country:'🇺🇸', sens:0.35, dpi:800,  color:'#5c6bc0'},
+    {name:'Zekken',    team:'Sentinels',        country:'🇺🇸', sens:0.41, dpi:800,  color:'#ff5722'},
+    {name:'jawgemo',   team:'100T',             country:'🇺🇸', sens:0.55, dpi:800,  color:'#8d6e63'},
+    {name:'bang',      team:'100T',             country:'🇺🇸', sens:0.38, dpi:800,  color:'#78909c'},
+    {name:'Ethan',     team:'100T',             country:'🇺🇸', sens:0.44, dpi:800,  color:'#a5d6a7'},
+    {name:'Demon1',    team:'EG',               country:'🇺🇸', sens:0.35, dpi:1600, color:'#e91e63'},
   ],
   apex: [
-    {name:'Aceu',     team:'FaZe',        country:'🇺🇸', sens:1.0,  dpi:800,  zoom:1.0,  color:'#e53935'},
-    {name:'Dizzy',    team:'NRG',         country:'🇺🇸', sens:1.3,  dpi:800,  zoom:1.0,  color:'#1e88e5'},
-    {name:'ImperialHal',team:'TSM',       country:'🇺🇸', sens:1.2,  dpi:400,  zoom:1.0,  color:'#43a047'},
-    {name:'Sweetdreams',team:'100T',      country:'🇺🇸', sens:2.0,  dpi:400,  zoom:1.0,  color:'#fdd835'},
+    {name:'Aceu',        team:'FaZe',           country:'🇺🇸', sens:1.0,  dpi:800,  color:'#e53935'},
+    {name:'Dizzy',       team:'NRG',            country:'🇺🇸', sens:1.3,  dpi:800,  color:'#1e88e5'},
+    {name:'ImperialHal', team:'TSM',            country:'🇺🇸', sens:1.2,  dpi:400,  color:'#43a047'},
+    {name:'Sweetdreams', team:'100T',           country:'🇺🇸', sens:2.0,  dpi:400,  color:'#fdd835'},
+    {name:'Albralelie',  team:'NRG',            country:'🇺🇸', sens:1.6,  dpi:400,  color:'#8e24aa'},
+    {name:'Reps',        team:'TSM',            country:'🇩🇰', sens:1.8,  dpi:400,  color:'#f4511e'},
+    {name:'Verhulst',    team:'Sentinels',      country:'🇺🇸', sens:2.2,  dpi:400,  color:'#26a69a'},
+    {name:'Dropped',     team:'FaZe',           country:'🇺🇸', sens:1.4,  dpi:800,  color:'#ec407a'},
+    {name:'Hakis',       team:'FaZe',           country:'🇸🇪', sens:1.1,  dpi:400,  color:'#ff7043'},
+    {name:'Snip3down',   team:'TSM',            country:'🇺🇸', sens:3.2,  dpi:400,  color:'#ab47bc'},
+    {name:'Reptar',      team:'Cloud9',         country:'🇺🇸', sens:1.5,  dpi:400,  color:'#29b6f6'},
+    {name:'iShiny',      team:'Cloud9',         country:'🇺🇸', sens:2.0,  dpi:800,  color:'#66bb6a'},
+    {name:'Monsoon',     team:'G2',             country:'🇺🇸', sens:1.0,  dpi:800,  color:'#ffa726'},
+    {name:'Genburten',   team:'NRG',            country:'🇳🇴', sens:1.4,  dpi:800,  color:'#ef5350'},
+    {name:'Mande',       team:'G2',             country:'🇩🇰', sens:1.6,  dpi:800,  color:'#42a5f5'},
+    {name:'KeonFPS',     team:'Sentinels',      country:'🇺🇸', sens:1.2,  dpi:800,  color:'#d4e157'},
+    {name:'Nocturnal',   team:'DZ',             country:'🇺🇸', sens:2.4,  dpi:400,  color:'#ff7043'},
+    {name:'Verhulst',    team:'Sentinels',      country:'🇺🇸', sens:2.2,  dpi:400,  color:'#7e57c2'},
+    {name:'Skittles',    team:'NRG',            country:'🇺🇸', sens:1.8,  dpi:400,  color:'#26a69a'},
+    {name:'Lou',         team:'TSM',            country:'🇺🇸', sens:1.1,  dpi:800,  color:'#5c6bc0'},
+    {name:'Shivfps',     team:'Liquid',         country:'🇬🇧', sens:1.0,  dpi:800,  color:'#ff5722'},
+    {name:'iiTzTimmy',   team:'Sparg0',         country:'🇺🇸', sens:2.0,  dpi:800,  color:'#8d6e63'},
+    {name:'Vaxlon',      team:'Cloud9',         country:'🇺🇸', sens:1.3,  dpi:800,  color:'#78909c'},
+    {name:'Daltoosh',    team:'Free',           country:'🇺🇸', sens:1.6,  dpi:400,  color:'#a5d6a7'},
+    {name:'KillaCam',    team:'NRG',            country:'🇺🇸', sens:1.9,  dpi:400,  color:'#e91e63'},
   ],
   overwatch: [
-    {name:'Fleta',    team:'Seoul Dynasty',country:'🇰🇷',sens:3.0,  dpi:800,  zoom:1.0,  color:'#e53935'},
-    {name:'Profit',   team:'Paris Eternal',country:'🇰🇷',sens:5.0,  dpi:800,  zoom:1.0,  color:'#1e88e5'},
-    {name:'Carpe',    team:'Philadelphia', country:'🇰🇷',sens:4.55, dpi:800,  zoom:1.0,  color:'#43a047'},
-    {name:'Gesture',  team:'London Spitfire',country:'🇰🇷',sens:6.0,dpi:400, zoom:1.0,  color:'#fdd835'},
+    {name:'Fleta',     team:'Seoul Dynasty',    country:'🇰🇷', sens:3.0,  dpi:800,  color:'#e53935'},
+    {name:'Profit',    team:'Paris Eternal',    country:'🇰🇷', sens:5.0,  dpi:800,  color:'#1e88e5'},
+    {name:'Carpe',     team:'Philadelphia',     country:'🇰🇷', sens:4.55, dpi:800,  color:'#43a047'},
+    {name:'Gesture',   team:'London Spitfire',  country:'🇰🇷', sens:6.0,  dpi:400,  color:'#fdd835'},
+    {name:'Pine',      team:'NYXL',             country:'🇰🇷', sens:3.5,  dpi:800,  color:'#8e24aa'},
+    {name:'Fissure',   team:'LA Valiant',       country:'🇰🇷', sens:7.0,  dpi:400,  color:'#f4511e'},
+    {name:'Fury',      team:'London Spitfire',  country:'🇰🇷', sens:5.5,  dpi:800,  color:'#26a69a'},
+    {name:'Bdosin',    team:'Seoul Dynasty',    country:'🇰🇷', sens:4.0,  dpi:800,  color:'#ec407a'},
+    {name:'Libero',    team:'Seoul Dynasty',    country:'🇰🇷', sens:4.5,  dpi:800,  color:'#ff7043'},
+    {name:'Striker',   team:'Seoul Dynasty',    country:'🇰🇷', sens:3.8,  dpi:800,  color:'#ab47bc'},
+    {name:'Viol2t',    team:'Philadelphia',     country:'🇰🇷', sens:5.0,  dpi:800,  color:'#29b6f6'},
+    {name:'EQO',       team:'NYXL',             country:'🇰🇷', sens:4.2,  dpi:800,  color:'#66bb6a'},
+    {name:'Saebyeolbe',team:'NYXL',             country:'🇰🇷', sens:6.0,  dpi:800,  color:'#ffa726'},
+    {name:'Jjonak',    team:'NYXL',             country:'🇰🇷', sens:7.0,  dpi:800,  color:'#ef5350'},
+    {name:'Surefour',  team:'LA Gladiators',    country:'🇨🇦', sens:2.5,  dpi:800,  color:'#42a5f5'},
+    {name:'Shax',      team:'Vitality',         country:'🇸🇪', sens:4.0,  dpi:800,  color:'#d4e157'},
+    {name:'Proper',    team:'LA Gladiators',    country:'🇺🇸', sens:3.5,  dpi:800,  color:'#ff7043'},
+    {name:'Hanbin',    team:'Boston Uprising',  country:'🇰🇷', sens:5.5,  dpi:800,  color:'#7e57c2'},
+    {name:'Fielder',   team:'Seoul Dynasty',    country:'🇰🇷', sens:4.8,  dpi:800,  color:'#26a69a'},
+    {name:'MN3',       team:'San Francisco',    country:'🇰🇷', sens:3.2,  dpi:800,  color:'#5c6bc0'},
+    {name:'Yaki',      team:'Shanghai Dragons', country:'🇨🇳', sens:4.0,  dpi:800,  color:'#ff5722'},
+    {name:'Lip',       team:'Shanghai Dragons', country:'🇨🇳', sens:5.0,  dpi:800,  color:'#8d6e63'},
+    {name:'LIP',       team:'Shanghai Dragons', country:'🇨🇳', sens:3.5,  dpi:800,  color:'#78909c'},
+    {name:'Cr0ng',     team:'Seoul Dynasty',    country:'🇰🇷', sens:6.5,  dpi:800,  color:'#a5d6a7'},
+    {name:'FITS',      team:'LA Valiant',       country:'🇰🇷', sens:4.0,  dpi:800,  color:'#e91e63'},
   ],
   fortnite: [
-    {name:'Bugha',    team:'Sentinels',   country:'🇺🇸', sens:0.08, dpi:400,  zoom:1.0,  color:'#e53935'},
-    {name:'Mongraal', team:'FaZe',        country:'🇬🇧', sens:0.14, dpi:400,  zoom:1.0,  color:'#1e88e5'},
-    {name:'Tfue',     team:'FaZe',        country:'🇺🇸', sens:0.08, dpi:800,  zoom:1.0,  color:'#43a047'},
-    {name:'Clix',     team:'NRG',         country:'🇺🇸', sens:0.10, dpi:400,  zoom:1.0,  color:'#fdd835'},
+    {name:'Bugha',     team:'Sentinels',        country:'🇺🇸', sens:0.08, dpi:400,  color:'#e53935'},
+    {name:'Mongraal',  team:'FaZe',             country:'🇬🇧', sens:0.14, dpi:400,  color:'#1e88e5'},
+    {name:'Tfue',      team:'FaZe',             country:'🇺🇸', sens:0.08, dpi:800,  color:'#43a047'},
+    {name:'Clix',      team:'NRG',              country:'🇺🇸', sens:0.10, dpi:400,  color:'#fdd835'},
+    {name:'Benjyfishy',team:'NRG',              country:'🇬🇧', sens:0.10, dpi:800,  color:'#8e24aa'},
+    {name:'MrSavage',  team:'100T',             country:'🇳🇴', sens:0.08, dpi:800,  color:'#f4511e'},
+    {name:'Aqua',      team:'FaZe',             country:'🇦🇹', sens:0.08, dpi:800,  color:'#26a69a'},
+    {name:'Mitr0',     team:'FaZe',             country:'🇬🇧', sens:0.07, dpi:800,  color:'#ec407a'},
+    {name:'Wolfiez',   team:'FaZe',             country:'🇬🇧', sens:0.13, dpi:800,  color:'#ff7043'},
+    {name:'EpikWhale', team:'Sentinels',        country:'🇺🇸', sens:0.09, dpi:800,  color:'#ab47bc'},
+    {name:'Arkhram',   team:'100T',             country:'🇨🇴', sens:0.11, dpi:800,  color:'#29b6f6'},
+    {name:'Dubs',      team:'FaZe',             country:'🇺🇸', sens:0.12, dpi:400,  color:'#66bb6a'},
+    {name:'Noahreyli', team:'Sentinels',        country:'🇺🇸', sens:0.09, dpi:800,  color:'#ffa726'},
+    {name:'Zayt',      team:'NRG',              country:'🇺🇸', sens:0.08, dpi:800,  color:'#ef5350'},
+    {name:'Sway',      team:'FaZe',             country:'🇺🇸', sens:0.10, dpi:800,  color:'#42a5f5'},
+    {name:'Khanada',   team:'100T',             country:'🇺🇸', sens:0.09, dpi:800,  color:'#d4e157'},
+    {name:'Edgeyy',    team:'OG',               country:'🇬🇧', sens:0.07, dpi:800,  color:'#ff7043'},
+    {name:'gronky',    team:'FaZe',             country:'🇫🇷', sens:0.08, dpi:800,  color:'#7e57c2'},
+    {name:'Veno',      team:'Sentinels',        country:'🇺🇸', sens:0.11, dpi:400,  color:'#26a69a'},
+    {name:'Mero',      team:'Cloud9',           country:'🇺🇸', sens:0.13, dpi:800,  color:'#5c6bc0'},
+    {name:'Hen',       team:'OG',               country:'🇩🇰', sens:0.09, dpi:800,  color:'#ff5722'},
+    {name:'Setty',     team:'OG',               country:'🇩🇰', sens:0.08, dpi:800,  color:'#8d6e63'},
+    {name:'Acorn',     team:'Sentinels',        country:'🇺🇸', sens:0.10, dpi:800,  color:'#78909c'},
+    {name:'Vivid',     team:'G2',               country:'🇬🇧', sens:0.12, dpi:800,  color:'#a5d6a7'},
+    {name:'Queasy',    team:'G2',               country:'🇬🇧', sens:0.09, dpi:800,  color:'#e91e63'},
   ],
   r6: [
-    {name:'Canadian', team:'Spacestation', country:'🇨🇦',sens:12.0, dpi:400,  zoom:1.0,  color:'#e53935'},
-    {name:'Pengu',    team:'G2',           country:'🇩🇰',sens:23.0, dpi:400,  zoom:1.0,  color:'#1e88e5'},
-    {name:'Beaulo',   team:'TSM',          country:'🇺🇸',sens:27.0, dpi:800,  zoom:1.0,  color:'#43a047'},
-    {name:'Fabian',   team:'G2',           country:'🇸🇪',sens:11.0, dpi:400,  zoom:1.0,  color:'#fdd835'},
+    {name:'Canadian',  team:'Spacestation',     country:'🇨🇦', sens:12.0, dpi:400,  color:'#e53935'},
+    {name:'Pengu',     team:'G2',               country:'🇩🇰', sens:23.0, dpi:400,  color:'#1e88e5'},
+    {name:'Beaulo',    team:'TSM',              country:'🇺🇸', sens:27.0, dpi:800,  color:'#43a047'},
+    {name:'Fabian',    team:'G2',               country:'🇸🇪', sens:11.0, dpi:400,  color:'#fdd835'},
+    {name:'Rampy',     team:'G2',               country:'🇫🇷', sens:9.0,  dpi:400,  color:'#8e24aa'},
+    {name:'BiBo',      team:'Natus Vincere',    country:'🇩🇿', sens:16.0, dpi:400,  color:'#f4511e'},
+    {name:'Elemzje',   team:'G2',               country:'🇫🇷', sens:13.0, dpi:800,  color:'#26a69a'},
+    {name:'Mav',       team:'Evil Geniuses',    country:'🇺🇸', sens:18.0, dpi:800,  color:'#ec407a'},
+    {name:'Yeti',      team:'Spacestation',     country:'🇺🇸', sens:14.0, dpi:800,  color:'#ff7043'},
+    {name:'Fultz',     team:'Evil Geniuses',    country:'🇺🇸', sens:20.0, dpi:400,  color:'#ab47bc'},
+    {name:'Chala',     team:'Team Liquid',      country:'🇧🇷', sens:15.0, dpi:400,  color:'#29b6f6'},
+    {name:'Paluh',     team:'Team Liquid',      country:'🇧🇷', sens:11.0, dpi:800,  color:'#66bb6a'},
+    {name:'Nesk',      team:'Team Liquid',      country:'🇧🇷', sens:22.0, dpi:400,  color:'#ffa726'},
+    {name:'xS3bas',    team:'Team oNe',         country:'🇧🇷', sens:19.0, dpi:400,  color:'#ef5350'},
+    {name:'RaFaLe',    team:'Team oNe',         country:'🇧🇷', sens:13.5, dpi:400,  color:'#42a5f5'},
+    {name:'lnz',       team:'FURIA',            country:'🇧🇷', sens:25.0, dpi:400,  color:'#d4e157'},
+    {name:'Astro',     team:'FURIA',            country:'🇧🇷', sens:17.0, dpi:800,  color:'#ff7043'},
+    {name:'Hash',      team:'Cloud9',           country:'🇺🇸', sens:21.0, dpi:400,  color:'#7e57c2'},
+    {name:'Retro',     team:'Cloud9',           country:'🇺🇸', sens:16.5, dpi:400,  color:'#26a69a'},
+    {name:'Geo',       team:'Oxygen',           country:'🇬🇧', sens:24.0, dpi:400,  color:'#5c6bc0'},
+    {name:'Doki',      team:'NaVi',             country:'🇷🇺', sens:18.0, dpi:400,  color:'#ff5722'},
+    {name:'Liven',     team:'NaVi',             country:'🇷🇺', sens:12.5, dpi:800,  color:'#8d6e63'},
+    {name:'Saves',     team:'MIBR',             country:'🇧🇷', sens:20.0, dpi:400,  color:'#78909c'},
+    {name:'fz',        team:'MIBR',             country:'🇧🇷', sens:15.5, dpi:800,  color:'#a5d6a7'},
+    {name:'ShoXy',     team:'TSM',              country:'🇺🇸', sens:23.5, dpi:400,  color:'#e91e63'},
   ],
 };
 
@@ -497,7 +637,43 @@ function useProSettings(gameId, sens, name, btn) {
   }, 2000);
 }
 
+// Load saved settings
+(function loadSaved(){
+  try {
+    const saved = JSON.parse(localStorage.getItem('aimsync_settings') || '{}');
+    if(saved.sourceId) sourceId = saved.sourceId;
+    if(saved.targetId) targetId = saved.targetId;
+    if(saved.sens) document.getElementById('sensInput').value = saved.sens;
+    if(saved.dpi) document.getElementById('dpiInput').value = saved.dpi;
+    if(saved.lang) { lang = saved.lang; document.documentElement.lang=lang; document.body.dir=lang==='ar'?'rtl':'ltr'; document.querySelector('.lang-toggle').textContent=lang==='ar'?'EN':'العربية'; }
+  } catch(e){}
+})();
+
+function saveSettings(){
+  try {
+    localStorage.setItem('aimsync_settings', JSON.stringify({
+      sourceId, targetId,
+      sens: document.getElementById('sensInput').value,
+      dpi: document.getElementById('dpiInput').value,
+      lang
+    }));
+  } catch(e){}
+}
+
+// Auto-save on every convert
+const _origConvert = convert;
+convert = function(){ _origConvert(); saveSettings(); };
+
 renderChips();renderPros();updateTexts();convert();
+
+// Show saved toast
+if(localStorage.getItem('aimsync_settings')){
+  const t2 = document.createElement('div');
+  t2.style.cssText='position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(0,229,176,.15);border:1px solid rgba(0,229,176,.4);color:#00e5b0;padding:8px 18px;border-radius:20px;font-size:12px;font-family:Tajawal,sans-serif;z-index:999;animation:fadeUp .3s ease';
+  t2.textContent = '✓ تم استعادة إعداداتك المحفوظة';
+  document.body.appendChild(t2);
+  setTimeout(()=>t2.remove(), 3000);
+}
 </script>
 </body>
 </html>
