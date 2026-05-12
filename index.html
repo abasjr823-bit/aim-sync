@@ -190,6 +190,43 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .pro-use-btn{width:100%;background:rgba(0,229,176,.08);border:1px solid rgba(0,229,176,.25);color:var(--accent);padding:9px;border-radius:9px;cursor:pointer;font-size:13px;font-family:'Tajawal',sans-serif;font-weight:700;transition:all .2s;text-align:center}
 .pro-use-btn:hover{background:rgba(0,229,176,.18)}
 .pro-use-btn.used{background:rgba(0,255,136,.1);border-color:#00ff88;color:#00ff88}
+
+/* ===== TUTORIAL ===== */
+.tutorial-overlay{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px;transition:background .4s ease;pointer-events:none}
+.tutorial-overlay.active{background:rgba(0,0,0,0.82);pointer-events:all}
+.tutorial-box{background:linear-gradient(135deg,#0e1f12,#091409);border:1px solid rgba(0,229,176,0.3);border-radius:24px;padding:32px 28px;max-width:420px;width:100%;position:relative;overflow:hidden;transform:translateY(30px);opacity:0;transition:all .5s cubic-bezier(.34,1.56,.64,1)}
+.tutorial-overlay.active .tutorial-box{transform:translateY(0);opacity:1}
+.tutorial-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#00e5b0,#00ff88,#00e5b0);background-size:200%;animation:shimmerT 2s linear infinite}
+@keyframes shimmerT{0%{background-position:0%}100%{background-position:200%}}
+
+.tut-step-indicator{display:flex;gap:6px;justify-content:center;margin-bottom:24px}
+.tut-dot{width:8px;height:8px;border-radius:50%;background:rgba(0,229,176,0.2);transition:all .3s}
+.tut-dot.active{background:var(--accent);width:24px;border-radius:4px;box-shadow:0 0 8px var(--accent)}
+.tut-dot.done{background:rgba(0,229,176,0.5)}
+
+.tut-icon{font-size:52px;text-align:center;margin-bottom:16px;animation:bounceIn .5s ease}
+@keyframes bounceIn{0%{transform:scale(0.5);opacity:0}70%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
+
+.tut-title{font-size:22px;font-weight:800;color:#fff;text-align:center;margin-bottom:10px;line-height:1.3}
+.tut-title span{color:var(--accent)}
+.tut-desc{font-size:15px;color:#6a8a6a;text-align:center;line-height:1.8;margin-bottom:24px}
+.tut-desc strong{color:#a0d0a0}
+.tut-tip{background:rgba(0,229,176,0.06);border:1px solid rgba(0,229,176,0.15);border-radius:12px;padding:12px 16px;font-size:13px;color:#4a8a5a;text-align:center;margin-bottom:24px;line-height:1.6}
+.tut-tip::before{content:'💡 ';font-size:14px}
+
+.tut-buttons{display:flex;gap:10px}
+.tut-skip{flex:0;background:transparent;border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.3);padding:12px 18px;border-radius:12px;cursor:pointer;font-size:13px;font-family:'Tajawal',sans-serif;transition:all .2s;white-space:nowrap}
+.tut-skip:hover{border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.5)}
+.tut-next{flex:1;background:linear-gradient(135deg,rgba(0,229,176,0.15),rgba(0,255,136,0.1));border:1px solid rgba(0,229,176,0.4);color:var(--accent);padding:14px;border-radius:12px;cursor:pointer;font-size:15px;font-weight:700;font-family:'Tajawal',sans-serif;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.tut-next:hover{background:linear-gradient(135deg,rgba(0,229,176,0.25),rgba(0,255,136,0.15));box-shadow:0 0 20px rgba(0,229,176,0.2)}
+.tut-next.finish{background:linear-gradient(135deg,rgba(0,255,136,0.2),rgba(0,229,176,0.15));border-color:#00ff88;color:#00ff88}
+
+.tut-progress{height:3px;background:rgba(0,229,176,0.1);border-radius:2px;margin-bottom:20px;overflow:hidden}
+.tut-progress-bar{height:100%;background:linear-gradient(90deg,#00e5b0,#00ff88);border-radius:2px;transition:width .5s ease}
+
+/* Welcome screen special */
+.tut-welcome-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,229,176,0.1);border:1px solid rgba(0,229,176,0.3);border-radius:20px;padding:4px 12px;font-size:11px;color:var(--accent);font-weight:700;letter-spacing:2px;margin-bottom:16px}
+.tut-welcome-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#00ff88;box-shadow:0 0 6px #00ff88;animation:pulse 1.5s infinite}
 </style>
 </head>
 <body>
@@ -675,6 +712,149 @@ function useProSettings(gameId, sens, name, btn) {
   }, 2000);
 }
 
+
+// ===== TUTORIAL =====
+const TUTORIAL_STEPS = [
+  {
+    icon: '🎯',
+    title: 'أهلاً بك في <span>AIM SYNC</span>',
+    desc: 'الموقع الوحيد الذي يحفظ <strong>إحساس تصويبك</strong> مهما غيّرت لعبتك.<br><br>دعنا نريك كيف تستخدمه في 30 ثانية ⚡',
+    tip: 'كل الإعدادات تُحفظ تلقائياً في متصفحك',
+    badge: true
+  },
+  {
+    icon: '🎮',
+    title: 'اختر <span>لعبتك الحالية</span>',
+    desc: 'من القسم الأول، اختر اللعبة التي تلعبها الآن.<br><br>هل تلعب <strong>Valorant</strong>؟ اضغط عليها. <strong>CS2</strong>؟ نفس الشيء.',
+    tip: 'يمكنك سحب الألعاب يميناً ويساراً لرؤية المزيد'
+  },
+  {
+    icon: '🖱️',
+    title: 'أدخل <span>حساسيتك</span>',
+    desc: 'اكتب رقم الـ sensitivity الذي تستخدمه داخل اللعبة.<br><br>يمكنك أيضاً تحريك <strong>الشريط</strong> بدل الكتابة اليدوية.',
+    tip: 'لا تعرف حساسيتك؟ ادخل إعدادات اللعبة → Mouse'
+  },
+  {
+    icon: '⚡',
+    title: 'اختر <span>اللعبة الثانية</span>',
+    desc: 'الآن اختر اللعبة التي تريد الانتقال إليها.<br><br>النتيجة تظهر <strong>فوراً</strong> مع cm/360° وeDPI.',
+    tip: 'اضغط زر ⇄ لتبديل اللعبتين بسرعة'
+  },
+  {
+    icon: '🏆',
+    title: 'إعدادات <span>المحترفين</span>',
+    desc: 'في الأسفل، ستجد إعدادات <strong>150+ لاعب محترف</strong> عالمي.<br><br>اضغط على أي لاعب واستخدم إعداداته فوراً!',
+    tip: 'جرب إعدادات s1mple أو TenZ وشوف الفرق'
+  },
+  {
+    icon: '🚀',
+    title: 'أنت <span>جاهز!</span>',
+    desc: 'الآن تعرف كل شيء عن AIM SYNC.<br><br>إعداداتك تُحفظ تلقائياً وتعود لها في كل مرة. <strong>بالتوفيق في مبارياتك!</strong> 🎯',
+    tip: 'شارك الموقع مع أصحابك الگيمرز!'
+  }
+];
+
+let tutStep = 0;
+
+function initTutorial() {
+  if (localStorage.getItem('aimsync_tutorial_done')) return;
+  setTimeout(() => {
+    document.getElementById('tutorialOverlay').classList.add('active');
+    renderTutStep();
+  }, 800);
+}
+
+function renderTutStep() {
+  const step = TUTORIAL_STEPS[tutStep];
+  const total = TUTORIAL_STEPS.length;
+
+  // Progress bar
+  document.getElementById('tutProgress').style.width = ((tutStep + 1) / total * 100) + '%';
+
+  // Dots
+  let dots = '';
+  for (let i = 0; i < total; i++) {
+    dots += `<div class="tut-dot ${i < tutStep ? 'done' : i === tutStep ? 'active' : ''}"></div>`;
+  }
+  document.getElementById('tutDots').innerHTML = dots;
+
+  // Content
+  const isLast = tutStep === total - 1;
+  const isFirst = tutStep === 0;
+
+  document.getElementById('tutContent').innerHTML = `
+    ${step.badge ? '<div style="text-align:center;margin-bottom:12px"><div class="tut-welcome-badge">✦ AIM SYNC ✦</div></div>' : ''}
+    <div class="tut-icon">${step.icon}</div>
+    <div class="tut-title">${step.title}</div>
+    <div class="tut-desc">${step.desc}</div>
+    <div class="tut-tip">${step.tip}</div>
+  `;
+
+  // Buttons
+  const nextBtn = document.getElementById('tutNext');
+  const nextTxt = document.getElementById('tutNextTxt');
+  const nextArrow = document.getElementById('tutNextArrow');
+  const skipBtn = document.getElementById('tutSkip');
+
+  if (isLast) {
+    nextBtn.classList.add('finish');
+    nextTxt.textContent = 'ابدأ الاستخدام';
+    nextArrow.textContent = '🎯';
+    skipBtn.style.display = 'none';
+  } else {
+    nextBtn.classList.remove('finish');
+    nextTxt.textContent = isFirst ? 'هيا نبدأ' : 'التالي';
+    nextArrow.textContent = '←';
+    skipBtn.style.display = 'block';
+  }
+
+  // Animate box
+  const box = document.getElementById('tutorialBox');
+  box.style.transform = 'translateY(20px)';
+  box.style.opacity = '0';
+  setTimeout(() => {
+    box.style.transform = 'translateY(0)';
+    box.style.opacity = '1';
+  }, 50);
+}
+
+function nextStep() {
+  if (tutStep < TUTORIAL_STEPS.length - 1) {
+    tutStep++;
+    renderTutStep();
+  } else {
+    closeTutorial();
+  }
+}
+
+function closeTutorial() {
+  const overlay = document.getElementById('tutorialOverlay');
+  overlay.style.opacity = '0';
+  overlay.style.transition = 'opacity .3s ease';
+  setTimeout(() => {
+    overlay.classList.remove('active');
+    overlay.style.opacity = '';
+    overlay.style.transition = '';
+  }, 300);
+  localStorage.setItem('aimsync_tutorial_done', '1');
+}
+
+// Add help button to hero
+document.addEventListener('DOMContentLoaded', () => {
+  const helpBtn = document.createElement('button');
+  helpBtn.innerHTML = '❓ <span id="helpTxt">كيف يعمل؟</span>';
+  helpBtn.style.cssText = 'background:rgba(0,229,176,0.08);border:1px solid rgba(0,229,176,0.2);color:#4a8a5a;padding:6px 14px;border-radius:20px;cursor:pointer;font-size:12px;font-family:Tajawal,sans-serif;font-weight:700;transition:all .2s;margin-top:12px;display:block;width:fit-content';
+  helpBtn.onmouseover = () => helpBtn.style.borderColor = 'var(--accent)';
+  helpBtn.onmouseout = () => helpBtn.style.borderColor = 'rgba(0,229,176,0.2)';
+  helpBtn.onclick = () => {
+    tutStep = 0;
+    document.getElementById('tutorialOverlay').classList.add('active');
+    renderTutStep();
+  };
+  const heroDesc = document.getElementById('heroDesc');
+  if (heroDesc) heroDesc.parentNode.insertBefore(helpBtn, heroDesc.nextSibling);
+});
+
 // Load saved settings
 (function loadSaved(){
   try {
@@ -703,6 +883,7 @@ const _origConvert = convert;
 convert = function(){ _origConvert(); saveSettings(); };
 
 renderChips();renderPros();updateTexts();convert();
+initTutorial();
 
 // Show saved toast
 if(localStorage.getItem('aimsync_settings')){
