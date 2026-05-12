@@ -15,10 +15,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Share+Tech+Mono&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-:root{--bg:#0a0f0a;--surface:#111811;--card:#141e14;--border:#1f2e1f;--accent:#00e5b0;--accent2:#00ff88;--text:#e8f5e8;--muted:#4a6b4a;--mono:'Share Tech Mono',monospace;}
+:root{
+  --bg:#0a0f0a;--surface:#111811;--card:#141e14;--border:#1f2e1f;
+  --accent:#00e5b0;--accent2:#00ff88;--text:#e8f5e8;--muted:#4a6b4a;
+  --mono:'Share Tech Mono',monospace;
+}
 body{background:var(--bg);color:var(--text);font-family:'Tajawal',sans-serif;min-height:100vh;max-width:480px;margin:0 auto}
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(0,229,176,.07) 0%,transparent 60%);pointer-events:none;z-index:0}
 .page{position:relative;z-index:1;padding-bottom:80px}
+
+/* HERO */
 .hero{background:linear-gradient(160deg,#0e1f12 0%,#091409 100%);padding:20px 20px 28px;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
 .hero::after{content:'';position:absolute;bottom:-30px;right:-30px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,176,.08),transparent 70%);pointer-events:none}
 .hero-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
@@ -35,11 +41,15 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .hero-title{font-size:26px;font-weight:800;line-height:1.3;margin-bottom:8px}
 .hero-title span{color:var(--accent)}
 .hero-desc{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* CARDS */
 .card{background:var(--card);border:1px solid var(--border);border-radius:16px;margin:14px 14px 0;padding:18px;animation:fadeUp .4s ease both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
 .card-title{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);font-weight:600}
 .card-title .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+
+/* GAME CHIPS */
 .games-scroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
 .games-scroll::-webkit-scrollbar{display:none}
 .game-chip{flex-shrink:0;padding:10px 14px;border-radius:12px;border:1px solid var(--border);background:var(--surface);cursor:pointer;transition:all .2s;text-align:center;min-width:76px}
@@ -50,6 +60,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .chip-name{font-size:10px;color:var(--muted);display:block;margin-top:2px}
 .chip-dot{width:5px;height:5px;border-radius:50%;margin:4px auto 0;display:none}
 .game-chip.active .chip-dot{display:block}
+
+/* SENSITIVITY */
 .sens-display{font-family:var(--mono);font-size:52px;color:var(--text);line-height:1;margin-bottom:10px;letter-spacing:-1px}
 .sens-slider{width:100%;-webkit-appearance:none;appearance:none;height:4px;border-radius:2px;background:var(--border);outline:none;cursor:pointer}
 .sens-slider::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px rgba(0,229,176,.5);cursor:pointer}
@@ -58,6 +70,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .sens-input-row input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,229,176,.1)}
 .swap-btn{background:rgba(0,229,176,.1);border:1px solid rgba(0,229,176,.3);color:var(--accent);width:44px;height:44px;border-radius:10px;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:all .3s;flex-shrink:0}
 .swap-btn:hover{background:rgba(0,229,176,.2);transform:rotate(180deg)}
+
+/* RESULT */
 .result-card{background:linear-gradient(135deg,#0d1f18,#091510);border:1px solid rgba(0,229,176,.3);border-radius:16px;margin:14px 14px 0;padding:20px;position:relative;overflow:hidden;animation:fadeUp .4s .1s ease both}
 .result-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
 .result-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:4px}
@@ -69,17 +83,23 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .result-number{font-family:var(--mono);font-size:64px;color:var(--accent);text-shadow:0 0 30px rgba(0,229,176,.4);line-height:1;margin-bottom:8px}
 .result-meta{font-size:12px;color:var(--muted)}
 .result-meta span{color:var(--accent);font-weight:700}
+
+/* STATS */
 .stats-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 14px 0;animation:fadeUp .4s .15s ease both}
 .stat-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;display:flex;align-items:flex-start;gap:10px}
 .stat-icon{font-size:16px;margin-top:2px}
 .stat-val{font-family:var(--mono);font-size:24px;color:var(--text);line-height:1;margin-bottom:4px}
 .stat-lbl{font-size:11px;color:var(--muted)}
 .stat-sub{font-size:10px;color:var(--muted);margin-top:2px;opacity:.7}
+
+/* DPI */
 .dpi-card .dpi-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .dpi-card label{display:block;font-size:11px;color:var(--muted);margin-bottom:6px;font-weight:600}
 .dpi-card input{width:100%;background:var(--surface);border:1px solid var(--border);color:var(--text);padding:12px;border-radius:10px;font-size:18px;font-family:var(--mono);outline:none;text-align:center;transition:all .2s}
 .dpi-card input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,229,176,.1)}
-.game-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(31,46,31,.6)}
+
+/* ALL GAMES */
+.game-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(31,46,31,.6);transition:background .15s}
 .game-row:last-child{border-bottom:none}
 .game-row-left{display:flex;align-items:center;gap:12px}
 .game-tag{width:42px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;color:#fff;flex-shrink:0}
@@ -90,8 +110,31 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .tag-val{background:#ef6c00}.tag-cs2{background:#e65100}.tag-apex{background:#c62828}
 .tag-ow2{background:#1565c0}.tag-fn{background:#6a1b9a}.tag-r6{background:#1a237e}
 .tag-bf{background:#1b5e20}.tag-cod{background:#212121;border:1px solid #444}
+
+/* INFO */
 .info-box{margin:14px 14px 0;background:rgba(0,119,255,.05);border:1px solid rgba(0,100,255,.15);border-radius:12px;padding:14px 16px;font-size:13px;color:var(--muted);line-height:1.7;animation:fadeUp .4s .25s ease both}
 .info-box strong{color:#4fc3f7}
+
+/* PROS */
+.pros-tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:16px;scrollbar-width:none}
+.pros-tabs::-webkit-scrollbar{display:none}
+.pros-tab{flex-shrink:0;padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-size:12px;font-weight:700;color:var(--muted);font-family:'Rajdhani',sans-serif;letter-spacing:1px;transition:all .2s}
+.pros-tab.active{border-color:var(--accent);background:rgba(0,229,176,.1);color:var(--accent)}
+.pro-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px}
+.pro-card:last-child{margin-bottom:0}
+.pro-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.pro-info{display:flex;align-items:center;gap:10px}
+.pro-avatar{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;font-family:'Rajdhani',sans-serif;color:#fff;flex-shrink:0}
+.pro-name{font-size:14px;font-weight:700;color:var(--text)}
+.pro-team{font-size:11px;color:var(--muted);margin-top:1px}
+.pro-game-tag{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px;color:#fff}
+.pro-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
+.pro-stat{background:var(--card);border-radius:8px;padding:8px;text-align:center}
+.pro-stat-val{font-family:var(--mono);font-size:16px;color:var(--accent);display:block}
+.pro-stat-lbl{font-size:10px;color:var(--muted);margin-top:2px}
+.pro-use-btn{width:100%;background:rgba(0,229,176,.08);border:1px solid rgba(0,229,176,.25);color:var(--accent);padding:9px;border-radius:9px;cursor:pointer;font-size:13px;font-family:'Tajawal',sans-serif;font-weight:700;transition:all .2s;text-align:center}
+.pro-use-btn:hover{background:rgba(0,229,176,.18)}
+.pro-use-btn.used{background:rgba(0,255,136,.1);border-color:#00ff88;color:#00ff88}
 </style>
 </head>
 <body>
@@ -113,6 +156,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <div class="hero-title" id="heroTitle">احفظ <span>إحساس التصويب</span><br>مهما تغيرت اللعبة</div>
     <div class="hero-desc" id="heroDesc">اختر لعبتك الحالية، أدخل رقم الحساسية، واحصل على الرقم المكافئ في أي لعبة أخرى لحظياً.</div>
   </div>
+
   <div class="card">
     <div class="card-header">
       <div class="card-title"><div class="dot"></div><span id="lbl_source">اللعبة الحالية</span></div>
@@ -120,6 +164,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     </div>
     <div class="games-scroll" id="sourceGames"></div>
   </div>
+
   <div class="card">
     <div class="card-header">
       <div class="card-title"><div class="dot" style="background:#fff;box-shadow:none"></div><span id="lbl_sens">الحساسية داخل اللعبة</span></div>
@@ -130,6 +175,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       <input type="number" id="sensInput" value="0.4" min="0.01" step="0.01" oninput="onInput()">
     </div>
   </div>
+
   <div class="card">
     <div class="card-header">
       <div class="card-title"><div class="dot" style="background:#4fc3f7;box-shadow:0 0 8px #4fc3f7"></div><span id="lbl_target">اللعبة المستهدفة</span></div>
@@ -137,6 +183,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     </div>
     <div class="games-scroll" id="targetGames"></div>
   </div>
+
   <div class="result-card">
     <div class="result-top">
       <div class="result-label"><span id="resultLabelText">حساسيتك في</span> <strong id="targetGameLabel">CS2</strong></div>
@@ -145,6 +192,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <div class="result-number" id="resultNum">—</div>
     <div class="result-meta" id="resultMeta"></div>
   </div>
+
   <div class="stats-row">
     <div class="stat-box">
       <div class="stat-icon">ℹ️</div>
@@ -163,6 +211,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       </div>
     </div>
   </div>
+
   <div class="card dpi-card" style="animation-delay:.18s">
     <div class="card-header">
       <div class="card-title"><div class="dot" style="background:#ffb300;box-shadow:0 0 8px #ffb300"></div><span id="lbl_dpi">الماوس DPI</span></div>
@@ -172,6 +221,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       <div><label id="lbl_sensEdpi">الحساسية</label><input type="number" id="edpiSens" value="0.4" min="0" step="0.01" oninput="calcEdpiManual()"></div>
     </div>
   </div>
+
   <div class="card" style="animation-delay:.2s">
     <div class="card-header">
       <div class="card-title"><div class="dot" style="background:#ce93d8;box-shadow:0 0 8px #ce93d8"></div><span id="lbl_allGames">المكافئ في كل الألعاب</span></div>
@@ -179,30 +229,55 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     </div>
     <div id="allGamesList"></div>
   </div>
+
+
+  <!-- PROS SECTION -->
+  <div class="card" style="animation-delay:.22s;margin-top:14px">
+    <div class="card-header">
+      <div class="card-title"><div class="dot" style="background:#ffd700;box-shadow:0 0 8px #ffd700"></div><span id="lbl_pros">إعدادات المحترفين العالميين</span></div>
+    </div>
+    <div class="pros-tabs" id="prosTabs"></div>
+    <div id="prosCards"></div>
+  </div>
+
   <div class="info-box" id="infoBox">
     <strong>cm / 360°</strong> يعني كم سنتيمتر تحتاج تحرك الماوس عشان تدور الكاميرا دورة كاملة. رقم أصغر = أسرع، رقم أكبر = أدق. معظم المحترفين يستخدمون <strong>20–50 سم</strong>.
   </div>
 </div>
+
 <script>
 const GAMES=[
-  {id:'valorant',en:'Valorant',ar:'فالورانت',abbr:'VAL',tag:'tag-val',mult:0.07},
-  {id:'cs2',en:'CS2',ar:'كاونتر سترايك 2',abbr:'CS2',tag:'tag-cs2',mult:0.022},
-  {id:'apex',en:'Apex Legends',ar:'أبيكس ليجندز',abbr:'APEX',tag:'tag-apex',mult:0.022},
-  {id:'ow2',en:'Overwatch 2',ar:'أوفرواتش 2',abbr:'OW2',tag:'tag-ow2',mult:0.0066},
-  {id:'fn',en:'Fortnite',ar:'فورتنايت',abbr:'FN',tag:'tag-fn',mult:0.5709},
-  {id:'r6',en:'Rainbow Six',ar:'رينبو سكس سيبج',abbr:'R6',tag:'tag-r6',mult:0.00223},
-  {id:'bf',en:'Battlefield',ar:'باتلفيلد 2042',abbr:'BF',tag:'tag-bf',mult:0.0709},
-  {id:'cod',en:'Call of Duty',ar:'كول أوف ديوتي',abbr:'COD',tag:'tag-cod',mult:0.0066},
+  {id:'valorant',en:'Valorant',      ar:'فالورانت',        abbr:'VAL', tag:'tag-val',  mult:0.07   },
+  {id:'cs2',     en:'CS2',           ar:'كاونتر سترايك 2', abbr:'CS2', tag:'tag-cs2',  mult:0.022  },
+  {id:'apex',    en:'Apex Legends',  ar:'أبيكس ليجندز',    abbr:'APEX',tag:'tag-apex', mult:0.022  },
+  {id:'ow2',     en:'Overwatch 2',   ar:'أوفرواتش 2',      abbr:'OW2', tag:'tag-ow2',  mult:0.0066 },
+  {id:'fn',      en:'Fortnite',      ar:'فورتنايت',        abbr:'FN',  tag:'tag-fn',   mult:0.5709 },
+  {id:'r6',      en:'Rainbow Six',   ar:'رينبو سكس سيبج',  abbr:'R6',  tag:'tag-r6',   mult:0.00223},
+  {id:'bf',      en:'Battlefield',   ar:'باتلفيلد 2042',   abbr:'BF',  tag:'tag-bf',   mult:0.0709 },
+  {id:'cod',     en:'Call of Duty',  ar:'كول أوف ديوتي',   abbr:'COD', tag:'tag-cod',  mult:0.0066 },
 ];
-let lang='ar',sourceId='valorant',targetId='cs2';
+let lang='ar', sourceId='valorant', targetId='cs2';
 const g=id=>GAMES.find(x=>x.id===id);
 const t=(ar,en)=>lang==='ar'?ar:en;
-function toggleLang(){lang=lang==='ar'?'en':'ar';document.documentElement.lang=lang;document.body.dir=lang==='ar'?'rtl':'ltr';document.querySelector('.lang-toggle').textContent=lang==='ar'?'EN':'العربية';updateTexts();renderChips();convert();}
+
+function toggleLang(){
+  lang=lang==='ar'?'en':'ar';
+  document.documentElement.lang=lang;
+  document.body.dir=lang==='ar'?'rtl':'ltr';
+  document.querySelector('.lang-toggle').textContent=lang==='ar'?'EN':'العربية';
+  updateTexts(); renderChips(); renderPros(); convert();
+}
+
 function updateTexts(){
   document.getElementById('brandSub').textContent=t('محوّل حساسية ألعاب الـ FPS','FPS Sensitivity Converter');
   document.getElementById('liveLabel').textContent=t('تحويل فوري','Live Convert');
-  document.getElementById('heroTitle').innerHTML=lang==='ar'?'احفظ <span style="color:var(--accent)">إحساس التصويب</span><br>مهما تغيرت اللعبة':'Keep Your <span style="color:var(--accent)">Aim Feel</span><br>Across Every Game';
-  document.getElementById('heroDesc').textContent=t('اختر لعبتك الحالية، أدخل رقم الحساسية، واحصل على الرقم المكافئ في أي لعبة أخرى لحظياً.','Select your source game, enter your sensitivity, and get the exact equivalent for any other game instantly.');
+  document.getElementById('heroTitle').innerHTML=lang==='ar'
+    ?'احفظ <span style="color:var(--accent)">إحساس التصويب</span><br>مهما تغيرت اللعبة'
+    :'Keep Your <span style="color:var(--accent)">Aim Feel</span><br>Across Every Game';
+  document.getElementById('heroDesc').textContent=t(
+    'اختر لعبتك الحالية، أدخل رقم الحساسية، واحصل على الرقم المكافئ في أي لعبة أخرى لحظياً.',
+    'Select your source game, enter your sensitivity, and get the exact equivalent for any other game instantly.'
+  );
   document.getElementById('lbl_source').textContent=t('اللعبة الحالية','Source Game');
   document.getElementById('lbl_sens').textContent=t('الحساسية داخل اللعبة','In-Game Sensitivity');
   document.getElementById('lbl_target').textContent=t('اللعبة المستهدفة','Target Game');
@@ -213,17 +288,22 @@ function updateTexts(){
   document.getElementById('stat360sub').textContent=t('سم لدورة كاملة','cm per full rotation');
   document.getElementById('statEdpiSub').textContent=t('الحساسية × DPI','Sensitivity × DPI');
   document.getElementById('copyTxt').textContent=t('نسخ','Copy');
-  document.getElementById('infoBox').innerHTML=lang==='ar'?'<strong>cm / 360°</strong> يعني كم سنتيمتر تحتاج تحرك الماوس عشان تدور الكاميرا دورة كاملة. رقم أصغر = أسرع، رقم أكبر = أدق. معظم المحترفين يستخدمون <strong>20–50 سم</strong>.':'<strong>cm / 360°</strong> means how many centimeters you move your mouse for a full camera rotation. Lower = faster, Higher = more precise. Most pro players use <strong>20–50 cm</strong>.';
+  document.getElementById('lbl_pros').textContent=t('إعدادات المحترفين العالميين','Pro Players Settings');
+  document.getElementById('infoBox').innerHTML=lang==='ar'
+    ?'<strong>cm / 360°</strong> يعني كم سنتيمتر تحتاج تحرك الماوس عشان تدور الكاميرا دورة كاملة. رقم أصغر = أسرع، رقم أكبر = أدق. معظم المحترفين يستخدمون <strong>20–50 سم</strong>.'
+    :'<strong>cm / 360°</strong> means how many centimeters you move your mouse for a full camera rotation. Lower = faster, Higher = more precise. Most pro players use <strong>20–50 cm</strong>.';
 }
+
 function renderChips(){
   [['sourceGames',false],['targetGames',true]].forEach(([cid,isTarget])=>{
-    const el=document.getElementById(cid);el.innerHTML='';
+    const el=document.getElementById(cid);
+    el.innerHTML='';
     GAMES.forEach(game=>{
       const active=isTarget?game.id===targetId:game.id===sourceId;
       const div=document.createElement('div');
       div.className='game-chip'+(active?' active':'');
       div.innerHTML=`<span class="chip-abbr">${game.abbr}</span><span class="chip-name">${lang==='ar'?game.ar:game.en}</span><div class="chip-dot" style="background:${active?'var(--accent)':'transparent'}"></div>`;
-      div.onclick=()=>{if(isTarget)targetId=game.id;else sourceId=game.id;renderChips();convert();};
+      div.onclick=()=>{ if(isTarget)targetId=game.id; else sourceId=game.id; renderChips(); convert(); };
       el.appendChild(div);
     });
   });
@@ -231,9 +311,23 @@ function renderChips(){
   document.getElementById('sourceGameName').textContent=lang==='ar'?sg.ar:sg.en;
   document.getElementById('targetGameLabel').textContent=lang==='ar'?tg.ar:tg.en;
 }
-function onSlider(){const v=parseFloat(document.getElementById('sensSlider').value);document.getElementById('sensInput').value=v;document.getElementById('sensDisplay').textContent=v;convert();}
-function onInput(){const v=parseFloat(document.getElementById('sensInput').value)||0;document.getElementById('sensDisplay').textContent=v;document.getElementById('sensSlider').value=Math.min(v,10);convert();}
+
+function onSlider(){
+  const v=parseFloat(document.getElementById('sensSlider').value);
+  document.getElementById('sensInput').value=v;
+  document.getElementById('sensDisplay').textContent=v;
+  convert();
+}
+
+function onInput(){
+  const v=parseFloat(document.getElementById('sensInput').value)||0;
+  document.getElementById('sensDisplay').textContent=v;
+  document.getElementById('sensSlider').value=Math.min(v,10);
+  convert();
+}
+
 function swapGames(){[sourceId,targetId]=[targetId,sourceId];renderChips();convert();}
+
 function convert(){
   const sens=parseFloat(document.getElementById('sensInput').value)||0;
   const dpi=parseFloat(document.getElementById('dpiInput').value)||800;
@@ -248,7 +342,8 @@ function convert(){
   document.getElementById('statEdpi').textContent=sens?Math.round(sens*dpi):'—';
   document.getElementById('edpiSens').value=sens;
   document.getElementById('allGamesFrom').textContent=t(`من ${sg.ar} (${sens})`,`from ${sg.en} (${sens})`);
-  const list=document.getElementById('allGamesList');list.innerHTML='';
+  const list=document.getElementById('allGamesList');
+  list.innerHTML='';
   GAMES.forEach(game=>{
     const val=sens?Math.round(sens*sg.mult/game.mult*10000)/10000:'—';
     const isSource=game.id===sourceId,isTarget=game.id===targetId;
@@ -258,9 +353,151 @@ function convert(){
     list.appendChild(row);
   });
 }
-function calcEdpiManual(){const s=parseFloat(document.getElementById('edpiSens').value)||0;const d=parseFloat(document.getElementById('dpiInput').value)||800;document.getElementById('statEdpi').textContent=s?Math.round(s*d):'—';}
-function copyResult(){const val=document.getElementById('resultNum').textContent;if(val==='—')return;navigator.clipboard.writeText(val).then(()=>{const btn=document.getElementById('copyBtn'),txt=document.getElementById('copyTxt');btn.classList.add('copied');txt.textContent=t('✓ تم','✓ Copied');setTimeout(()=>{btn.classList.remove('copied');txt.textContent=t('نسخ','Copy');},1500);});}
-renderChips();updateTexts();convert();
+
+function calcEdpiManual(){
+  const s=parseFloat(document.getElementById('edpiSens').value)||0;
+  const d=parseFloat(document.getElementById('dpiInput').value)||800;
+  document.getElementById('statEdpi').textContent=s?Math.round(s*d):'—';
+}
+
+function copyResult(){
+  const val=document.getElementById('resultNum').textContent;
+  if(val==='—')return;
+  navigator.clipboard.writeText(val).then(()=>{
+    const btn=document.getElementById('copyBtn'),txt=document.getElementById('copyTxt');
+    btn.classList.add('copied');txt.textContent=t('✓ تم','✓ Copied');
+    setTimeout(()=>{btn.classList.remove('copied');txt.textContent=t('نسخ','Copy');},1500);
+  });
+}
+
+
+const PROS = {
+  cs2: [
+    {name:'s1mple',   team:'NAVI',        country:'🇺🇦', sens:3.09, dpi:400,  zoom:1.0,  color:'#e53935'},
+    {name:'ZywOo',    team:'Vitality',    country:'🇫🇷', sens:2.0,  dpi:400,  zoom:1.0,  color:'#fdd835'},
+    {name:'NiKo',     team:'G2',          country:'🇧🇦', sens:1.21, dpi:400,  zoom:1.0,  color:'#1e88e5'},
+    {name:'device',   team:'Astralis',    country:'🇩🇰', sens:1.5,  dpi:400,  zoom:1.0,  color:'#43a047'},
+    {name:'sh1ro',    team:'Cloud9',      country:'🇷🇺', sens:1.6,  dpi:400,  zoom:1.0,  color:'#8e24aa'},
+    {name:'ropz',     team:'FaZe',        country:'🇪🇪', sens:0.8,  dpi:800,  zoom:1.0,  color:'#f4511e'},
+  ],
+  valorant: [
+    {name:'TenZ',     team:'Sentinels',   country:'🇨🇦', sens:0.408,dpi:800,  zoom:1.0,  color:'#e53935'},
+    {name:'Shroud',   team:'MIBR',        country:'🇨🇦', sens:0.78, dpi:450,  zoom:1.0,  color:'#1e88e5'},
+    {name:'yay',      team:'NRG',         country:'🇺🇸', sens:0.536,dpi:800,  zoom:1.0,  color:'#43a047'},
+    {name:'Aspas',    team:'LOUD',        country:'🇧🇷', sens:1.07, dpi:800,  zoom:1.0,  color:'#fdd835'},
+    {name:'Chronicle',team:'Team Vitality',country:'🇬🇪',sens:0.35, dpi:800,  zoom:1.0,  color:'#8e24aa'},
+    {name:'cNed',     team:'NIP',         country:'🇹🇷', sens:0.88, dpi:800,  zoom:1.0,  color:'#f4511e'},
+  ],
+  apex: [
+    {name:'Aceu',     team:'FaZe',        country:'🇺🇸', sens:1.0,  dpi:800,  zoom:1.0,  color:'#e53935'},
+    {name:'Dizzy',    team:'NRG',         country:'🇺🇸', sens:1.3,  dpi:800,  zoom:1.0,  color:'#1e88e5'},
+    {name:'ImperialHal',team:'TSM',       country:'🇺🇸', sens:1.2,  dpi:400,  zoom:1.0,  color:'#43a047'},
+    {name:'Sweetdreams',team:'100T',      country:'🇺🇸', sens:2.0,  dpi:400,  zoom:1.0,  color:'#fdd835'},
+  ],
+  overwatch: [
+    {name:'Fleta',    team:'Seoul Dynasty',country:'🇰🇷',sens:3.0,  dpi:800,  zoom:1.0,  color:'#e53935'},
+    {name:'Profit',   team:'Paris Eternal',country:'🇰🇷',sens:5.0,  dpi:800,  zoom:1.0,  color:'#1e88e5'},
+    {name:'Carpe',    team:'Philadelphia', country:'🇰🇷',sens:4.55, dpi:800,  zoom:1.0,  color:'#43a047'},
+    {name:'Gesture',  team:'London Spitfire',country:'🇰🇷',sens:6.0,dpi:400, zoom:1.0,  color:'#fdd835'},
+  ],
+  fortnite: [
+    {name:'Bugha',    team:'Sentinels',   country:'🇺🇸', sens:0.08, dpi:400,  zoom:1.0,  color:'#e53935'},
+    {name:'Mongraal', team:'FaZe',        country:'🇬🇧', sens:0.14, dpi:400,  zoom:1.0,  color:'#1e88e5'},
+    {name:'Tfue',     team:'FaZe',        country:'🇺🇸', sens:0.08, dpi:800,  zoom:1.0,  color:'#43a047'},
+    {name:'Clix',     team:'NRG',         country:'🇺🇸', sens:0.10, dpi:400,  zoom:1.0,  color:'#fdd835'},
+  ],
+  r6: [
+    {name:'Canadian', team:'Spacestation', country:'🇨🇦',sens:12.0, dpi:400,  zoom:1.0,  color:'#e53935'},
+    {name:'Pengu',    team:'G2',           country:'🇩🇰',sens:23.0, dpi:400,  zoom:1.0,  color:'#1e88e5'},
+    {name:'Beaulo',   team:'TSM',          country:'🇺🇸',sens:27.0, dpi:800,  zoom:1.0,  color:'#43a047'},
+    {name:'Fabian',   team:'G2',           country:'🇸🇪',sens:11.0, dpi:400,  zoom:1.0,  color:'#fdd835'},
+  ],
+};
+
+const PROS_GAME_MAP = {
+  cs2:       {gameId:'cs2',      label:'CS2',       tagClass:'tag-cs2'},
+  valorant:  {gameId:'valorant', label:'VAL',        tagClass:'tag-val'},
+  apex:      {gameId:'apex',     label:'APEX',       tagClass:'tag-apex'},
+  overwatch: {gameId:'ow2',      label:'OW2',        tagClass:'tag-ow2'},
+  fortnite:  {gameId:'fn',       label:'FN',         tagClass:'tag-fn'},
+  r6:        {gameId:'r6',       label:'R6',         tagClass:'tag-r6'},
+};
+
+const PROS_LABELS = {
+  cs2:'CS2', valorant:'Valorant', apex:'Apex', overwatch:'Overwatch 2', fortnite:'Fortnite', r6:'Rainbow Six'
+};
+
+let activeProGame = 'cs2';
+
+function renderPros() {
+  // tabs
+  const tabs = document.getElementById('prosTabs');
+  tabs.innerHTML = '';
+  Object.keys(PROS).forEach(key => {
+    const btn = document.createElement('button');
+    btn.className = 'pros-tab' + (key === activeProGame ? ' active' : '');
+    btn.textContent = PROS_LABELS[key];
+    btn.onclick = () => { activeProGame = key; renderPros(); };
+    tabs.appendChild(btn);
+  });
+
+  // cards
+  const container = document.getElementById('prosCards');
+  container.innerHTML = '';
+  const gmap = PROS_GAME_MAP[activeProGame];
+  const gameObj = g(gmap.gameId);
+
+  PROS[activeProGame].forEach(pro => {
+    const edpi = Math.round(pro.sens * pro.dpi);
+    const cm360 = Math.round(2.54 * 360 / (gameObj.mult * pro.sens * pro.dpi) * 10) / 10;
+
+    const card = document.createElement('div');
+    card.className = 'pro-card';
+    card.innerHTML = `
+      <div class="pro-top">
+        <div class="pro-info">
+          <div class="pro-avatar" style="background:${pro.color}">${pro.name.substring(0,2).toUpperCase()}</div>
+          <div>
+            <div class="pro-name">${pro.country} ${pro.name}</div>
+            <div class="pro-team">${pro.team}</div>
+          </div>
+        </div>
+        <span class="pro-game-tag ${gmap.tagClass}">${gmap.label}</span>
+      </div>
+      <div class="pro-stats">
+        <div class="pro-stat"><span class="pro-stat-val">${pro.sens}</span><div class="pro-stat-lbl">Sensitivity</div></div>
+        <div class="pro-stat"><span class="pro-stat-val">${pro.dpi}</span><div class="pro-stat-lbl">DPI</div></div>
+        <div class="pro-stat"><span class="pro-stat-val">${edpi}</span><div class="pro-stat-lbl">eDPI</div></div>
+      </div>
+      <div class="pro-stats" style="margin-bottom:10px">
+        <div class="pro-stat" style="grid-column:span 3"><span class="pro-stat-val" style="color:#4fc3f7">${cm360} cm</span><div class="pro-stat-lbl">cm / 360°</div></div>
+      </div>
+      <button class="pro-use-btn" onclick="useProSettings('${gmap.gameId}', ${pro.sens}, '${pro.name}', this)">
+        ${t('استخدم إعدادات','Use settings of')} ${pro.name} ↗
+      </button>`;
+    container.appendChild(card);
+  });
+}
+
+function useProSettings(gameId, sens, name, btn) {
+  sourceId = gameId;
+  document.getElementById('sensInput').value = sens;
+  document.getElementById('sensDisplay').textContent = sens;
+  document.getElementById('sensSlider').value = Math.min(sens, 10);
+  renderChips();
+  convert();
+  // scroll to top
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  // feedback
+  btn.classList.add('used');
+  btn.textContent = '✓ ' + t('تم تطبيق الإعدادات','Settings applied');
+  setTimeout(() => {
+    btn.classList.remove('used');
+    btn.textContent = t('استخدم إعدادات','Use settings of') + ' ' + name + ' ↗';
+  }, 2000);
+}
+
+renderChips();renderPros();updateTexts();convert();
 </script>
 </body>
 </html>
