@@ -48,6 +48,10 @@
   gtag('js', new Date());
   gtag('config', 'G-K3GQXGYYNP');
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@twemoji/api@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+<style>
+  img.emoji { height: 1em; width: 1em; margin: 0 .05em 0 .1em; vertical-align: -0.1em; }
+</style>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Share+Tech+Mono&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -557,18 +561,18 @@ const TRANSLATIONS = {
   tr: {
     name: "🇹🇷 Türkçe", dir: "ltr", brandSub: "FPS Hassasiyet Dönüştürücü", liveLabel: "Canlı Dönüştür",
     heroTitle: '<span>Nişan Hissini</span><br>Her Oyunda Koru',
-    heroDesc: 'Kaynak oyununuzu seçin, hassasiyetinizi girin ve diğer tüm oyunlar için tam karşılıغını anında alın.',
-    lbl_source: "Kaynak Oyun", lbl_sens: "Oyun İçi Hassasiyet", lbl_target: "Hedef Oyun",
+    heroDesc: 'Kaynak oyununuzu seçin, hassasiyetinizi girin ve diğer tüm oyunlar için tam karşılığını anında alın.',
+    lbl_source: "Kaynak Oyun", lbl_sens: "Oyun الإي Hassasiyet", lbl_target: "Hedef Oyun",
     resultLabelText: "Şu oyundaki hassasiyetin:", copyTxt: "Kopyala", copied: "✓ Kopyalandı",
     stat360sub: "tam dönüş için cm", statEdpiSub: "Hassasiyet × DPI",
     lbl_dpi: "Fare DPI", lbl_dpiInput: "Fare DPI", lbl_sensEdpi: "Hassasiyet",
     lbl_allGames: "Tüm Oyunlar Dönüşümü", lbl_pros: "Profesyonel Ayarları",
-    infoBox: '<strong>cm / 360°</strong>, tam bir kamera dönüşü için farenizi kaç santimetre hareket ettirdiğiniz anlamına gelir.',
+    infoBox: '<strong>cm / 360°</strong>, tam bir kamera dönüşü için farenزي kaç santimetre hareket ettirdiğiniz anlamına gelir.',
     from: "kaynak:", useSettings: "Şunun ayarlarını kullan:", skip: "Atla", start: "Başlayalım", next: "İleri", finish: "Bitir",
     howItWorks: "Nasıl çalışır?",
     tut: [
       {icon:'🎯',title:'<span>AIM SYNC</span>\'e Hoş Geldiniz',desc:'Hangi oyuna geçerseniz geçin <strong>nişan hissinizi</strong> koruyan tek site.',tip:'Ayarlar otomatik olarak kaydedilir'},
-      {icon:'🎮',title:'<span>Kaynak Oyun</span> Seç',desc:'Şu an oynadığınız oyunu seçin.',tip:'Daha fazlası için kaydırın'},
+      {icon:'🎮',title:'<span>Kaynak Oyun</span> Seç',desc:'Şu an oynadığınız oyunu seçين.',tip:'Daha fazlası için kaydırın'},
       {icon:'🖱️',title:'<span>Hassasiyet</span> Gir',desc:'Oyun içi hassasiyetinizi yazın.',tip:'Ayarlar → Fare kısmına bakın'},
       {icon:'⚡',title:'<span>Hedef Oyun</span> Seç',desc:'Geçmek istediğiniz oyunu seçin.',tip:'Hızlı değişim için ⇄ kullanın'},
       {icon:'🏆',title:'<span>Pro</span> Ayarları',desc:'150+ profesyonel oyuncunun ayarları.',tip:'s1mple ayarlarını deneyin'},
@@ -647,6 +651,7 @@ function changeLang(newLang){
   document.getElementById('langToggle').textContent = t.name;
   updateTexts(); renderChips(); renderPros(); convert();
   saveSettings();
+  twemoji.parse(document.body);
 }
 
 function updateTexts(){
@@ -759,6 +764,7 @@ function renderTutStep(){
   if(isLast){ if(nextBtn) nextBtn.classList.add('finish'); if(nextTxt) nextTxt.textContent = t.finish; if(nextArrow) nextArrow.textContent = '🎯'; if(skipBtn) skipBtn.style.display = 'none'; }
   else { if(nextBtn) nextBtn.classList.remove('finish'); if(nextTxt) nextTxt.textContent = tutStep===0?t.start:t.next; if(nextArrow) nextArrow.textContent = lang==='ar'?'←':'→'; if(skipBtn) skipBtn.style.display = 'block'; }
   const box = document.getElementById('tutorialBox'); if(box){ box.style.transform = 'translateY(20px)'; box.style.opacity = '0'; setTimeout(()=>{ box.style.transform = 'translateY(0)'; box.style.opacity = '1'; }, 50); }
+  twemoji.parse(document.getElementById('tutContent'));
 }
 
 function nextStep(){ if(tutStep < TRANSLATIONS[lang].tut.length-1){ tutStep++; renderTutStep(); } else closeTutorial(); }
@@ -773,6 +779,7 @@ function loadSettings(){
 
 document.addEventListener('DOMContentLoaded', () => {
   loadSettings(); renderChips(); renderPros(); updateTexts(); convert();
+  twemoji.parse(document.body);
   if(!localStorage.getItem('aimsync_tutorial_done')) setTimeout(openTutorial, 900);
   const helpBtn=document.createElement('button');
   helpBtn.innerHTML='❓ <span id="helpTxt">'+TRANSLATIONS[lang].howItWorks+'</span>';
