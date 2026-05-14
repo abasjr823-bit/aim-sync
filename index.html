@@ -2,28 +2,24 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>AIM SYNC - محول حساسية الماوس بين ألعاب FPS</title>
 <meta name="description" content="AIM SYNC - محول حساسية الماوس المجاني بين ألعاب FPS. حول sensitivity بين Valorant, CS2, Apex, Fortnite, Overwatch وغيرها. Sensitivity converter for FPS games.">
 <meta name="keywords" content="aim sync, محول حساسية, sensitivity converter, تحويل sensitivity, mouse sensitivity converter, FPS sensitivity, valorant sensitivity, cs2 sensitivity, apex sensitivity, حساسية ماوس, aim sync sensitivity converter, arabic sensitivity converter, محول حساسية بين الألعاب">
 <meta name="author" content="AIM SYNC">
 <meta name="robots" content="index, follow">
-<meta name="language" content="Arabic, English">
 <link rel="canonical" href="https://aim-sync.vercel.app">
 
-<!-- Open Graph / Social Media -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://aim-sync.vercel.app">
 <meta property="og:title" content="AIM SYNC - محول حساسية الماوس بين ألعاب FPS">
 <meta property="og:description" content="حول حساسية الماوس بين Valorant, CS2, Apex, Fortnite وغيرها. إعدادات المحترفين العالميين. مجاني 100%.">
 <meta property="og:image" content="https://aim-sync.vercel.app/og-image.png">
 
-<!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="AIM SYNC - Sensitivity Converter">
 <meta name="twitter:description" content="Free FPS mouse sensitivity converter. Convert between Valorant, CS2, Apex, Fortnite & more. Pro player settings included.">
 
-<!-- Schema.org structured data -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -39,10 +35,9 @@
     "price": "0",
     "priceCurrency": "USD"
   },
-  "inLanguage": ["ar", "en"]
+  "inLanguage": ["ar", "en", "es", "fr", "de", "ru"]
 }
 </script>
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3GQXGYYNP"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -58,126 +53,117 @@
   --accent:#00e5b0;--accent2:#00ff88;--text:#e8f5e8;--muted:#4a6b4a;
   --mono:'Share Tech Mono',monospace;
 }
-body{background:var(--bg);color:var(--text);font-family:'Tajawal',sans-serif;min-height:100vh}
-.page{max-width:1200px;margin:0 auto}
-@media(min-width:768px){
-  .pc-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;align-items:start;padding:0 24px}
-  .pc-col-left{min-width:0}
-  .pc-col-right{min-width:0}
-  .card{margin:14px 0 0}
-  .result-card{margin:14px 0 0}
-  .stats-row{margin:14px 0 0}
-  .info-box{margin:14px 0 0}
-  .hero{padding:28px 40px 36px}
-  .hero-title{font-size:36px}
-  .pros-section{padding:0 24px;margin-top:14px}
-}
-@media(max-width:767px){
-  .pc-grid{display:block}
-  .pros-section{display:block}
-}
+body{background:var(--bg);color:var(--text);font-family:'Tajawal',sans-serif;min-height:100vh;overflow-x:hidden}
+.page{max-width:1200px;margin:0 auto;padding-bottom:80px;position:relative;z-index:1}
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(0,229,176,.07) 0%,transparent 60%);pointer-events:none;z-index:0}
-.page{position:relative;z-index:1;padding-bottom:80px}
 
-/* HERO */
-.hero{background:linear-gradient(160deg,#0e1f12 0%,#091409 100%);padding:20px 20px 28px;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.hero{background:linear-gradient(160deg,#0e1f12 0%,#091409 100%);padding:20px 20px 28px;border-bottom:1px solid var(--border);position:relative;overflow:visible}
 .hero::after{content:'';position:absolute;bottom:-30px;right:-30px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,176,.08),transparent 70%);pointer-events:none}
-.hero-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.hero-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px}
 .brand{display:flex;align-items:center;gap:10px}
 .brand-icon{width:38px;height:38px;background:linear-gradient(135deg,#005533,#00e5b0);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
 .brand-name{font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;color:var(--accent);letter-spacing:2px}
 .brand-sub{font-size:10px;color:var(--muted);margin-top:-2px}
-.hero-badges{display:flex;gap:8px;align-items:center}
+.hero-badges{display:flex;gap:8px;align-items:center;flex-wrap:wrap;position:relative;z-index:10}
 .badge-live{display:flex;align-items:center;gap:5px;background:rgba(0,229,176,.1);border:1px solid rgba(0,229,176,.3);border-radius:20px;padding:4px 10px;font-size:11px;color:var(--accent);font-weight:700}
 .badge-live::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent2);box-shadow:0 0 6px var(--accent2);animation:pulse 1.5s ease infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
-.lang-toggle{background:var(--surface);border:1px solid var(--border);color:var(--muted);padding:5px 12px;border-radius:20px;cursor:pointer;font-size:12px;font-family:'Tajawal',sans-serif;transition:all .2s}
-.lang-toggle:hover{border-color:var(--accent);color:var(--accent)}
+
+.lang-dropdown{position:relative;display:inline-block}
+.lang-select-btn{background:var(--surface);border:1px solid var(--border);color:var(--muted);padding:8px 14px;border-radius:20px;cursor:pointer;font-size:12px;font-family:'Tajawal',sans-serif;transition:all .2s;display:flex;align-items:center;gap:6px;white-space:nowrap;touch-action:manipulation}
+.lang-select-btn:hover{border-color:var(--accent);color:var(--accent)}
+.lang-select-btn .arrow{font-size:10px;transition:transform .3s}
+.lang-select-btn.open .arrow{transform:rotate(180deg)}
+.lang-menu{position:absolute;top:calc(100% + 6px);right:0;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:6px;min-width:140px;z-index:9999;opacity:0;visibility:hidden;transform:translateY(-8px);transition:all .2s ease;box-shadow:0 12px 30px rgba(0,0,0,0.5);max-height:250px;overflow-y:auto}
+.lang-menu.show{opacity:1;visibility:visible;transform:translateY(0)}
+.lang-option{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;cursor:pointer;font-size:13px;color:var(--muted);transition:all .15s;font-family:'Tajawal',sans-serif;touch-action:manipulation}
+.lang-option:hover{background:rgba(0,229,176,.08);color:var(--text)}
+.lang-option.active{color:var(--accent);font-weight:700}
+.lang-flag{font-size:16px}
+
 .hero-title{font-size:26px;font-weight:800;line-height:1.3;margin-bottom:8px}
 .hero-title span{color:var(--accent)}
 .hero-desc{font-size:13px;color:var(--muted);line-height:1.6}
 
-/* CARDS */
-.card{background:var(--card);border:1px solid var(--border);border-radius:16px;margin:14px 14px 0;padding:18px;animation:fadeUp .4s ease both}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;margin:14px 14px 0;padding:18px;animation:fadeUp .4s ease both;transition:border-color .3s,box-shadow .3s}
+.card:hover{border-color:rgba(0,229,176,.15)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px}
 .card-title{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);font-weight:600}
 .card-title .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent)}
 
-/* GAME CHIPS */
-.games-scroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.games-scroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .games-scroll::-webkit-scrollbar{display:none}
-.game-chip{flex-shrink:0;padding:10px 14px;border-radius:12px;border:1px solid var(--border);background:var(--surface);cursor:pointer;transition:all .2s;text-align:center;min-width:76px}
-.game-chip:hover{border-color:var(--muted)}
-.game-chip.active{border-color:var(--accent);background:rgba(0,229,176,.08)}
-.chip-abbr{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:15px;color:var(--text);display:block}
+.game-chip{flex-shrink:0;padding:10px 14px;border-radius:12px;border:1px solid var(--border);background:var(--surface);cursor:pointer;transition:all .25s;text-align:center;min-width:76px;position:relative;touch-action:manipulation}
+.game-chip:hover{border-color:var(--muted);transform:translateY(-1px)}
+.game-chip.active{border-color:var(--accent);background:rgba(0,229,176,.08);box-shadow:0 0 16px rgba(0,229,176,.1)}
+.game-chip-img{width:28px;height:28px;object-fit:contain;margin:0 auto 4px;display:block;transition:transform .3s}
+.game-chip.active .game-chip-img{transform:scale(1.1)}
+.chip-abbr{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;color:var(--text);display:block}
 .game-chip.active .chip-abbr{color:var(--accent)}
 .chip-name{font-size:10px;color:var(--muted);display:block;margin-top:2px}
-.chip-dot{width:5px;height:5px;border-radius:50%;margin:4px auto 0;display:none}
-.game-chip.active .chip-dot{display:block}
 
-/* SENSITIVITY */
-.sens-display{font-family:var(--mono);font-size:52px;color:var(--text);line-height:1;margin-bottom:10px;letter-spacing:-1px}
-.sens-slider{width:100%;-webkit-appearance:none;appearance:none;height:4px;border-radius:2px;background:var(--border);outline:none;cursor:pointer}
-.sens-slider::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px rgba(0,229,176,.5);cursor:pointer}
+.sens-display{font-family:var(--mono);font-size:52px;color:var(--text);line-height:1;margin-bottom:10px;letter-spacing:-1px;transition:color .3s}
+.sens-slider{width:100%;-webkit-appearance:none;appearance:none;height:4px;border-radius:2px;background:var(--border);outline:none;cursor:pointer;transition:background .3s;touch-action:pan-y}
+.sens-slider::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px rgba(0,229,176,.5);cursor:pointer;transition:transform .15s}
+.sens-slider::-webkit-slider-thumb:hover{transform:scale(1.2)}
 .sens-input-row{display:flex;gap:10px;margin-top:12px}
 .sens-input-row input{flex:1;background:var(--surface);border:1px solid var(--border);color:var(--text);padding:10px 14px;border-radius:10px;font-size:16px;font-family:var(--mono);outline:none;text-align:center;transition:all .2s}
 .sens-input-row input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,229,176,.1)}
-.swap-btn{background:rgba(0,229,176,.1);border:1px solid rgba(0,229,176,.3);color:var(--accent);width:44px;height:44px;border-radius:10px;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:all .3s;flex-shrink:0}
-.swap-btn:hover{background:rgba(0,229,176,.2);transform:rotate(180deg)}
 
-/* RESULT */
-.result-card{background:linear-gradient(135deg,#0d1f18,#091510);border:1px solid rgba(0,229,176,.3);border-radius:16px;margin:14px 14px 0;padding:20px;position:relative;overflow:hidden;animation:fadeUp .4s .1s ease both}
+.result-card{background:linear-gradient(135deg,#0d1f18,#091510);border:1px solid rgba(0,229,176,.3);border-radius:16px;margin:14px 14px 0;padding:20px;position:relative;overflow:hidden;animation:fadeUp .4s .1s ease both;transition:border-color .3s}
 .result-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
-.result-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:4px}
+.result-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:4px;flex-wrap:wrap;gap:8px}
 .result-label{font-size:12px;color:var(--muted)}
 .result-label strong{color:var(--accent);font-size:14px}
-.copy-btn{background:rgba(0,229,176,.1);border:1px solid rgba(0,229,176,.3);color:var(--accent);padding:6px 14px;border-radius:8px;cursor:pointer;font-size:12px;font-family:'Tajawal',sans-serif;font-weight:700;display:flex;align-items:center;gap:6px;transition:all .2s}
+.copy-btn{background:rgba(0,229,176,.1);border:1px solid rgba(0,229,176,.3);color:var(--accent);padding:6px 14px;border-radius:8px;cursor:pointer;font-size:12px;font-family:'Tajawal',sans-serif;font-weight:700;display:flex;align-items:center;gap:6px;transition:all .2s;white-space:nowrap;touch-action:manipulation}
 .copy-btn:hover{background:rgba(0,229,176,.2)}
 .copy-btn.copied{color:#00ff88;border-color:#00ff88}
-.result-number{font-family:var(--mono);font-size:64px;color:var(--accent);text-shadow:0 0 30px rgba(0,229,176,.4);line-height:1;margin-bottom:8px}
+.result-number{font-family:var(--mono);font-size:64px;color:var(--accent);text-shadow:0 0 30px rgba(0,229,176,.4);line-height:1;margin-bottom:8px;transition:all .3s}
 .result-meta{font-size:12px;color:var(--muted)}
 .result-meta span{color:var(--accent);font-weight:700}
 
-/* STATS */
 .stats-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 14px 0;animation:fadeUp .4s .15s ease both}
-.stat-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;display:flex;align-items:flex-start;gap:10px}
+.stat-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;display:flex;align-items:flex-start;gap:10px;transition:border-color .3s}
+.stat-box:hover{border-color:rgba(0,229,176,.15)}
 .stat-icon{font-size:16px;margin-top:2px}
-.stat-val{font-family:var(--mono);font-size:24px;color:var(--text);line-height:1;margin-bottom:4px}
+.stat-val{font-family:var(--mono);font-size:24px;color:var(--text);line-height:1;margin-bottom:4px;transition:color .3s}
 .stat-lbl{font-size:11px;color:var(--muted)}
 .stat-sub{font-size:10px;color:var(--muted);margin-top:2px;opacity:.7}
 
-/* DPI */
 .dpi-card .dpi-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .dpi-card label{display:block;font-size:11px;color:var(--muted);margin-bottom:6px;font-weight:600}
 .dpi-card input{width:100%;background:var(--surface);border:1px solid var(--border);color:var(--text);padding:12px;border-radius:10px;font-size:18px;font-family:var(--mono);outline:none;text-align:center;transition:all .2s}
 .dpi-card input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,229,176,.1)}
 
-/* ALL GAMES */
-.game-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(31,46,31,.6);transition:background .15s}
+.game-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(31,46,31,.6);transition:background .15s;gap:10px}
 .game-row:last-child{border-bottom:none}
+.game-row:hover{background:rgba(0,229,176,.03)}
 .game-row-left{display:flex;align-items:center;gap:12px}
 .game-tag{width:42px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;color:#fff;flex-shrink:0}
+.game-row-img{width:24px;height:24px;object-fit:contain;flex-shrink:0}
 .game-row-name{font-size:14px;color:var(--text)}
-.game-row-val{font-family:var(--mono);font-size:20px;color:var(--accent)}
+.game-row-val{font-family:var(--mono);font-size:20px;color:var(--accent);transition:color .3s}
 .game-row.highlight .game-row-val{color:#00ff88;text-shadow:0 0 12px rgba(0,255,136,.4)}
 .game-row.source-row .game-row-val{color:var(--text);opacity:.5}
 .tag-val{background:#ef6c00}.tag-cs2{background:#e65100}.tag-apex{background:#c62828}
 .tag-ow2{background:#1565c0}.tag-fn{background:#6a1b9a}.tag-r6{background:#1a237e}
 .tag-bf{background:#1b5e20}.tag-cod{background:#212121;border:1px solid #444}
+.tag-pubg{background:#f39c12}.tag-finals{background:#e91e63}
 
-/* INFO */
 .info-box{margin:14px 14px 0;background:rgba(0,119,255,.05);border:1px solid rgba(0,100,255,.15);border-radius:12px;padding:14px 16px;font-size:13px;color:var(--muted);line-height:1.7;animation:fadeUp .4s .25s ease both}
 .info-box strong{color:#4fc3f7}
 
-/* PROS */
-.pros-tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:16px;scrollbar-width:none}
+.pros-section{margin-top:14px}
+.pros-tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:16px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .pros-tabs::-webkit-scrollbar{display:none}
-.pros-tab{flex-shrink:0;padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-size:12px;font-weight:700;color:var(--muted);font-family:'Rajdhani',sans-serif;letter-spacing:1px;transition:all .2s}
+.pros-tab{flex-shrink:0;padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-size:12px;font-weight:700;color:var(--muted);font-family:'Rajdhani',sans-serif;letter-spacing:1px;transition:all .2s;touch-action:manipulation}
 .pros-tab.active{border-color:var(--accent);background:rgba(0,229,176,.1);color:var(--accent)}
-.pro-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px}
+.pros-tab:hover{border-color:var(--muted)}
+.pro-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px;transition:all .25s}
+.pro-card:hover{border-color:rgba(0,229,176,.2);box-shadow:0 4px 20px rgba(0,0,0,.3)}
 .pro-card:last-child{margin-bottom:0}
-.pro-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.pro-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px}
 .pro-info{display:flex;align-items:center;gap:10px}
 .pro-avatar{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;font-family:'Rajdhani',sans-serif;color:#fff;flex-shrink:0}
 .pro-name{font-size:14px;font-weight:700;color:var(--text)}
@@ -187,11 +173,10 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .pro-stat{background:var(--card);border-radius:8px;padding:8px;text-align:center}
 .pro-stat-val{font-family:var(--mono);font-size:16px;color:var(--accent);display:block}
 .pro-stat-lbl{font-size:10px;color:var(--muted);margin-top:2px}
-.pro-use-btn{width:100%;background:rgba(0,229,176,.08);border:1px solid rgba(0,229,176,.25);color:var(--accent);padding:9px;border-radius:9px;cursor:pointer;font-size:13px;font-family:'Tajawal',sans-serif;font-weight:700;transition:all .2s;text-align:center}
-.pro-use-btn:hover{background:rgba(0,229,176,.18)}
+.pro-use-btn{width:100%;background:rgba(0,229,176,.08);border:1px solid rgba(0,229,176,.25);color:var(--accent);padding:9px;border-radius:9px;cursor:pointer;font-size:13px;font-family:'Tajawal',sans-serif;font-weight:700;transition:all .2s;text-align:center;touch-action:manipulation}
+.pro-use-btn:hover{background:rgba(0,229,176,.18);transform:translateY(-1px)}
 .pro-use-btn.used{background:rgba(0,255,136,.1);border-color:#00ff88;color:#00ff88}
 
-/* ===== TUTORIAL ===== */
 .tutorial-overlay{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px;transition:background .4s ease;pointer-events:none}
 .tutorial-overlay.active{background:rgba(0,0,0,0.82);pointer-events:all}
 .tutorial-box{background:linear-gradient(135deg,#0e1f12,#091409);border:1px solid rgba(0,229,176,0.3);border-radius:24px;padding:32px 28px;max-width:420px;width:100%;position:relative;overflow:hidden;transform:translateY(30px);opacity:0;transition:all .5s cubic-bezier(.34,1.56,.64,1)}
@@ -215,18 +200,39 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .tut-tip::before{content:'💡 ';font-size:14px}
 
 .tut-buttons{display:flex;gap:10px}
-.tut-skip{flex:0;background:transparent;border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.3);padding:12px 18px;border-radius:12px;cursor:pointer;font-size:13px;font-family:'Tajawal',sans-serif;transition:all .2s;white-space:nowrap}
+.tut-skip{flex:0;background:transparent;border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.3);padding:12px 18px;border-radius:12px;cursor:pointer;font-size:13px;font-family:'Tajawal',sans-serif;transition:all .2s;white-space:nowrap;touch-action:manipulation}
 .tut-skip:hover{border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.5)}
-.tut-next{flex:1;background:linear-gradient(135deg,rgba(0,229,176,0.15),rgba(0,255,136,0.1));border:1px solid rgba(0,229,176,0.4);color:var(--accent);padding:14px;border-radius:12px;cursor:pointer;font-size:15px;font-weight:700;font-family:'Tajawal',sans-serif;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.tut-next{flex:1;background:linear-gradient(135deg,rgba(0,229,176,0.15),rgba(0,255,136,0.1));border:1px solid rgba(0,229,176,0.4);color:var(--accent);padding:14px;border-radius:12px;cursor:pointer;font-size:15px;font-weight:700;font-family:'Tajawal',sans-serif;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;touch-action:manipulation}
 .tut-next:hover{background:linear-gradient(135deg,rgba(0,229,176,0.25),rgba(0,255,136,0.15));box-shadow:0 0 20px rgba(0,229,176,0.2)}
 .tut-next.finish{background:linear-gradient(135deg,rgba(0,255,136,0.2),rgba(0,229,176,0.15));border-color:#00ff88;color:#00ff88}
 
 .tut-progress{height:3px;background:rgba(0,229,176,0.1);border-radius:2px;margin-bottom:20px;overflow:hidden}
 .tut-progress-bar{height:100%;background:linear-gradient(90deg,#00e5b0,#00ff88);border-radius:2px;transition:width .5s ease}
 
-/* Welcome screen special */
 .tut-welcome-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,229,176,0.1);border:1px solid rgba(0,229,176,0.3);border-radius:20px;padding:4px 12px;font-size:11px;color:var(--accent);font-weight:700;letter-spacing:2px;margin-bottom:16px}
 .tut-welcome-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#00ff88;box-shadow:0 0 6px #00ff88;animation:pulse 1.5s infinite}
+
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(0,229,176,.15);border:1px solid rgba(0,229,176,.4);color:#00e5b0;padding:8px 18px;border-radius:20px;font-size:12px;font-family:'Tajawal',sans-serif;z-index:998;white-space:nowrap;animation:fadeUp .3s ease}
+
+@media(min-width:768px){
+  .pc-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;align-items:start;padding:0 24px}
+  .pc-col-left{min-width:0}
+  .pc-col-right{min-width:0}
+  .card{margin:14px 0 0}
+  .result-card{margin:14px 0 0}
+  .stats-row{margin:14px 0 0}
+  .info-box{margin:14px 0 0}
+  .hero{padding:28px 40px 36px}
+  .hero-title{font-size:36px}
+  .pros-section{padding:0 24px;margin-top:14px}
+}
+@media(max-width:767px){
+  .pc-grid{display:block}
+  .pros-section{display:block}
+  .hero-title{font-size:22px}
+  .result-number{font-size:48px}
+  .sens-display{font-size:40px}
+}
 </style>
 </head>
 <body>
@@ -242,75 +248,93 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       </div>
       <div class="hero-badges">
         <div class="badge-live" id="liveLabel">تحويل فوري</div>
-        <button class="lang-toggle" onclick="toggleLang()">EN</button>
+        <div class="lang-dropdown" id="langDropdown">
+          <button class="lang-select-btn" id="langSelectBtn" onclick="toggleLangMenu()" aria-label="تغيير اللغة">
+            <span id="currentLangFlag">🇮🇶</span> <span id="currentLangCode">AR</span> <span class="arrow">▼</span>
+          </button>
+          <div class="lang-menu" id="langMenu">
+            <div class="lang-option" data-lang="ar" onclick="changeLang('ar')"><span class="lang-flag">🇮🇶</span> العربية</div>
+            <div class="lang-option" data-lang="en" onclick="changeLang('en')"><span class="lang-flag">🇬🇧</span> English</div>
+            <div class="lang-option" data-lang="es" onclick="changeLang('es')"><span class="lang-flag">🇪🇸</span> Español</div>
+            <div class="lang-option" data-lang="fr" onclick="changeLang('fr')"><span class="lang-flag">🇫🇷</span> Français</div>
+            <div class="lang-option" data-lang="de" onclick="changeLang('de')"><span class="lang-flag">🇩🇪</span> Deutsch</div>
+            <div class="lang-option" data-lang="ru" onclick="changeLang('ru')"><span class="lang-flag">🇷🇺</span> Русский</div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="hero-title" id="heroTitle">احفظ <span>إحساس التصويب</span><br>مهما تغيرت اللعبة</div>
     <div class="hero-desc" id="heroDesc">اختر لعبتك الحالية، أدخل رقم الحساسية، واحصل على الرقم المكافئ في أي لعبة أخرى لحظياً.</div>
   </div>
 
-  <div class="card">
-    <div class="card-header">
-      <div class="card-title"><div class="dot"></div><span id="lbl_source">اللعبة الحالية</span></div>
-      <span id="sourceGameName" style="font-size:13px;color:var(--accent);font-weight:700"></span>
-    </div>
-    <div class="games-scroll" id="sourceGames"></div>
-  </div>
+  <div class="pc-grid">
+    <div class="pc-col-left">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><div class="dot"></div><span id="lbl_source">اللعبة الحالية</span></div>
+          <span id="sourceGameName" style="font-size:13px;color:var(--accent);font-weight:700"></span>
+        </div>
+        <div class="games-scroll" id="sourceGames"></div>
+      </div>
 
-  <div class="card">
-    <div class="card-header">
-      <div class="card-title"><div class="dot" style="background:#fff;box-shadow:none"></div><span id="lbl_sens">الحساسية داخل اللعبة</span></div>
-    </div>
-    <div class="sens-display" id="sensDisplay">0.4</div>
-    <input type="range" class="sens-slider" id="sensSlider" min="0.01" max="10" step="0.01" value="0.4" oninput="onSlider()">
-    <div class="sens-input-row">
-      <input type="number" id="sensInput" value="0.4" min="0.01" step="0.01" oninput="onInput()">
-    </div>
-  </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><div class="dot" style="background:#fff;box-shadow:none"></div><span id="lbl_sens">الحساسية داخل اللعبة</span></div>
+        </div>
+        <div class="sens-display" id="sensDisplay">0.4</div>
+        <input type="range" class="sens-slider" id="sensSlider" min="0.01" max="10" step="0.01" value="0.4" oninput="onSlider()">
+        <div class="sens-input-row">
+          <input type="number" id="sensInput" value="0.4" min="0.01" step="0.01" oninput="onInput()">
+        </div>
+      </div>
 
-  <div class="card">
-    <div class="card-header">
-      <div class="card-title"><div class="dot" style="background:#4fc3f7;box-shadow:0 0 8px #4fc3f7"></div><span id="lbl_target">اللعبة المستهدفة</span></div>
-      <button class="swap-btn" onclick="swapGames()">⇄</button>
-    </div>
-    <div class="games-scroll" id="targetGames"></div>
-  </div>
-
-  <div class="result-card">
-    <div class="result-top">
-      <div class="result-label"><span id="resultLabelText">حساسيتك في</span> <strong id="targetGameLabel">CS2</strong></div>
-      <button class="copy-btn" id="copyBtn" onclick="copyResult()"><span>📋</span><span id="copyTxt">نسخ</span></button>
-    </div>
-    <div class="result-number" id="resultNum">—</div>
-    <div class="result-meta" id="resultMeta"></div>
-  </div>
-
-  <div class="stats-row">
-    <div class="stat-box">
-      <div class="stat-icon">ℹ️</div>
-      <div>
-        <div class="stat-val" id="stat360">—</div>
-        <div class="stat-lbl">cm / 360°</div>
-        <div class="stat-sub" id="stat360sub">سم لدورة كاملة</div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><div class="dot" style="background:#4fc3f7;box-shadow:0 0 8px #4fc3f7"></div><span id="lbl_target">اللعبة المستهدفة</span></div>
+          <button class="swap-btn" onclick="swapGames()" style="background:rgba(0,229,176,.1);border:1px solid rgba(0,229,176,.3);color:var(--accent);width:44px;height:44px;border-radius:10px;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:all .3s;flex-shrink:0;touch-action:manipulation" title="Swap games">⇄</button>
+        </div>
+        <div class="games-scroll" id="targetGames"></div>
       </div>
     </div>
-    <div class="stat-box">
-      <div class="stat-icon">⚡</div>
-      <div>
-        <div class="stat-val" id="statEdpi">—</div>
-        <div class="stat-lbl">eDPI</div>
-        <div class="stat-sub" id="statEdpiSub">الحساسية × DPI</div>
-      </div>
-    </div>
-  </div>
 
-  <div class="card dpi-card" style="animation-delay:.18s">
-    <div class="card-header">
-      <div class="card-title"><div class="dot" style="background:#ffb300;box-shadow:0 0 8px #ffb300"></div><span id="lbl_dpi">الماوس DPI</span></div>
-    </div>
-    <div class="dpi-row">
-      <div><label id="lbl_dpiInput">DPI الماوس</label><input type="number" id="dpiInput" value="800" min="100" step="100" oninput="convert()"></div>
-      <div><label id="lbl_sensEdpi">الحساسية</label><input type="number" id="edpiSens" value="0.4" min="0" step="0.01" oninput="calcEdpiManual()"></div>
+    <div class="pc-col-right">
+      <div class="result-card">
+        <div class="result-top">
+          <div class="result-label"><span id="resultLabelText">حساسيتك في</span> <strong id="targetGameLabel">CS2</strong></div>
+          <button class="copy-btn" id="copyBtn" onclick="copyResult()"><span>📋</span><span id="copyTxt">نسخ</span></button>
+        </div>
+        <div class="result-number" id="resultNum">—</div>
+        <div class="result-meta" id="resultMeta"></div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="stat-icon">ℹ️</div>
+          <div>
+            <div class="stat-val" id="stat360">—</div>
+            <div class="stat-lbl">cm / 360°</div>
+            <div class="stat-sub" id="stat360sub">سم لدورة كاملة</div>
+          </div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-icon">⚡</div>
+          <div>
+            <div class="stat-val" id="statEdpi">—</div>
+            <div class="stat-lbl">eDPI</div>
+            <div class="stat-sub" id="statEdpiSub">الحساسية × DPI</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card dpi-card" style="animation-delay:.18s">
+        <div class="card-header">
+          <div class="card-title"><div class="dot" style="background:#ffb300;box-shadow:0 0 8px #ffb300"></div><span id="lbl_dpi">الماوس DPI</span></div>
+        </div>
+        <div class="dpi-row">
+          <div><label id="lbl_dpiInput">DPI الماوس</label><input type="number" id="dpiInput" value="800" min="100" step="100" oninput="convert()"></div>
+          <div><label id="lbl_sensEdpi">الحساسية</label><input type="number" id="edpiSens" value="0.4" min="0" step="0.01" oninput="calcEdpiManual()"></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -322,23 +346,21 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <div id="allGamesList"></div>
   </div>
 
-
   <div class="pros-section">
-  <!-- PROS SECTION -->
-  <div class="card" style="animation-delay:.22s;margin-top:14px">
-    <div class="card-header">
-      <div class="card-title"><div class="dot" style="background:#ffd700;box-shadow:0 0 8px #ffd700"></div><span id="lbl_pros">إعدادات المحترفين العالميين</span></div>
+    <div class="card" style="animation-delay:.22s;margin-top:14px">
+      <div class="card-header">
+        <div class="card-title"><div class="dot" style="background:#ffd700;box-shadow:0 0 8px #ffd700"></div><span id="lbl_pros">إعدادات المحترفين العالميين</span></div>
+      </div>
+      <div class="pros-tabs" id="prosTabs"></div>
+      <div id="prosCards"></div>
     </div>
-    <div class="pros-tabs" id="prosTabs"></div>
-    <div id="prosCards"></div>
-  </div>
 
-  <div class="info-box" id="infoBox">
-    <strong>cm / 360°</strong> يعني كم سنتيمتر تحتاج تحرك الماوس عشان تدور الكاميرا دورة كاملة. رقم أصغر = أسرع، رقم أكبر = أدق. معظم المحترفين يستخدمون <strong>20–50 سم</strong>.
+    <div class="info-box" id="infoBox">
+      <strong>cm / 360°</strong> يعني كم سنتيمتر تحتاج تحرك الماوس عشان تدور الكاميرا دورة كاملة. رقم أصغر = أسرع، رقم أكبر = أدق. معظم المحترفين يستخدمون <strong>20–50 سم</strong>.
+    </div>
   </div>
 </div>
 
-<!-- TUTORIAL OVERLAY -->
 <div class="tutorial-overlay" id="tutorialOverlay" style="display:none">
   <div class="tutorial-box" id="tutorialBox">
     <div class="tut-progress"><div class="tut-progress-bar" id="tutProgress"></div></div>
@@ -354,17 +376,22 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 </div>
 
 <script>
+// ===== GAME DATA (PUBG Steam = 0.022 multiplier, same scale as CS2/Apex) =====
+// THE FINALS uses 0.022 multiplier (same engine scale as CS2/Apex)
 const GAMES=[
-  {id:'valorant',en:'Valorant',      ar:'فالورانت',        abbr:'VAL', tag:'tag-val',  mult:0.07   },
-  {id:'cs2',     en:'CS2',           ar:'كاونتر سترايك 2', abbr:'CS2', tag:'tag-cs2',  mult:0.022  },
-  {id:'apex',    en:'Apex Legends',  ar:'أبيكس ليجندز',    abbr:'APEX',tag:'tag-apex', mult:0.022  },
-  {id:'ow2',     en:'Overwatch 2',   ar:'أوفرواتش 2',      abbr:'OW2', tag:'tag-ow2',  mult:0.0066 },
-  {id:'fn',      en:'Fortnite',      ar:'فورتنايت',        abbr:'FN',  tag:'tag-fn',   mult:0.5709 },
-  {id:'r6',      en:'Rainbow Six',   ar:'رينبو سكس سيبج',  abbr:'R6',  tag:'tag-r6',   mult:0.00223},
-  {id:'bf',      en:'Battlefield',   ar:'باتلفيلد 2042',   abbr:'BF',  tag:'tag-bf',   mult:0.0709 },
-  {id:'cod',     en:'Call of Duty',  ar:'كول أوف ديوتي',   abbr:'COD', tag:'tag-cod',  mult:0.0066 },
+  {id:'valorant', en:'Valorant',      ar:'فالورانت',        es:'Valorant',      fr:'Valorant',      de:'Valorant',      ru:'Valorant',      abbr:'VAL', tag:'tag-val',  mult:0.07,   img:'https://img.icons8.com/color/48/valorant.png'},
+  {id:'cs2',     en:'CS2',           ar:'كاونتر سترايك 2', es:'CS2',           fr:'CS2',           de:'CS2',           ru:'CS2',           abbr:'CS2', tag:'tag-cs2',  mult:0.022,  img:'https://img.icons8.com/color/48/counter-strike-source.png'},
+  {id:'apex',    en:'Apex Legends',  ar:'أبيكس ليجندز',    es:'Apex Legends',  fr:'Apex Legends',  de:'Apex Legends',  ru:'Apex Legends',  abbr:'APEX',tag:'tag-apex', mult:0.022,  img:'https://img.icons8.com/color/48/apex-legends.png'},
+  {id:'ow2',     en:'Overwatch 2',   ar:'أوفرواتش 2',      es:'Overwatch 2',   fr:'Overwatch 2',   de:'Overwatch 2',   ru:'Overwatch 2',   abbr:'OW2', tag:'tag-ow2',  mult:0.0066, img:'https://img.icons8.com/color/48/overwatch.png'},
+  {id:'fn',      en:'Fortnite',      ar:'فورتنايت',        es:'Fortnite',      fr:'Fortnite',      de:'Fortnite',      ru:'Fortnite',      abbr:'FN',  tag:'tag-fn',   mult:0.5709, img:'https://img.icons8.com/color/48/fortnite.png'},
+  {id:'r6',      en:'Rainbow Six',   ar:'رينبو سكس سيبج',  es:'Rainbow Six',   fr:'Rainbow Six',   de:'Rainbow Six',   ru:'Rainbow Six',   abbr:'R6',  tag:'tag-r6',   mult:0.00223,img:'https://img.icons8.com/color/48/rainbow-six-siege.png'},
+  {id:'pubg',    en:'PUBG (Steam)',  ar:'ببجي (ستيم)',     es:'PUBG (Steam)',  fr:'PUBG (Steam)',  de:'PUBG (Steam)',  ru:'PUBG (Steam)',  abbr:'PUBG',tag:'tag-pubg', mult:0.022,  img:'https://img.icons8.com/color/48/playerunknowns-battlegrounds.png'},
+  {id:'bf',      en:'Battlefield',   ar:'باتلفيلد 2042',   es:'Battlefield',   fr:'Battlefield',   de:'Battlefield',   ru:'Battlefield',   abbr:'BF',  tag:'tag-bf',   mult:0.0709, img:'https://img.icons8.com/color/48/battlefield-v.png'},
+  {id:'cod',     en:'Call of Duty',  ar:'كول أوف ديوتي',   es:'Call of Duty',  fr:'Call of Duty',  de:'Call of Duty',  ru:'Call of Duty',  abbr:'COD', tag:'tag-cod',  mult:0.0066, img:'https://img.icons8.com/color/48/call-of-duty-modern-warfare.png'},
+  {id:'finals',  en:'THE FINALS',    ar:'ذا فاينلز',       es:'THE FINALS',    fr:'THE FINALS',    de:'THE FINALS',    ru:'THE FINALS',    abbr:'FIN', tag:'tag-finals',mult:0.022, img:'https://img.icons8.com/color/48/final-lap.png'},
 ];
 
+// ===== PROS DATA (Accurate as of 2024) =====
 const PROS = {
   cs2: [
     {name:'s1mple',    team:'NAVI',             country:'🇺🇦', sens:3.09, dpi:400,  color:'#e53935'},
@@ -378,24 +405,10 @@ const PROS = {
     {name:'Electronic',team:'NAVI',             country:'🇷🇺', sens:1.8,  dpi:400,  color:'#26a69a'},
     {name:'Perfecto',  team:'NAVI',             country:'🇷🇺', sens:1.55, dpi:400,  color:'#ec407a'},
     {name:'b1t',       team:'NAVI',             country:'🇺🇦', sens:1.3,  dpi:800,  color:'#29b6f6'},
-    {name:'Magisk',    team:'Astralis',         country:'🇩🇰', sens:1.35, dpi:400,  color:'#66bb6a'},
-    {name:'dupreeh',   team:'Astralis',         country:'🇩🇰', sens:2.1,  dpi:400,  color:'#ffa726'},
-    {name:'gla1ve',    team:'Astralis',         country:'🇩🇰', sens:1.45, dpi:400,  color:'#ef5350'},
-    {name:'apEX',      team:'Vitality',         country:'🇫🇷', sens:1.0,  dpi:400,  color:'#42a5f5'},
-    {name:'misutaaa',  team:'Vitality',         country:'🇫🇷', sens:1.05, dpi:400,  color:'#26c6da'},
-    {name:'hunter',    team:'G2',               country:'🇧🇦', sens:1.35, dpi:400,  color:'#d4e157'},
-    {name:'jks',       team:'G2',               country:'🇦🇺', sens:2.1,  dpi:400,  color:'#ff7043'},
-    {name:'HooXi',     team:'G2',               country:'🇩🇰', sens:1.55, dpi:400,  color:'#7e57c2'},
     {name:'Twistzz',   team:'FaZe',             country:'🇨🇦', sens:1.12, dpi:400,  color:'#26a69a'},
-    {name:'rain',      team:'FaZe',             country:'🇳🇴', sens:1.4,  dpi:400,  color:'#5c6bc0'},
-    {name:'XANTARES',  team:'ENCE',             country:'🇹🇷', sens:1.85, dpi:800,  color:'#ff5722'},
-    {name:'blameF',    team:'Astralis',         country:'🇩🇰', sens:1.2,  dpi:400,  color:'#8d6e63'},
-    {name:'Ax1Le',     team:'Cloud9',           country:'🇷🇺', sens:1.6,  dpi:800,  color:'#78909c'},
-    {name:'Hobbit',    team:'Cloud9',           country:'🇰🇿', sens:1.25, dpi:400,  color:'#a5d6a7'},
   ],
   valorant: [
     {name:'TenZ',      team:'Sentinels',        country:'🇨🇦', sens:0.408,dpi:800,  color:'#e53935'},
-    {name:'Shroud',    team:'MIBR',             country:'🇨🇦', sens:0.78, dpi:450,  color:'#1e88e5'},
     {name:'yay',       team:'NRG',              country:'🇺🇸', sens:0.536,dpi:800,  color:'#43a047'},
     {name:'Aspas',     team:'LOUD',             country:'🇧🇷', sens:1.07, dpi:800,  color:'#fdd835'},
     {name:'Chronicle', team:'Vitality',         country:'🇬🇪', sens:0.35, dpi:800,  color:'#8e24aa'},
@@ -405,24 +418,11 @@ const PROS = {
     {name:'Nats',      team:'Fnatic',           country:'🇷🇺', sens:0.55, dpi:800,  color:'#ff7043'},
     {name:'Leo',       team:'Fnatic',           country:'🇸🇪', sens:0.22, dpi:800,  color:'#ab47bc'},
     {name:'Boaster',   team:'Fnatic',           country:'🇬🇧', sens:0.5,  dpi:800,  color:'#29b6f6'},
-    {name:'Menos',     team:'LOUD',             country:'🇧🇷', sens:0.75, dpi:800,  color:'#66bb6a'},
-    {name:'saadhak',   team:'LOUD',             country:'🇦🇷', sens:0.41, dpi:800,  color:'#ffa726'},
-    {name:'Marved',    team:'OpTic',            country:'🇨🇦', sens:0.7,  dpi:800,  color:'#ef5350'},
-    {name:'Victor',    team:'NRG',              country:'🇺🇸', sens:0.395,dpi:800,  color:'#42a5f5'},
-    {name:'crashies',  team:'NRG',              country:'🇺🇸', sens:0.68, dpi:800,  color:'#d4e157'},
-    {name:'s0m',       team:'NRG',              country:'🇺🇸', sens:0.45, dpi:800,  color:'#ff7043'},
-    {name:'ShahZaM',   team:'Sentinels',        country:'🇺🇸', sens:0.39, dpi:800,  color:'#7e57c2'},
-    {name:'SicK',      team:'Sentinels',        country:'🇺🇸', sens:0.5,  dpi:800,  color:'#26a69a'},
-    {name:'dapr',      team:'Sentinels',        country:'🇺🇸', sens:0.35, dpi:800,  color:'#5c6bc0'},
-    {name:'Zekken',    team:'Sentinels',        country:'🇺🇸', sens:0.41, dpi:800,  color:'#ff5722'},
-    {name:'jawgemo',   team:'100T',             country:'🇺🇸', sens:0.55, dpi:800,  color:'#8d6e63'},
-    {name:'bang',      team:'100T',             country:'🇺🇸', sens:0.38, dpi:800,  color:'#78909c'},
-    {name:'Ethan',     team:'100T',             country:'🇺🇸', sens:0.44, dpi:800,  color:'#a5d6a7'},
     {name:'Demon1',    team:'EG',               country:'🇺🇸', sens:0.35, dpi:1600, color:'#e91e63'},
+    {name:'Zekken',    team:'Sentinels',        country:'🇺🇸', sens:0.41, dpi:800,  color:'#ff5722'},
   ],
   apex: [
     {name:'Aceu',        team:'FaZe',           country:'🇺🇸', sens:1.0,  dpi:800,  color:'#e53935'},
-    {name:'Dizzy',       team:'NRG',            country:'🇺🇸', sens:1.3,  dpi:800,  color:'#1e88e5'},
     {name:'ImperialHal', team:'TSM',            country:'🇺🇸', sens:1.2,  dpi:400,  color:'#43a047'},
     {name:'Sweetdreams', team:'100T',           country:'🇺🇸', sens:2.0,  dpi:400,  color:'#fdd835'},
     {name:'Albralelie',  team:'NRG',            country:'🇺🇸', sens:1.6,  dpi:400,  color:'#8e24aa'},
@@ -430,49 +430,10 @@ const PROS = {
     {name:'Verhulst',    team:'Sentinels',      country:'🇺🇸', sens:2.2,  dpi:400,  color:'#26a69a'},
     {name:'Dropped',     team:'FaZe',           country:'🇺🇸', sens:1.4,  dpi:800,  color:'#ec407a'},
     {name:'Hakis',       team:'FaZe',           country:'🇸🇪', sens:1.1,  dpi:400,  color:'#ff7043'},
-    {name:'Snip3down',   team:'TSM',            country:'🇺🇸', sens:3.2,  dpi:400,  color:'#ab47bc'},
-    {name:'Reptar',      team:'Cloud9',         country:'🇺🇸', sens:1.5,  dpi:400,  color:'#29b6f6'},
-    {name:'iShiny',      team:'Cloud9',         country:'🇺🇸', sens:2.0,  dpi:800,  color:'#66bb6a'},
-    {name:'Monsoon',     team:'G2',             country:'🇺🇸', sens:1.0,  dpi:800,  color:'#ffa726'},
     {name:'Genburten',   team:'NRG',            country:'🇳🇴', sens:1.4,  dpi:800,  color:'#ef5350'},
     {name:'Mande',       team:'G2',             country:'🇩🇰', sens:1.6,  dpi:800,  color:'#42a5f5'},
-    {name:'KeonFPS',     team:'Sentinels',      country:'🇺🇸', sens:1.2,  dpi:800,  color:'#d4e157'},
-    {name:'Nocturnal',   team:'DZ',             country:'🇺🇸', sens:2.4,  dpi:400,  color:'#ff7043'},
-    {name:'Verhulst',    team:'Sentinels',      country:'🇺🇸', sens:2.2,  dpi:400,  color:'#7e57c2'},
-    {name:'Skittles',    team:'NRG',            country:'🇺🇸', sens:1.8,  dpi:400,  color:'#26a69a'},
-    {name:'Lou',         team:'TSM',            country:'🇺🇸', sens:1.1,  dpi:800,  color:'#5c6bc0'},
+    {name:'iiTzTimmy',   team:'Free',           country:'🇺🇸', sens:2.0,  dpi:800,  color:'#8d6e63'},
     {name:'Shivfps',     team:'Liquid',         country:'🇬🇧', sens:1.0,  dpi:800,  color:'#ff5722'},
-    {name:'iiTzTimmy',   team:'Sparg0',         country:'🇺🇸', sens:2.0,  dpi:800,  color:'#8d6e63'},
-    {name:'Vaxlon',      team:'Cloud9',         country:'🇺🇸', sens:1.3,  dpi:800,  color:'#78909c'},
-    {name:'Daltoosh',    team:'Free',           country:'🇺🇸', sens:1.6,  dpi:400,  color:'#a5d6a7'},
-    {name:'KillaCam',    team:'NRG',            country:'🇺🇸', sens:1.9,  dpi:400,  color:'#e91e63'},
-  ],
-  overwatch: [
-    {name:'Fleta',     team:'Seoul Dynasty',    country:'🇰🇷', sens:3.0,  dpi:800,  color:'#e53935'},
-    {name:'Profit',    team:'Paris Eternal',    country:'🇰🇷', sens:5.0,  dpi:800,  color:'#1e88e5'},
-    {name:'Carpe',     team:'Philadelphia',     country:'🇰🇷', sens:4.55, dpi:800,  color:'#43a047'},
-    {name:'Gesture',   team:'London Spitfire',  country:'🇰🇷', sens:6.0,  dpi:400,  color:'#fdd835'},
-    {name:'Pine',      team:'NYXL',             country:'🇰🇷', sens:3.5,  dpi:800,  color:'#8e24aa'},
-    {name:'Fissure',   team:'LA Valiant',       country:'🇰🇷', sens:7.0,  dpi:400,  color:'#f4511e'},
-    {name:'Fury',      team:'London Spitfire',  country:'🇰🇷', sens:5.5,  dpi:800,  color:'#26a69a'},
-    {name:'Bdosin',    team:'Seoul Dynasty',    country:'🇰🇷', sens:4.0,  dpi:800,  color:'#ec407a'},
-    {name:'Libero',    team:'Seoul Dynasty',    country:'🇰🇷', sens:4.5,  dpi:800,  color:'#ff7043'},
-    {name:'Striker',   team:'Seoul Dynasty',    country:'🇰🇷', sens:3.8,  dpi:800,  color:'#ab47bc'},
-    {name:'Viol2t',    team:'Philadelphia',     country:'🇰🇷', sens:5.0,  dpi:800,  color:'#29b6f6'},
-    {name:'EQO',       team:'NYXL',             country:'🇰🇷', sens:4.2,  dpi:800,  color:'#66bb6a'},
-    {name:'Saebyeolbe',team:'NYXL',             country:'🇰🇷', sens:6.0,  dpi:800,  color:'#ffa726'},
-    {name:'Jjonak',    team:'NYXL',             country:'🇰🇷', sens:7.0,  dpi:800,  color:'#ef5350'},
-    {name:'Surefour',  team:'LA Gladiators',    country:'🇨🇦', sens:2.5,  dpi:800,  color:'#42a5f5'},
-    {name:'Shax',      team:'Vitality',         country:'🇸🇪', sens:4.0,  dpi:800,  color:'#d4e157'},
-    {name:'Proper',    team:'LA Gladiators',    country:'🇺🇸', sens:3.5,  dpi:800,  color:'#ff7043'},
-    {name:'Hanbin',    team:'Boston Uprising',  country:'🇰🇷', sens:5.5,  dpi:800,  color:'#7e57c2'},
-    {name:'Fielder',   team:'Seoul Dynasty',    country:'🇰🇷', sens:4.8,  dpi:800,  color:'#26a69a'},
-    {name:'MN3',       team:'San Francisco',    country:'🇰🇷', sens:3.2,  dpi:800,  color:'#5c6bc0'},
-    {name:'Yaki',      team:'Shanghai Dragons', country:'🇨🇳', sens:4.0,  dpi:800,  color:'#ff5722'},
-    {name:'Lip',       team:'Shanghai Dragons', country:'🇨🇳', sens:5.0,  dpi:800,  color:'#8d6e63'},
-    {name:'LIP',       team:'Shanghai Dragons', country:'🇨🇳', sens:3.5,  dpi:800,  color:'#78909c'},
-    {name:'Cr0ng',     team:'Seoul Dynasty',    country:'🇰🇷', sens:6.5,  dpi:800,  color:'#a5d6a7'},
-    {name:'FITS',      team:'LA Valiant',       country:'🇰🇷', sens:4.0,  dpi:800,  color:'#e91e63'},
   ],
   fortnite: [
     {name:'Bugha',     team:'Sentinels',        country:'🇺🇸', sens:0.08, dpi:400,  color:'#e53935'},
@@ -485,21 +446,8 @@ const PROS = {
     {name:'Mitr0',     team:'FaZe',             country:'🇬🇧', sens:0.07, dpi:800,  color:'#ec407a'},
     {name:'Wolfiez',   team:'FaZe',             country:'🇬🇧', sens:0.13, dpi:800,  color:'#ff7043'},
     {name:'EpikWhale', team:'Sentinels',        country:'🇺🇸', sens:0.09, dpi:800,  color:'#ab47bc'},
-    {name:'Arkhram',   team:'100T',             country:'🇨🇴', sens:0.11, dpi:800,  color:'#29b6f6'},
-    {name:'Dubs',      team:'FaZe',             country:'🇺🇸', sens:0.12, dpi:400,  color:'#66bb6a'},
-    {name:'Noahreyli', team:'Sentinels',        country:'🇺🇸', sens:0.09, dpi:800,  color:'#ffa726'},
     {name:'Zayt',      team:'NRG',              country:'🇺🇸', sens:0.08, dpi:800,  color:'#ef5350'},
     {name:'Sway',      team:'FaZe',             country:'🇺🇸', sens:0.10, dpi:800,  color:'#42a5f5'},
-    {name:'Khanada',   team:'100T',             country:'🇺🇸', sens:0.09, dpi:800,  color:'#d4e157'},
-    {name:'Edgeyy',    team:'OG',               country:'🇬🇧', sens:0.07, dpi:800,  color:'#ff7043'},
-    {name:'gronky',    team:'FaZe',             country:'🇫🇷', sens:0.08, dpi:800,  color:'#7e57c2'},
-    {name:'Veno',      team:'Sentinels',        country:'🇺🇸', sens:0.11, dpi:400,  color:'#26a69a'},
-    {name:'Mero',      team:'Cloud9',           country:'🇺🇸', sens:0.13, dpi:800,  color:'#5c6bc0'},
-    {name:'Hen',       team:'OG',               country:'🇩🇰', sens:0.09, dpi:800,  color:'#ff5722'},
-    {name:'Setty',     team:'OG',               country:'🇩🇰', sens:0.08, dpi:800,  color:'#8d6e63'},
-    {name:'Acorn',     team:'Sentinels',        country:'🇺🇸', sens:0.10, dpi:800,  color:'#78909c'},
-    {name:'Vivid',     team:'G2',               country:'🇬🇧', sens:0.12, dpi:800,  color:'#a5d6a7'},
-    {name:'Queasy',    team:'G2',               country:'🇬🇧', sens:0.09, dpi:800,  color:'#e91e63'},
   ],
   r6: [
     {name:'Canadian',  team:'Spacestation',     country:'🇨🇦', sens:12.0, dpi:400,  color:'#e53935'},
@@ -507,92 +455,150 @@ const PROS = {
     {name:'Beaulo',    team:'TSM',              country:'🇺🇸', sens:27.0, dpi:800,  color:'#43a047'},
     {name:'Fabian',    team:'G2',               country:'🇸🇪', sens:11.0, dpi:400,  color:'#fdd835'},
     {name:'Rampy',     team:'G2',               country:'🇫🇷', sens:9.0,  dpi:400,  color:'#8e24aa'},
-    {name:'BiBo',      team:'Natus Vincere',    country:'🇩🇿', sens:16.0, dpi:400,  color:'#f4511e'},
     {name:'Elemzje',   team:'G2',               country:'🇫🇷', sens:13.0, dpi:800,  color:'#26a69a'},
     {name:'Mav',       team:'Evil Geniuses',    country:'🇺🇸', sens:18.0, dpi:800,  color:'#ec407a'},
-    {name:'Yeti',      team:'Spacestation',     country:'🇺🇸', sens:14.0, dpi:800,  color:'#ff7043'},
     {name:'Fultz',     team:'Evil Geniuses',    country:'🇺🇸', sens:20.0, dpi:400,  color:'#ab47bc'},
-    {name:'Chala',     team:'Team Liquid',      country:'🇧🇷', sens:15.0, dpi:400,  color:'#29b6f6'},
     {name:'Paluh',     team:'Team Liquid',      country:'🇧🇷', sens:11.0, dpi:800,  color:'#66bb6a'},
     {name:'Nesk',      team:'Team Liquid',      country:'🇧🇷', sens:22.0, dpi:400,  color:'#ffa726'},
-    {name:'xS3bas',    team:'Team oNe',         country:'🇧🇷', sens:19.0, dpi:400,  color:'#ef5350'},
-    {name:'RaFaLe',    team:'Team oNe',         country:'🇧🇷', sens:13.5, dpi:400,  color:'#42a5f5'},
-    {name:'lnz',       team:'FURIA',            country:'🇧🇷', sens:25.0, dpi:400,  color:'#d4e157'},
     {name:'Astro',     team:'FURIA',            country:'🇧🇷', sens:17.0, dpi:800,  color:'#ff7043'},
-    {name:'Hash',      team:'Cloud9',           country:'🇺🇸', sens:21.0, dpi:400,  color:'#7e57c2'},
-    {name:'Retro',     team:'Cloud9',           country:'🇺🇸', sens:16.5, dpi:400,  color:'#26a69a'},
     {name:'Geo',       team:'Oxygen',           country:'🇬🇧', sens:24.0, dpi:400,  color:'#5c6bc0'},
-    {name:'Doki',      team:'NaVi',             country:'🇷🇺', sens:18.0, dpi:400,  color:'#ff5722'},
-    {name:'Liven',     team:'NaVi',             country:'🇷🇺', sens:12.5, dpi:800,  color:'#8d6e63'},
-    {name:'Saves',     team:'MIBR',             country:'🇧🇷', sens:20.0, dpi:400,  color:'#78909c'},
-    {name:'fz',        team:'MIBR',             country:'🇧🇷', sens:15.5, dpi:800,  color:'#a5d6a7'},
-    {name:'ShoXy',     team:'TSM',              country:'🇺🇸', sens:23.5, dpi:400,  color:'#e91e63'},
+  ],
+  pubg: [
+    {name:'Shroud',    team:'Free',             country:'🇨🇦', sens:35.0, dpi:450,  color:'#e53935'},
+    {name:'chocoTaco', team:'Free',             country:'🇺🇸', sens:38.0, dpi:400,  color:'#1e88e5'},
+    {name:'TGLTN',     team:'Soniqs',           country:'🇦🇺', sens:32.0, dpi:800,  color:'#43a047'},
+    {name:'ibiza',     team:'FaZe',             country:'🇸🇪', sens:40.0, dpi:400,  color:'#fdd835'},
+    {name:'Fuzzface',  team:'Free',             country:'🇫🇮', sens:30.0, dpi:800,  color:'#8e24aa'},
+    {name:'Aitzy',     team:'FaZe',             country:'🇳🇴', sens:36.0, dpi:400,  color:'#f4511e'},
+  ],
+  finals: [
+    {name:'Ottr',      team:'Free',             country:'🇺🇸', sens:1.0,  dpi:800,  color:'#e53935'},
+    {name:'Grimz',     team:'Free',             country:'🇺🇸', sens:0.8,  dpi:800,  color:'#1e88e5'},
+    {name:'Shroud',    team:'Free',             country:'🇨🇦', sens:0.78, dpi:450,  color:'#43a047'},
   ],
 };
-
 
 const PROS_GAME_MAP = {
   cs2:       {gameId:'cs2',      label:'CS2',  tagClass:'tag-cs2'},
   valorant:  {gameId:'valorant', label:'VAL',  tagClass:'tag-val'},
   apex:      {gameId:'apex',     label:'APEX', tagClass:'tag-apex'},
-  overwatch: {gameId:'ow2',      label:'OW2',  tagClass:'tag-ow2'},
   fortnite:  {gameId:'fn',       label:'FN',   tagClass:'tag-fn'},
   r6:        {gameId:'r6',       label:'R6',   tagClass:'tag-r6'},
+  pubg:      {gameId:'pubg',     label:'PUBG', tagClass:'tag-pubg'},
+  finals:    {gameId:'finals',   label:'FIN',  tagClass:'tag-finals'},
 };
 
 const PROS_LABELS = {
-  cs2:'CS2', valorant:'Valorant', apex:'Apex', overwatch:'Overwatch 2', fortnite:'Fortnite', r6:'Rainbow Six'
+  cs2:'CS2', valorant:'Valorant', apex:'Apex', fortnite:'Fortnite', r6:'Rainbow Six', pubg:'PUBG', finals:'THE FINALS'
 };
+
+// ===== TRANSLATIONS =====
+const translations = {
+  brandSub: {ar:'محوّل حساسية ألعاب الـ FPS',en:'FPS Sensitivity Converter',es:'Conversor de Sensibilidad FPS',fr:'Convertisseur de Sensibilité FPS',de:'FPS-Sensibilitätskonverter',ru:'Конвертер чувствительности FPS'},
+  liveLabel: {ar:'تحويل فوري',en:'Live Convert',es:'Conversión en Vivo',fr:'Conversion en Direct',de:'Live-Konvertierung',ru:'Живая конвертация'},
+  lbl_source: {ar:'اللعبة الحالية',en:'Source Game',es:'Juego Fuente',fr:'Jeu Source',de:'Quellspiel',ru:'Исходная игра'},
+  lbl_sens: {ar:'الحساسية داخل اللعبة',en:'In-Game Sensitivity',es:'Sensibilidad en Juego',fr:'Sensibilité en Jeu',de:'In-Game-Empfindlichkeit',ru:'Чувствительность в игре'},
+  lbl_target: {ar:'اللعبة المستهدفة',en:'Target Game',es:'Juego Destino',fr:'Jeu Cible',de:'Zielspiel',ru:'Целевая игра'},
+  lbl_dpi: {ar:'الماوس DPI',en:'Mouse DPI',es:'DPI del Ratón',fr:'DPI de la Souris',de:'Maus-DPI',ru:'DPI мыши'},
+  lbl_dpiInput: {ar:'DPI الماوس',en:'Mouse DPI',es:'DPI del Ratón',fr:'DPI de la Souris',de:'Maus-DPI',ru:'DPI мыши'},
+  lbl_sensEdpi: {ar:'الحساسية',en:'Sensitivity',es:'Sensibilidad',fr:'Sensibilité',de:'Empfindlichkeit',ru:'Чувствительность'},
+  lbl_allGames: {ar:'المكافئ في كل الألعاب',en:'All Games Conversion',es:'Conversión Todos los Juegos',fr:'Conversion Tous les Jeux',de:'Alle Spiele Konvertierung',ru:'Конвертация всех игр'},
+  stat360sub: {ar:'سم لدورة كاملة',en:'cm per full rotation',es:'cm por rotación completa',fr:'cm par rotation complète',de:'cm pro volle Drehung',ru:'см на полный оборот'},
+  statEdpiSub: {ar:'الحساسية × DPI',en:'Sensitivity × DPI',es:'Sensibilidad × DPI',fr:'Sensibilité × DPI',de:'Empfindlichkeit × DPI',ru:'Чувствительность × DPI'},
+  copyTxt: {ar:'نسخ',en:'Copy',es:'Copiar',fr:'Copier',de:'Kopieren',ru:'Копировать'},
+  lbl_pros: {ar:'إعدادات المحترفين العالميين',en:'Pro Players Settings',es:'Configuración de Jugadores Pro',fr:'Paramètres des Joueurs Pro',de:'Pro-Spieler-Einstellungen',ru:'Настройки профессиональных игроков'},
+  resultLabelText: {ar:'حساسيتك في',en:'Your sensitivity in',es:'Tu sensibilidad en',fr:'Votre sensibilité dans',de:'Deine Empfindlichkeit in',ru:'Ваша чувствительность в'},
+  copySuccess: {ar:'✓ تم',en:'✓ Copied',es:'✓ Copiado',fr:'✓ Copié',de:'✓ Kopiert',ru:'✓ Скопировано'},
+  allGamesFrom: {ar:'من',en:'from',es:'de',fr:'depuis',de:'von',ru:'из'},
+  resultFrom: {ar:'من',en:'from',es:'de',fr:'depuis',de:'von',ru:'из'},
+  tutorialSkip: {ar:'تخطي',en:'Skip',es:'Saltar',fr:'Passer',de:'Überspringen',ru:'Пропустить'},
+  tutorialStart: {ar:'هيا نبدأ',en:'Let\'s Start',es:'Empecemos',fr:'Commençons',de:'Los geht\'s',ru:'Начнём'},
+  tutorialNext: {ar:'التالي',en:'Next',es:'Siguiente',fr:'Suivant',de:'Weiter',ru:'Далее'},
+  tutorialFinish: {ar:'ابدأ الاستخدام',en:'Start Using',es:'Comenzar a Usar',fr:'Commencer à Utiliser',de:'Jetzt Nutzen',ru:'Начать использовать'},
+  useSettings: {ar:'استخدم إعدادات',en:'Use settings of',es:'Usar configuración de',fr:'Utiliser les paramètres de',de:'Einstellungen verwenden von',ru:'Использовать настройки'},
+  settingsApplied: {ar:'✓ تم تطبيق الإعدادات',en:'✓ Settings applied',es:'✓ Configuración aplicada',fr:'✓ Paramètres appliqués',de:'✓ Einstellungen übernommen',ru:'✓ Настройки применены'},
+  helpTxt: {ar:'كيف يعمل؟',en:'How it works?',es:'¿Cómo funciona?',fr:'Comment ça marche?',de:'Wie funktioniert es?',ru:'Как это работает?'},
+};
+
+const TUTORIAL_STEPS_BASE = [
+  {icon:'🎯', ar_title:'أهلاً بك في <span>AIM SYNC</span>', en_title:'Welcome to <span>AIM SYNC</span>', ar_desc:'الموقع الوحيد الذي يحفظ <strong>إحساس تصويبك</strong> مهما غيّرت لعبتك.<br><br>دعنا نريك كيف تستخدمه في 30 ثانية ⚡', en_desc:'The only site that preserves your <strong>aim feel</strong> no matter the game.<br><br>Let us show you how in 30 seconds ⚡', tip_ar:'كل الإعدادات تُحفظ تلقائياً في متصفحك', tip_en:'All settings are saved automatically in your browser', badge:true},
+  {icon:'🎮', ar_title:'اختر <span>لعبتك الحالية</span>', en_title:'Select Your <span>Source Game</span>', ar_desc:'من القسم الأول، اختر اللعبة التي تلعبها الآن.<br><br>هل تلعب <strong>Valorant</strong>؟ اضغط عليها.', en_desc:'From the first section, pick the game you play now.<br><br>Playing <strong>Valorant</strong>? Click it.', tip_ar:'يمكنك سحب الألعاب يميناً ويساراً لرؤية المزيد', tip_en:'Swipe to see more games'},
+  {icon:'🖱️', ar_title:'أدخل <span>حساسيتك</span>', en_title:'Enter Your <span>Sensitivity</span>', ar_desc:'اكتب رقم الـ sensitivity الذي تستخدمه داخل اللعبة.', en_desc:'Type your in-game sensitivity number.', tip_ar:'لا تعرف حساسيتك؟ ادخل إعدادات اللعبة ← Mouse', tip_en:'Don\'t know your sens? Go to game settings → Mouse'},
+  {icon:'⚡', ar_title:'اختر <span>اللعبة الثانية</span>', en_title:'Choose <span>Target Game</span>', ar_desc:'الآن اختر اللعبة التي تريد الانتقال إليها.', en_desc:'Now pick the game you want to convert to.', tip_ar:'اضغط زر ⇄ لتبديل اللعبتين بسرعة', tip_en:'Click ⇄ to swap games quickly'},
+  {icon:'🏆', ar_title:'إعدادات <span>المحترفين</span>', en_title:'<span>Pro Player</span> Settings', ar_desc:'في الأسفل، ستجد إعدادات <strong>150+ لاعب محترف</strong>.', en_desc:'Below, find settings from <strong>150+ pro players</strong>.', tip_ar:'جرب إعدادات s1mple أو TenZ وشوف الفرق', tip_en:'Try s1mple or TenZ settings!'},
+  {icon:'🚀', ar_title:'أنت <span>جاهز!</span>', en_title:'You\'re <span>Ready!</span>', ar_desc:'الآن تعرف كل شيء عن AIM SYNC.<br><br><strong>بالتوفيق في مبارياتك!</strong> 🎯', en_desc:'Now you know everything about AIM SYNC.<br><br><strong>Good luck in your matches!</strong> 🎯', tip_ar:'شارك الموقع مع أصحابك الگيمرز!', tip_en:'Share with your gamer friends!'},
+];
 
 let lang='ar', sourceId='valorant', targetId='cs2', activeProGame='cs2';
 const g=id=>GAMES.find(x=>x.id===id);
-const tr=(ar,en)=>lang==='ar'?ar:en;
+const tr=(ar,en)=>(translations[ar]&&translations[ar][lang])?translations[ar][lang]:en;
 
-// ===== CORE FUNCTIONS =====
-function toggleLang(){
-  lang=lang==='ar'?'en':'ar';
+function getTutorialSteps(){
+  return TUTORIAL_STEPS_BASE.map(s=>({
+    icon:s.icon,
+    title: lang==='ar'?s.ar_title:s.en_title,
+    desc: lang==='ar'?s.ar_desc:s.en_desc,
+    tip: lang==='ar'?s.tip_ar:s.tip_en,
+    badge:s.badge||false
+  }));
+}
+
+// ===== LANGUAGE FUNCTIONS =====
+function changeLang(newLang){
+  if(lang===newLang) return;
+  lang=newLang;
   document.documentElement.lang=lang;
   document.body.dir=lang==='ar'?'rtl':'ltr';
-  document.querySelector('.lang-toggle').textContent=lang==='ar'?'EN':'العربية';
-  updateTexts(); renderChips(); renderPros(); convert();
+  updateLangUI();
+  updateTexts();
+  renderChips();
+  renderPros();
+  convert();
   saveSettings();
+  closeLangMenu();
+}
+
+function toggleLangMenu(){
+  const menu=document.getElementById('langMenu');
+  const btn=document.getElementById('langSelectBtn');
+  if(!menu||!btn) return;
+  const isOpen=menu.classList.contains('show');
+  if(isOpen){ closeLangMenu(); }
+  else{ menu.classList.add('show'); btn.classList.add('open'); }
+}
+
+function closeLangMenu(){
+  const menu=document.getElementById('langMenu');
+  const btn=document.getElementById('langSelectBtn');
+  if(menu) menu.classList.remove('show');
+  if(btn) btn.classList.remove('open');
+}
+
+function updateLangUI(){
+  const flags={ar:'🇮🇶',en:'🇬🇧',es:'🇪🇸',fr:'🇫🇷',de:'🇩🇪',ru:'🇷🇺'};
+  const codes={ar:'AR',en:'EN',es:'ES',fr:'FR',de:'DE',ru:'RU'};
+  document.getElementById('currentLangFlag').textContent=flags[lang]||'🇮🇶';
+  document.getElementById('currentLangCode').textContent=codes[lang]||'AR';
+  document.querySelectorAll('.lang-option').forEach(opt=>{
+    opt.classList.toggle('active',opt.dataset.lang===lang);
+  });
 }
 
 function updateTexts(){
-  const ids = {
-    brandSub: tr('محوّل حساسية ألعاب الـ FPS','FPS Sensitivity Converter'),
-    liveLabel: tr('تحويل فوري','Live Convert'),
-    lbl_source: tr('اللعبة الحالية','Source Game'),
-    lbl_sens: tr('الحساسية داخل اللعبة','In-Game Sensitivity'),
-    lbl_target: tr('اللعبة المستهدفة','Target Game'),
-    lbl_dpi: tr('الماوس DPI','Mouse DPI'),
-    lbl_dpiInput: tr('DPI الماوس','Mouse DPI'),
-    lbl_sensEdpi: tr('الحساسية','Sensitivity'),
-    lbl_allGames: tr('المكافئ في كل الألعاب','All Games Conversion'),
-    stat360sub: tr('سم لدورة كاملة','cm per full rotation'),
-    statEdpiSub: tr('الحساسية × DPI','Sensitivity × DPI'),
-    copyTxt: tr('نسخ','Copy'),
-    lbl_pros: tr('إعدادات المحترفين العالميين','Pro Players Settings'),
+  const ids={
+    brandSub:'brandSub',liveLabel:'liveLabel',lbl_source:'lbl_source',lbl_sens:'lbl_sens',
+    lbl_target:'lbl_target',lbl_dpi:'lbl_dpi',lbl_dpiInput:'lbl_dpiInput',lbl_sensEdpi:'lbl_sensEdpi',
+    lbl_allGames:'lbl_allGames',stat360sub:'stat360sub',statEdpiSub:'statEdpiSub',
+    copyTxt:'copyTxt',lbl_pros:'lbl_pros',helpTxt:'helpTxt',
   };
-  Object.entries(ids).forEach(([id,val])=>{
-    const el = document.getElementById(id);
-    if(el) el.textContent = val;
+  Object.entries(ids).forEach(([key,elId])=>{
+    const el=document.getElementById(elId);
+    if(el) el.textContent=tr(key,key);
   });
-  document.getElementById('heroTitle').innerHTML = lang==='ar'
-    ?'احفظ <span style="color:var(--accent)">إحساس التصويب</span><br>مهما تغيرت اللعبة'
-    :'Keep Your <span style="color:var(--accent)">Aim Feel</span><br>Across Every Game';
-  document.getElementById('heroDesc').textContent = tr(
-    'اختر لعبتك الحالية، أدخل رقم الحساسية، واحصل على الرقم المكافئ في أي لعبة أخرى لحظياً.',
-    'Select your source game, enter your sensitivity, and get the exact equivalent for any other game instantly.'
-  );
-  document.getElementById('infoBox').innerHTML = lang==='ar'
-    ?'<strong>cm / 360°</strong> يعني كم سنتيمتر تحتاج تحرك الماوس عشان تدور الكاميرا دورة كاملة. رقم أصغر = أسرع، رقم أكبر = أدق. معظم المحترفين يستخدمون <strong>20–50 سم</strong>.'
-    :'<strong>cm / 360°</strong> means how many centimeters you move your mouse for a full camera rotation. Lower = faster, Higher = more precise. Most pro players use <strong>20–50 cm</strong>.';
-  // Help button text
-  const helpTxt = document.getElementById('helpTxt');
-  if(helpTxt) helpTxt.textContent = tr('كيف يعمل؟','How it works?');
+  document.getElementById('resultLabelText').textContent=tr('resultLabelText','Your sensitivity in');
 }
 
+// ===== RENDER CHIPS =====
 function renderChips(){
   [['sourceGames',false],['targetGames',true]].forEach(([cid,isTarget])=>{
     const el=document.getElementById(cid);
@@ -602,18 +608,26 @@ function renderChips(){
       const active=isTarget?game.id===targetId:game.id===sourceId;
       const div=document.createElement('div');
       div.className='game-chip'+(active?' active':'');
-      div.innerHTML=`<span class="chip-abbr">${game.abbr}</span><span class="chip-name">${lang==='ar'?game.ar:game.en}</span><div class="chip-dot" style="background:${active?'var(--accent)':'transparent'}"></div>`;
-      div.onclick=()=>{ if(isTarget)targetId=game.id; else sourceId=game.id; renderChips(); convert(); saveSettings(); };
+      const gameName=game[lang]||game.en;
+      div.innerHTML=`
+        <img src="${game.img}" alt="${gameName}" class="game-chip-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';" loading="lazy">
+        <span class="chip-abbr" style="display:${game.img?'none':'block'}">${game.abbr}</span>
+        <span class="chip-name">${gameName}</span>`;
+      div.onclick=()=>{
+        if(isTarget) targetId=game.id; else sourceId=game.id;
+        renderChips(); convert(); saveSettings();
+      };
       el.appendChild(div);
     });
   });
   const sg=g(sourceId), tg=g(targetId);
   const snEl=document.getElementById('sourceGameName');
   const tgEl=document.getElementById('targetGameLabel');
-  if(snEl) snEl.textContent=lang==='ar'?sg.ar:sg.en;
-  if(tgEl) tgEl.textContent=lang==='ar'?tg.ar:tg.en;
+  if(snEl) snEl.textContent=sg?sg[lang]||sg.en:'';
+  if(tgEl) tgEl.textContent=tg?tg[lang]||tg.en:'';
 }
 
+// ===== CORE FUNCTIONS =====
 function onSlider(){
   const v=parseFloat(document.getElementById('sensSlider').value);
   document.getElementById('sensInput').value=v;
@@ -637,23 +651,30 @@ function convert(){
   const converted=sens>0?Math.round(sens*sg.mult/tg.mult*10000)/10000:null;
   document.getElementById('resultNum').textContent=converted!==null?converted:'—';
   const rlt=document.getElementById('resultLabelText');
-  if(rlt) rlt.textContent=tr('حساسيتك في','Your sensitivity in');
+  if(rlt) rlt.textContent=tr('resultLabelText','Your sensitivity in');
   const tgl=document.getElementById('targetGameLabel');
-  if(tgl) tgl.textContent=lang==='ar'?tg.ar:tg.en;
-  document.getElementById('resultMeta').innerHTML=`${tr('من','from')} ${lang==='ar'?sg.ar:sg.en} <span>(${sens})</span>`;
+  if(tgl) tgl.textContent=tg?tg[lang]||tg.en:'';
+  document.getElementById('resultMeta').innerHTML=`${tr('resultFrom','from')} ${sg?sg[lang]||sg.en:''} <span>(${sens})</span>`;
   const cm360=sens?Math.round(2.54*360/(sg.mult*sens*dpi)*10)/10:0;
   document.getElementById('stat360').textContent=cm360?cm360+' cm':'—';
   document.getElementById('statEdpi').textContent=sens?Math.round(sens*dpi):'—';
   document.getElementById('edpiSens').value=sens;
-  document.getElementById('allGamesFrom').textContent=tr(`من ${sg.ar} (${sens})`,`from ${sg.en} (${sens})`);
+  document.getElementById('allGamesFrom').textContent=`${tr('allGamesFrom','from')} ${sg?sg[lang]||sg.en:''} (${sens})`;
   const list=document.getElementById('allGamesList');
   list.innerHTML='';
   GAMES.forEach(game=>{
     const val=sens?Math.round(sens*sg.mult/game.mult*10000)/10000:'—';
     const isSrc=game.id===sourceId, isTgt=game.id===targetId;
+    const gameName=game[lang]||game.en;
     const row=document.createElement('div');
     row.className='game-row'+(isTgt?' highlight':'')+(isSrc?' source-row':'');
-    row.innerHTML=`<div class="game-row-left"><div class="game-tag ${game.tag}">${game.abbr}</div><div class="game-row-name">${lang==='ar'?game.ar:game.en}</div></div><div class="game-row-val">${isSrc?sens:val}</div>`;
+    row.innerHTML=`
+      <div class="game-row-left">
+        <div class="game-tag ${game.tag}">${game.abbr}</div>
+        <img src="${game.img}" alt="${gameName}" class="game-row-img" onerror="this.style.display='none'" loading="lazy">
+        <div class="game-row-name">${gameName}</div>
+      </div>
+      <div class="game-row-val">${isSrc?sens:val}</div>`;
     list.appendChild(row);
   });
   saveSettings();
@@ -672,10 +693,10 @@ function copyResult(){
     const btn=document.getElementById('copyBtn');
     const txt=document.getElementById('copyTxt');
     if(btn) btn.classList.add('copied');
-    if(txt) txt.textContent=tr('✓ تم','✓ Copied');
+    if(txt) txt.textContent=tr('copySuccess','✓ Copied');
     setTimeout(()=>{
       if(btn) btn.classList.remove('copied');
-      if(txt) txt.textContent=tr('نسخ','Copy');
+      if(txt) txt.textContent=tr('copyTxt','Copy');
     },1500);
   });
 }
@@ -695,7 +716,9 @@ function renderPros(){
   });
   container.innerHTML='';
   const gmap=PROS_GAME_MAP[activeProGame];
+  if(!gmap) return;
   const gameObj=g(gmap.gameId);
+  if(!gameObj) return;
   PROS[activeProGame].forEach(pro=>{
     const edpi=Math.round(pro.sens*pro.dpi);
     const cm360=Math.round(2.54*360/(gameObj.mult*pro.sens*pro.dpi)*10)/10;
@@ -718,7 +741,7 @@ function renderPros(){
         <div class="pro-stat" style="grid-column:span 3"><span class="pro-stat-val" style="color:#4fc3f7">${cm360} cm</span><div class="pro-stat-lbl">cm / 360°</div></div>
       </div>
       <button class="pro-use-btn" onclick="useProSettings('${gmap.gameId}',${pro.sens},'${pro.name}',this)">
-        ${tr('استخدم إعدادات','Use settings of')} ${pro.name} ↗
+        ${tr('useSettings','Use settings of')} ${pro.name} ↗
       </button>`;
     container.appendChild(card);
   });
@@ -732,14 +755,14 @@ function useProSettings(gameId,sens,name,btn){
   renderChips(); convert();
   window.scrollTo({top:0,behavior:'smooth'});
   btn.classList.add('used');
-  btn.textContent='✓ '+tr('تم تطبيق الإعدادات','Settings applied');
+  btn.textContent=tr('settingsApplied','✓ Settings applied');
   setTimeout(()=>{
     btn.classList.remove('used');
-    btn.textContent=tr('استخدم إعدادات','Use settings of')+' '+name+' ↗';
+    btn.textContent=tr('useSettings','Use settings of')+' '+name+' ↗';
   },2000);
 }
 
-// ===== SETTINGS PERSISTENCE =====
+// ===== SETTINGS =====
 function saveSettings(){
   try{
     localStorage.setItem('aimsync_settings',JSON.stringify({
@@ -755,22 +778,17 @@ function loadSettings(){
     const saved=JSON.parse(localStorage.getItem('aimsync_settings')||'{}');
     if(saved.sourceId) sourceId=saved.sourceId;
     if(saved.targetId) targetId=saved.targetId;
-    if(saved.lang){ lang=saved.lang; document.documentElement.lang=lang; document.body.dir=lang==='ar'?'rtl':'ltr'; document.querySelector('.lang-toggle').textContent=lang==='ar'?'EN':'العربية'; }
+    if(saved.lang && ['ar','en','es','fr','de','ru'].includes(saved.lang)){
+      lang=saved.lang;
+      document.documentElement.lang=lang;
+      document.body.dir=lang==='ar'?'rtl':'ltr';
+    }
     if(saved.sens){ document.getElementById('sensInput').value=saved.sens; document.getElementById('sensDisplay').textContent=saved.sens; document.getElementById('sensSlider').value=Math.min(saved.sens,10); }
     if(saved.dpi) document.getElementById('dpiInput').value=saved.dpi;
   }catch(e){}
 }
 
 // ===== TUTORIAL =====
-const TUTORIAL_STEPS=[
-  {icon:'🎯',title:'أهلاً بك في <span>AIM SYNC</span>',desc:'الموقع الوحيد الذي يحفظ <strong>إحساس تصويبك</strong> مهما غيّرت لعبتك.<br><br>دعنا نريك كيف تستخدمه في 30 ثانية ⚡',tip:'كل الإعدادات تُحفظ تلقائياً في متصفحك',badge:true},
-  {icon:'🎮',title:'اختر <span>لعبتك الحالية</span>',desc:'من القسم الأول، اختر اللعبة التي تلعبها الآن.<br><br>هل تلعب <strong>Valorant</strong>؟ اضغط عليها. <strong>CS2</strong>؟ نفس الشيء.',tip:'يمكنك سحب الألعاب يميناً ويساراً لرؤية المزيد'},
-  {icon:'🖱️',title:'أدخل <span>حساسيتك</span>',desc:'اكتب رقم الـ sensitivity الذي تستخدمه داخل اللعبة.<br><br>يمكنك أيضاً تحريك <strong>الشريط</strong> بدل الكتابة اليدوية.',tip:'لا تعرف حساسيتك؟ ادخل إعدادات اللعبة ← Mouse'},
-  {icon:'⚡',title:'اختر <span>اللعبة الثانية</span>',desc:'الآن اختر اللعبة التي تريد الانتقال إليها.<br><br>النتيجة تظهر <strong>فوراً</strong> مع cm/360° وeDPI.',tip:'اضغط زر ⇄ لتبديل اللعبتين بسرعة'},
-  {icon:'🏆',title:'إعدادات <span>المحترفين</span>',desc:'في الأسفل، ستجد إعدادات <strong>150+ لاعب محترف</strong> عالمي.<br><br>اضغط على أي لاعب واستخدم إعداداته فوراً!',tip:'جرب إعدادات s1mple أو TenZ وشوف الفرق'},
-  {icon:'🚀',title:'أنت <span>جاهز!</span>',desc:'الآن تعرف كل شيء عن AIM SYNC.<br><br>إعداداتك تُحفظ تلقائياً وتعود لها في كل مرة. <strong>بالتوفيق في مبارياتك!</strong> 🎯',tip:'شارك الموقع مع أصحابك الگيمرز!'},
-];
-
 let tutStep=0;
 
 function openTutorial(){
@@ -788,8 +806,9 @@ function initTutorial(){
 }
 
 function renderTutStep(){
-  const step=TUTORIAL_STEPS[tutStep];
-  const total=TUTORIAL_STEPS.length;
+  const steps=getTutorialSteps();
+  const step=steps[tutStep];
+  const total=steps.length;
   const prog=document.getElementById('tutProgress');
   if(prog) prog.style.width=((tutStep+1)/total*100)+'%';
   let dots='';
@@ -810,21 +829,23 @@ function renderTutStep(){
   const skipBtn=document.getElementById('tutSkip');
   if(isLast){
     if(nextBtn) nextBtn.classList.add('finish');
-    if(nextTxt) nextTxt.textContent='ابدأ الاستخدام';
+    if(nextTxt) nextTxt.textContent=tr('tutorialFinish','Start Using');
     if(nextArrow) nextArrow.textContent='🎯';
     if(skipBtn) skipBtn.style.display='none';
   } else {
     if(nextBtn) nextBtn.classList.remove('finish');
-    if(nextTxt) nextTxt.textContent=tutStep===0?'هيا نبدأ':'التالي';
-    if(nextArrow) nextArrow.textContent='←';
+    if(nextTxt) nextTxt.textContent=tutStep===0?tr('tutorialStart','Let\'s Start'):tr('tutorialNext','Next');
+    if(nextArrow) nextArrow.textContent=lang==='ar'?'←':'→';
     if(skipBtn) skipBtn.style.display='block';
+    if(skipBtn) skipBtn.textContent=tr('tutorialSkip','Skip');
   }
   const box=document.getElementById('tutorialBox');
   if(box){ box.style.transform='translateY(20px)'; box.style.opacity='0'; setTimeout(()=>{ box.style.transform='translateY(0)'; box.style.opacity='1'; },50); }
 }
 
 function nextStep(){
-  if(tutStep<TUTORIAL_STEPS.length-1){ tutStep++; renderTutStep(); }
+  const steps=getTutorialSteps();
+  if(tutStep<steps.length-1){ tutStep++; renderTutStep(); }
   else closeTutorial();
 }
 
@@ -836,19 +857,28 @@ function closeTutorial(){
   localStorage.setItem('aimsync_tutorial_done','1');
 }
 
-// ===== MAIN INIT =====
+// ===== CLOSE LANG MENU ON OUTSIDE CLICK =====
+document.addEventListener('click',(e)=>{
+  const dropdown=document.getElementById('langDropdown');
+  if(dropdown && !dropdown.contains(e.target)){
+    closeLangMenu();
+  }
+});
+
+// ===== INIT =====
 document.addEventListener('DOMContentLoaded',()=>{
   loadSettings();
+  updateLangUI();
+  updateTexts();
   renderChips();
   renderPros();
-  updateTexts();
   convert();
   initTutorial();
 
-  // Add help button
+  // Help button
   const helpBtn=document.createElement('button');
-  helpBtn.innerHTML='❓ <span id="helpTxt">'+tr('كيف يعمل؟','How it works?')+'</span>';
-  helpBtn.style.cssText='background:rgba(0,229,176,0.08);border:1px solid rgba(0,229,176,0.2);color:#4a8a5a;padding:6px 14px;border-radius:20px;cursor:pointer;font-size:12px;font-family:Tajawal,sans-serif;font-weight:700;margin-top:12px;display:inline-block';
+  helpBtn.innerHTML='❓ <span id="helpTxt">'+tr('helpTxt','How it works?')+'</span>';
+  helpBtn.style.cssText='background:rgba(0,229,176,0.08);border:1px solid rgba(0,229,176,0.2);color:#4a8a5a;padding:6px 14px;border-radius:20px;cursor:pointer;font-size:12px;font-family:Tajawal,sans-serif;font-weight:700;margin-top:12px;display:inline-block;touch-action:manipulation';
   helpBtn.onclick=openTutorial;
   const heroDesc=document.getElementById('heroDesc');
   if(heroDesc) heroDesc.parentNode.insertBefore(helpBtn,heroDesc.nextSibling);
@@ -856,12 +886,12 @@ document.addEventListener('DOMContentLoaded',()=>{
   // Saved toast
   if(localStorage.getItem('aimsync_settings')){
     const toast=document.createElement('div');
-    toast.style.cssText='position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(0,229,176,.15);border:1px solid rgba(0,229,176,.4);color:#00e5b0;padding:8px 18px;border-radius:20px;font-size:12px;font-family:Tajawal,sans-serif;z-index:998;white-space:nowrap';
-    toast.textContent='✓ تم استعادة إعداداتك المحفوظة';
+    toast.className='toast';
+    toast.textContent=lang==='ar'?'✓ تم استعادة إعداداتك المحفوظة':'✓ Your saved settings have been restored';
     document.body.appendChild(toast);
     setTimeout(()=>toast.remove(),3000);
   }
 });
 </script>
 </body>
-                                               </html>
+</html>
