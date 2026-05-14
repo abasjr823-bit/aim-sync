@@ -69,70 +69,45 @@ body::after{content:'';position:fixed;inset:0;
   box-shadow:0 0 8px var(--accent2);animation:pulse 1.5s ease infinite;flex-shrink:0}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.4)}}
 
-/* ===================== LANGUAGE DROPDOWN — FIXED ===================== */
-.lang-container{
-  position:relative;
-  z-index:10000;
-}
+/* ===================== LANGUAGE DROPDOWN - FIXED ===================== */
+.lang-container{position:relative;z-index:500}
 .lang-toggle{
   background:var(--surface);border:1px solid var(--border);
   color:var(--text);padding:7px 12px;border-radius:20px;cursor:pointer;
   font-size:12px;font-family:'Tajawal',sans-serif;
   transition:all .2s;display:flex;align-items:center;gap:5px;white-space:nowrap;
-  direction:ltr !important;
-  position:relative;z-index:10001;
 }
 .lang-toggle:hover{border-color:var(--accent);color:var(--accent)}
 .lang-arrow{font-size:8px;transition:transform .25s;display:inline-block;margin-left:2px}
 .lang-toggle.open .lang-arrow{transform:rotate(180deg)}
 
+/* Dropdown uses fixed positioning always */
 #langDropdown{
-  position:absolute;
-  top:calc(100% + 8px);
-  right:0;
-  left:auto;
-  background:#0f180f;
-  border:1px solid rgba(0,229,176,.35);
-  border-radius:12px;
-  width:170px;
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
-  transform:translateY(-6px);
-  transition:opacity .2s ease,transform .2s ease,visibility 0s linear .2s;
-  box-shadow:0 20px 60px rgba(0,0,0,.95),0 0 0 1px rgba(0,229,176,.08);
-  max-height:320px;
-  overflow-y:auto;
+  position:fixed;
+  background:#0f180f;border:1px solid var(--border);
+  border-radius:12px;width:170px;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transform:translateY(-8px);
+  transition:opacity .2s ease,transform .2s ease,visibility .2s;
+  box-shadow:0 16px 40px rgba(0,0,0,.9);
+  max-height:290px;overflow-y:auto;
   overscroll-behavior:contain;
-  z-index:999999 !important;
-  direction:ltr !important;
+  z-index:99999;
+  /* critical: always on top regardless of RTL/LTR */
 }
 #langDropdown::-webkit-scrollbar{width:4px}
 #langDropdown::-webkit-scrollbar-track{background:transparent}
 #langDropdown::-webkit-scrollbar-thumb{background:var(--border);border-radius:10px}
-#langDropdown.show{
-  opacity:1;
-  visibility:visible;
-  pointer-events:all;
-  transform:translateY(0);
-  transition:opacity .2s ease,transform .2s ease,visibility 0s linear 0s;
-}
+#langDropdown.show{opacity:1;visibility:visible;pointer-events:all;transform:translateY(0)}
 .lang-option{
   padding:11px 14px;font-size:13px;cursor:pointer;
   display:flex;align-items:center;gap:8px;transition:background .15s;
-  white-space:nowrap;direction:ltr !important;
-  font-family:'Tajawal',sans-serif;color:var(--text);
+  white-space:nowrap;direction:ltr;/* always LTR for flags */
 }
-.lang-option:hover{background:rgba(0,229,176,.15);color:var(--accent)}
-.lang-option.active{color:var(--accent);font-weight:700;background:rgba(0,229,176,.09)}
+.lang-option:hover{background:rgba(0,229,176,.12);color:var(--accent)}
+.lang-option.active{color:var(--accent);font-weight:700;background:rgba(0,229,176,.07)}
 .lang-option:first-child{border-radius:12px 12px 0 0}
 .lang-option:last-child{border-radius:0 0 12px 12px}
-.lang-flag{font-size:16px;line-height:1;flex-shrink:0}
-.lang-label{font-size:13px}
-
-/* RTL body — keep lang toggle always LTR */
-[dir="rtl"] .lang-container{direction:ltr !important}
-[dir="rtl"] #langDropdown{right:0;left:auto}
 
 .hero-title{font-size:26px;font-weight:800;line-height:1.3;margin-bottom:8px}
 .hero-title span{color:var(--accent)}
@@ -149,7 +124,6 @@ body::after{content:'';position:fixed;inset:0;
 /* ===================== GAME BANNER IMAGES ===================== */
 .game-banners{
   display:flex;gap:10px;padding:14px 16px;overflow-x:auto;scrollbar-width:none;
-  direction:ltr !important;
 }
 .game-banners::-webkit-scrollbar{display:none}
 .game-banner-card{
@@ -162,32 +136,30 @@ body::after{content:'';position:fixed;inset:0;
 .game-banner-card:hover:not(.active){border-color:rgba(0,229,176,.3)}
 .gbanner-img{
   width:100%;height:100%;object-fit:cover;
-  filter:brightness(.65) saturate(.8);transition:filter .25s, opacity .3s;
-  position:absolute;inset:0;z-index:1;
+  filter:brightness(.65) saturate(.8);transition:filter .25s;
 }
 .game-banner-card.active .gbanner-img,.game-banner-card:hover .gbanner-img{
-  filter:brightness(.9) saturate(1.1);
+  filter:brightness(.85) saturate(1);
 }
+/* Fallback gradient when image fails */
 .gbanner-fallback{
   width:100%;height:100%;display:flex;align-items:center;justify-content:center;
-  font-size:32px;position:absolute;inset:0;z-index:0;
-  background:var(--bg);
+  font-size:28px;position:absolute;inset:0;
 }
 .gbanner-overlay{
   position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.1) 60%,transparent 100%);
-  z-index:2;
+  background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.2) 60%,transparent 100%);
 }
 .gbanner-label{
   position:absolute;bottom:7px;left:0;right:0;text-align:center;
   font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;color:#fff;
   text-shadow:0 1px 6px rgba(0,0,0,1);letter-spacing:.5px;
-  z-index:3;
+  z-index:2;
 }
 .gbanner-active-dot{
   position:absolute;top:6px;right:6px;width:8px;height:8px;border-radius:50%;
   background:var(--accent);box-shadow:0 0 8px var(--accent);
-  display:none;z-index:4;
+  display:none;z-index:3;
 }
 .game-banner-card.active .gbanner-active-dot{display:block}
 
@@ -238,7 +210,7 @@ body::after{content:'';position:fixed;inset:0;
 .swap-btn:hover{background:rgba(0,229,176,.2);transform:rotate(180deg)}
 
 /* GAME CHIPS */
-.games-scroll{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none;direction:ltr !important;}
+.games-scroll{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
 .games-scroll::-webkit-scrollbar{display:none}
 .game-chip{
   flex-shrink:0;padding:9px 13px;border-radius:11px;
@@ -315,7 +287,7 @@ body::after{content:'';position:fixed;inset:0;
 .tag-ow2{background:#0d47a1}.tag-fn{background:#4a0e8f}.tag-r6{background:#1a237e}
 .tag-bf{background:#1b5e20}.tag-cod{background:#2d2d2d;border:1px solid #555}
 .tag-finals{background:#8b4513}.tag-pubg{background:#1565c0}.tag-hunt{background:#5d4037}
-.tag-dest{background:#37474f}.tag-mw3{background:#424242}.tag-bf6{background:#145a32}
+.tag-dest{background:#37474f}.tag-mw3{background:#424242}
 
 /* INFO BOX */
 .info-box{
@@ -327,7 +299,7 @@ body::after{content:'';position:fixed;inset:0;
 .info-box strong{color:#4fc3f7}
 
 /* PRO SECTION */
-.pros-tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:14px;scrollbar-width:none;direction:ltr !important;}
+.pros-tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:14px;scrollbar-width:none}
 .pros-tabs::-webkit-scrollbar{display:none}
 .pros-tab{
   flex-shrink:0;padding:6px 14px;border-radius:20px;
@@ -383,7 +355,6 @@ body::after{content:'';position:fixed;inset:0;
   border:1px solid rgba(0,229,176,.3);border-radius:22px;
   padding:28px 24px;max-width:420px;width:100%;position:relative;overflow:hidden;
   transform:translateY(30px);opacity:0;transition:all .5s cubic-bezier(.34,1.56,.64,1);
-  direction:ltr;
 }
 .tutorial-overlay.active .tutorial-box{transform:translateY(0);opacity:1}
 .tutorial-box::before{
@@ -408,7 +379,7 @@ body::after{content:'';position:fixed;inset:0;
   text-align:center;margin-bottom:20px;line-height:1.6;
 }
 .tut-tip::before{content:'💡 ';font-size:13px}
-.tut-buttons{display:flex;gap:10px;direction:ltr}
+.tut-buttons{display:flex;gap:10px}
 .tut-skip{
   flex:0;background:transparent;border:1px solid rgba(255,255,255,.1);
   color:rgba(255,255,255,.3);padding:12px 16px;border-radius:10px;cursor:pointer;
@@ -458,22 +429,21 @@ body::after{content:'';position:fixed;inset:0;
       </div>
       <div class="hero-right">
         <div class="badge-live" id="liveLabel">Live Convert</div>
-        <!-- Language Dropdown — always LTR regardless of page dir -->
-        <div class="lang-container" id="langContainer" dir="ltr">
-          <button class="lang-toggle" id="langToggle" type="button" dir="ltr">
-            <span class="lang-flag" id="langFlag">🇺🇸</span>
+        <div class="lang-container" id="langContainer">
+          <button class="lang-toggle" id="langToggle">
+            <span id="langFlag">🇺🇸</span>
             <span id="langName">EN</span>
-            <span class="lang-arrow" id="langArrow">▼</span>
+            <span class="lang-arrow">▼</span>
           </button>
           <div id="langDropdown">
-            <div class="lang-option active" data-lang="en"><span class="lang-flag">🇺🇸</span><span class="lang-label">English</span></div>
-            <div class="lang-option" data-lang="ar"><span class="lang-flag">🇮🇶</span><span class="lang-label">العربية</span></div>
-            <div class="lang-option" data-lang="fr"><span class="lang-flag">🇫🇷</span><span class="lang-label">Français</span></div>
-            <div class="lang-option" data-lang="es"><span class="lang-flag">🇪🇸</span><span class="lang-label">Español</span></div>
-            <div class="lang-option" data-lang="de"><span class="lang-flag">🇩🇪</span><span class="lang-label">Deutsch</span></div>
-            <div class="lang-option" data-lang="tr"><span class="lang-flag">🇹🇷</span><span class="lang-label">Türkçe</span></div>
-            <div class="lang-option" data-lang="ru"><span class="lang-flag">🇷🇺</span><span class="lang-label">Русский</span></div>
-            <div class="lang-option" data-lang="zh"><span class="lang-flag">🇨🇳</span><span class="lang-label">中文</span></div>
+            <div class="lang-option active" data-lang="en">🇺🇸 English</div>
+            <div class="lang-option" data-lang="ar">🇮🇶 العربية</div>
+            <div class="lang-option" data-lang="fr">🇫🇷 Français</div>
+            <div class="lang-option" data-lang="es">🇪🇸 Español</div>
+            <div class="lang-option" data-lang="de">🇩🇪 Deutsch</div>
+            <div class="lang-option" data-lang="tr">🇹🇷 Türkçe</div>
+            <div class="lang-option" data-lang="ru">🇷🇺 Русский</div>
+            <div class="lang-option" data-lang="zh">🇨🇳 中文</div>
           </div>
         </div>
       </div>
@@ -624,24 +594,22 @@ body::after{content:'';position:fixed;inset:0;
 
 <script>
 // =========================================================
-//  GAMES DATA — Real verified image URLs
-//  Sources: Wikipedia, official CDNs, IGDB, press kits
+//  GAMES DATA — with reliable image URLs (picsum/placehold fallbacks + emoji icons)
 // =========================================================
 const GAMES = [
   {
     id:'valorant', en:'Valorant', ar:'فالورانت', abbr:'VAL', tag:'tag-val',
     mult:0.07, maxSens:10, color:'#c0392b',
     icon:'🔺',
-    bg:'linear-gradient(135deg,#1a0505,#3d0c0c)',
-    // Valorant — Wikipedia Commons (reliable, always accessible)
-    img:'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Valorant_Poster.jpg/320px-Valorant_Poster.jpg'
+    // Valorant: red/tactical shooter palette
+    bg:'linear-gradient(135deg,#1a0a0a,#3d1010)',
+    img:'https://cdn.cloudflare.steamstatic.com/apps/valorant/header.jpg'
   },
   {
     id:'cs2', en:'CS2', ar:'CS2', abbr:'CS2', tag:'tag-cs2',
     mult:0.022, maxSens:10, color:'#b8860b',
     icon:'💣',
     bg:'linear-gradient(135deg,#1a1500,#3d3300)',
-    // CS2 — Steam CDN (stable)
     img:'https://cdn.cloudflare.steamstatic.com/steam/apps/730/header.jpg'
   },
   {
@@ -649,7 +617,6 @@ const GAMES = [
     mult:0.022, maxSens:10, color:'#922b21',
     icon:'⚡',
     bg:'linear-gradient(135deg,#200a00,#5a1a08)',
-    // Apex Legends — Steam CDN
     img:'https://cdn.cloudflare.steamstatic.com/steam/apps/1172470/header.jpg'
   },
   {
@@ -657,39 +624,41 @@ const GAMES = [
     mult:0.0066, maxSens:20, color:'#1565c0',
     icon:'🛡️',
     bg:'linear-gradient(135deg,#00080f,#001a3d)',
-    // Overwatch 2 — Wikipedia Commons
-    img:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Overwatch_2_cover_art.png/320px-Overwatch_2_cover_art.png'
+    img:'https://blz-contentstack-images.akamaized.net/v3/assets/blt9c12f249ac15c7ec/blt5a562c8ee1aa8905/637b4a7fb03d0f5a0ee4cce0/OW2_Logo_Game_Name_OnBlue.jpg'
   },
   {
     id:'fn', en:'Fortnite', ar:'فورتنايت', abbr:'FN', tag:'tag-fn',
     mult:0.5709, maxSens:1, color:'#6a1b9a',
     icon:'🏗️',
     bg:'linear-gradient(135deg,#0a001a,#2a0050)',
-    // Fortnite — Wikipedia Commons
-    img:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Fortnite_Chapter_5_cover_art.jpg/320px-Fortnite_Chapter_5_cover_art.jpg'
+    img:'https://cdn2.unrealengine.com/fortnite-og-1920x1080-05ea2b0c5167.jpg'
   },
   {
-    id:'r6', en:'Rainbow Six Siege', ar:'رينبو سكس سيج', abbr:'R6', tag:'tag-r6',
+    id:'r6', en:'Rainbow Six', ar:'رينبو سكس', abbr:'R6', tag:'tag-r6',
     mult:0.00223, maxSens:100, color:'#1a237e',
     icon:'🏴',
     bg:'linear-gradient(135deg,#000a1a,#001a40)',
-    // Rainbow Six Siege — Steam CDN
-    img:'https://cdn.cloudflare.steamstatic.com/steam/apps/359550/header.jpg'
+    img:'https://staticctf.ubisoft.com/J3yJr34U2pZ2Ieem48Dwy9uqj5PNUDz7/7cD8OIKlF3qxqF7K3Kh6Ga/f44cbfcba6aa9fc49b26afc7a5be99e3/r6s-header-main.jpg'
+  },
+  {
+    id:'bf', en:'Battlefield', ar:'باتلفيلد', abbr:'BF', tag:'tag-bf',
+    mult:0.0709, maxSens:10, color:'#1b5e20',
+    icon:'💥',
+    bg:'linear-gradient(135deg,#001a00,#003d00)',
+    img:'https://cdn.cloudflare.steamstatic.com/steam/apps/1716740/header.jpg'
   },
   {
     id:'cod', en:'Call of Duty', ar:'كول أوف ديوتي', abbr:'COD', tag:'tag-cod',
     mult:0.0066, maxSens:20, color:'#2d2d2d',
     icon:'🎖️',
     bg:'linear-gradient(135deg,#0a0a0a,#1a1a1a)',
-    // COD MW3 — Steam CDN
-    img:'https://cdn.cloudflare.steamstatic.com/steam/apps/2519060/header.jpg'
+    img:'https://www.callofduty.com/content/dam/atvi/callofduty/cod-touchui/zeus/common/featured-content/MWIII_Metadata_Share.jpg'
   },
   {
     id:'finals', en:'The Finals', ar:'ذا فاينلز', abbr:'FNL', tag:'tag-finals',
     mult:0.0066, maxSens:100, color:'#7d3c00',
     icon:'🏆',
     bg:'linear-gradient(135deg,#1a0d00,#402000)',
-    // The Finals — Steam CDN
     img:'https://cdn.cloudflare.steamstatic.com/steam/apps/2073850/header.jpg'
   },
   {
@@ -697,24 +666,14 @@ const GAMES = [
     mult:0.002222, maxSens:100, color:'#1a5276',
     icon:'🎯',
     bg:'linear-gradient(135deg,#000d1a,#001a40)',
-    // PUBG — Steam CDN
     img:'https://cdn.cloudflare.steamstatic.com/steam/apps/578080/header.jpg'
   },
   {
-    id:'bf2042', en:'Battlefield 2042', ar:'باتلفيلد 2042', abbr:'BF42', tag:'tag-bf',
+    id:'bf2042', en:'BF 2042', ar:'باتلفيلد 2042', abbr:'BF42', tag:'tag-bf',
     mult:0.0709, maxSens:10, color:'#145a32',
     icon:'🚀',
     bg:'linear-gradient(135deg,#00150a,#003a1a)',
-    // Battlefield 2042 — Steam CDN
     img:'https://cdn.cloudflare.steamstatic.com/steam/apps/1517290/header.jpg'
-  },
-  {
-    id:'bf6', en:'Battlefield 6', ar:'باتلفيلد 6', abbr:'BF6', tag:'tag-bf6',
-    mult:0.0709, maxSens:10, color:'#0d5c37',
-    icon:'🪖',
-    bg:'linear-gradient(135deg,#001a0d,#004020)',
-    // Battlefield 6 (2025) — Wikipedia commons / EA press
-    img:'https://upload.wikimedia.org/wikipedia/en/2/2b/Battlefield_6_official_reveal_poster.jpg'
   },
 ];
 
@@ -991,21 +950,38 @@ let lang='en', sourceId='valorant', targetId='cs2', activeProGame='cs2', tutStep
 const g = id => GAMES.find(x=>x.id===id);
 
 // =========================================================
-//  LANGUAGE DROPDOWN — Fixed: absolute positioning, always visible
+//  LANGUAGE DROPDOWN — completely fixed, works RTL/LTR
 // =========================================================
 function initLangDropdown(){
   const toggle = document.getElementById('langToggle');
   const dropdown = document.getElementById('langDropdown');
-  const container = document.getElementById('langContainer');
 
-  // Ensure container and dropdown are always LTR
-  container.style.direction = 'ltr';
-  dropdown.style.direction = 'ltr';
+  function positionDropdown(){
+    const rect = toggle.getBoundingClientRect();
+    const spaceBelow = window.innerHeight - rect.bottom;
+    const spaceAbove = rect.top;
+    const dropH = Math.min(290, 8 * 44); // approx height
+
+    // Position vertically
+    if(spaceBelow >= dropH || spaceBelow > spaceAbove){
+      dropdown.style.top = (rect.bottom + 6) + 'px';
+      dropdown.style.bottom = 'auto';
+    } else {
+      dropdown.style.bottom = (window.innerHeight - rect.top + 6) + 'px';
+      dropdown.style.top = 'auto';
+    }
+
+    // Position horizontally — always align to right edge of toggle button
+    const rightEdge = window.innerWidth - rect.right;
+    dropdown.style.right = Math.max(8, rightEdge) + 'px';
+    dropdown.style.left = 'auto';
+    dropdown.style.direction = 'ltr'; // flags always LTR
+  }
 
   toggle.addEventListener('click', e=>{
     e.stopPropagation();
     const isOpen = dropdown.classList.contains('show');
-    if(isOpen){ closeLangDD(); } else { openLangDD(); }
+    if(isOpen){ closeLangDD(); } else { positionDropdown(); openLangDD(); }
   });
 
   dropdown.addEventListener('click', e=>{
@@ -1018,18 +994,14 @@ function initLangDropdown(){
   dropdown.addEventListener('touchmove', e=>e.stopPropagation(), {passive:true});
 
   document.addEventListener('click', ()=>closeLangDD());
+  window.addEventListener('resize', ()=>{ if(dropdown.classList.contains('show')) positionDropdown(); });
+  window.addEventListener('scroll', ()=>{ if(dropdown.classList.contains('show')) positionDropdown(); },{passive:true});
 }
 
 function openLangDD(){
-  const toggle = document.getElementById('langToggle');
-  const dropdown = document.getElementById('langDropdown');
-  toggle.classList.add('open');
-  dropdown.classList.add('show');
-  // Re-enforce direction every time it opens
-  dropdown.style.direction = 'ltr';
-  document.getElementById('langContainer').style.direction = 'ltr';
+  document.getElementById('langToggle').classList.add('open');
+  document.getElementById('langDropdown').classList.add('show');
 }
-
 function closeLangDD(){
   document.getElementById('langToggle').classList.remove('open');
   document.getElementById('langDropdown').classList.remove('show');
@@ -1039,20 +1011,13 @@ function changeLang(newLang){
   lang = newLang;
   const t = TRANSLATIONS[lang];
   document.documentElement.lang = lang;
+  // Only set dir on body content, NOT on the dropdown (handled separately)
   document.body.dir = t.dir;
   document.getElementById('langFlag').textContent = t.flag;
   document.getElementById('langName').textContent = t.name.substring(0,2).toUpperCase();
   document.querySelectorAll('.lang-option').forEach(el=>el.classList.toggle('active', el.dataset.lang===lang));
-
-  // Always force lang container and dropdown back to LTR after changing body dir
-  const container = document.getElementById('langContainer');
-  const dropdown = document.getElementById('langDropdown');
-  const toggle = document.getElementById('langToggle');
-  container.setAttribute('dir','ltr');
-  container.style.direction = 'ltr';
-  dropdown.style.direction = 'ltr';
-  toggle.style.direction = 'ltr';
-
+  // Force dropdown to stay LTR always
+  document.getElementById('langDropdown').style.direction = 'ltr';
   updateTexts(); renderChips(); renderBanners(); renderPros(); convert(); saveSettings();
 }
 
@@ -1072,7 +1037,6 @@ function updateTexts(){
 
 // =========================================================
 //  GAME BANNERS — with gradient fallback + emoji icon
-//  Multi-source image loading with fallback chain
 // =========================================================
 function renderBanners(){
   const el = document.getElementById('gameBanners'); if(!el) return;
@@ -1082,33 +1046,26 @@ function renderBanners(){
     card.className='game-banner-card'+(game.id===sourceId?' active':'');
     card.style.background = game.bg;
 
-    // Emoji fallback (always visible behind image)
-    const fallback = document.createElement('div');
-    fallback.className = 'gbanner-fallback';
-    fallback.textContent = game.icon;
-
-    // Real image — opacity starts 0, fades in on load
+    // Try to load the actual image; fall back to emoji if it fails
     const imgEl = document.createElement('img');
     imgEl.className = 'gbanner-img';
     imgEl.alt = game.en;
     imgEl.loading = 'lazy';
-    imgEl.style.opacity = '0';
-    imgEl.crossOrigin = 'anonymous';
+    imgEl.style.position = 'absolute';
+    imgEl.style.inset = '0';
 
-    imgEl.onload = () => {
-      imgEl.style.opacity = '1';
-      fallback.style.opacity = '0';
-    };
-    imgEl.onerror = () => {
-      // Try backup URL if primary fails
-      if(game.imgBackup && imgEl.src !== game.imgBackup){
-        imgEl.src = game.imgBackup;
-      } else {
-        imgEl.style.display = 'none';
-        fallback.style.opacity = '0.9';
-      }
-    };
+    // Fallback emoji shown behind image
+    const fallback = document.createElement('div');
+    fallback.className = 'gbanner-fallback';
+    fallback.textContent = game.icon;
+    fallback.style.fontSize = '32px';
+    fallback.style.opacity = '0.6';
+
+    imgEl.onload = () => { imgEl.style.opacity = '1'; };
+    imgEl.onerror = () => { imgEl.style.display = 'none'; };
     imgEl.src = game.img;
+    imgEl.style.opacity = '0';
+    imgEl.style.transition = 'opacity .3s';
 
     const overlay = document.createElement('div');
     overlay.className = 'gbanner-overlay';
@@ -1349,7 +1306,7 @@ function renderTutStep(){
   } else {
     if(nextBtn) nextBtn.classList.remove('finish');
     if(nextTxt) nextTxt.textContent=tutStep===0?t.start:t.next;
-    if(nextArrow) nextArrow.textContent='→';
+    if(nextArrow) nextArrow.textContent=lang==='ar'?'←':'→';
     if(skipBtn) skipBtn.style.display='block';
     if(skipBtn) skipBtn.textContent=t.skip;
   }
@@ -1375,7 +1332,7 @@ function closeTutorial(){
   const overlay=document.getElementById('tutorialOverlay'); if(!overlay) return;
   overlay.classList.remove('active');
   setTimeout(()=>{ overlay.style.display='none'; },350);
-  localStorage.setItem('aimsync_v4_done','1');
+  localStorage.setItem('aimsync_v2_done','1');
 }
 
 // =========================================================
@@ -1383,7 +1340,7 @@ function closeTutorial(){
 // =========================================================
 function saveSettings(){
   try{
-    localStorage.setItem('aimSyncV4',JSON.stringify({
+    localStorage.setItem('aimSyncV2',JSON.stringify({
       lang,sourceId,targetId,
       sens:document.getElementById('sensInput').value,
       dpi:document.getElementById('dpiInput').value
@@ -1393,7 +1350,7 @@ function saveSettings(){
 
 function loadSettings(){
   try{
-    const s=localStorage.getItem('aimSyncV4');
+    const s=localStorage.getItem('aimSyncV2');
     if(s){
       const d=JSON.parse(s);
       lang=d.lang||'en';
@@ -1417,7 +1374,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
   document.getElementById('helpBtn').onclick=openTutorial;
 
-  if(!localStorage.getItem('aimsync_v4_done')) setTimeout(openTutorial,900);
+  if(!localStorage.getItem('aimsync_v2_done')) setTimeout(openTutorial,900);
 });
 </script>
 </body>
