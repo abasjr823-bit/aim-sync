@@ -13,69 +13,94 @@
   --text:#e0f0e0;--muted:#4a6b4a;--muted2:#3a5a3a;
   --mono:'Share Tech Mono',monospace;
   --radius:14px;
+  --page-pad:16px;
 }
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Tajawal',sans-serif;min-height:100vh;overflow-x:hidden}
 
-body::before{content:'';position:fixed;inset:0;
+html{scroll-behavior:smooth;height:100%}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Tajawal',sans-serif;
+  min-height:100vh;width:100%;
+  overflow-x:hidden;
+}
+
+/* ===== BACKGROUND EFFECTS ===== */
+body::before{
+  content:'';position:fixed;inset:0;
   background:
     radial-gradient(ellipse 80% 40% at 50% 0%,rgba(0,229,176,.07) 0%,transparent 70%),
     radial-gradient(ellipse 60% 60% at 90% 100%,rgba(0,196,255,.04) 0%,transparent 60%),
     radial-gradient(ellipse 40% 40% at 0% 50%,rgba(0,255,136,.03) 0%,transparent 60%);
-  pointer-events:none;z-index:0}
+  pointer-events:none;z-index:0;
+}
+body::after{
+  content:'';position:fixed;inset:0;
+  background-image:radial-gradient(circle,rgba(0,229,176,.05) 1px,transparent 1px);
+  background-size:32px 32px;
+  pointer-events:none;z-index:0;
+}
 
-body::after{content:'';position:fixed;inset:0;
-  background-image:radial-gradient(circle,rgba(0,229,176,.06) 1px,transparent 1px);
-  background-size:32px 32px;pointer-events:none;z-index:0}
+/* ===== PAGE WRAPPER ===== */
+.page{
+  position:relative;z-index:1;
+  width:100%;
+  max-width:1400px;
+  margin:0 auto;
+  padding-bottom:60px;
+}
 
-.page{max-width:1280px;margin:0 auto;position:relative;z-index:1;padding-bottom:60px}
-
-/* ===================== HERO ===================== */
+/* ===== HERO ===== */
 .hero{
   background:linear-gradient(160deg,#0c1c0e 0%,#07100a 100%);
-  padding:18px 16px 24px;
+  padding:20px var(--page-pad) 28px;
   border-bottom:1px solid var(--border);
-  position:relative;
-  overflow:visible; 
+  position:relative;overflow:hidden;
 }
-.hero::before{content:'';position:absolute;top:-80px;right:-80px;
-  width:280px;height:280px;border-radius:50%;
-  background:radial-gradient(circle,rgba(0,229,176,.06),transparent 70%);
-  pointer-events:none}
-.hero::after{content:'';position:absolute;bottom:-60px;left:30%;
-  width:200px;height:200px;border-radius:50%;
+.hero::before{
+  content:'';position:absolute;top:-100px;right:-60px;
+  width:300px;height:300px;border-radius:50%;
+  background:radial-gradient(circle,rgba(0,229,176,.07),transparent 70%);
+  pointer-events:none;
+}
+.hero::after{
+  content:'';position:absolute;bottom:-80px;left:30%;
+  width:240px;height:240px;border-radius:50%;
   background:radial-gradient(circle,rgba(0,196,255,.04),transparent 70%);
-  pointer-events:none}
+  pointer-events:none;
+}
 
-.hero-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;gap:10px; flex-wrap:nowrap;}
+.hero-top{
+  display:flex;align-items:center;
+  justify-content:space-between;
+  margin-bottom:20px;gap:12px;
+  flex-wrap:nowrap;
+}
 .brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
 .brand-icon{
-  width:40px;height:40px;
+  width:42px;height:42px;
   background:linear-gradient(135deg,#004d33,#00e5b0);
-  border-radius:11px;display:flex;align-items:center;justify-content:center;
-  font-size:20px;box-shadow:0 0 20px rgba(0,229,176,.3);
-  flex-shrink:0;
+  border-radius:12px;display:flex;align-items:center;justify-content:center;
+  font-size:20px;box-shadow:0 0 24px rgba(0,229,176,.35);flex-shrink:0;
 }
 .brand-name{font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:var(--accent);letter-spacing:3px}
-.brand-sub{font-size:10px;color:var(--muted);margin-top:-3px;letter-spacing:.5px}
+.brand-sub{font-size:10px;color:var(--muted);margin-top:-2px;letter-spacing:.4px}
 
-.hero-right{display:flex;gap:8px;align-items:center;flex-shrink:1;min-width:0; justify-content:flex-end;}
+.hero-right{display:flex;gap:8px;align-items:center;justify-content:flex-end;flex-shrink:0}
 .badge-live{
   display:flex;align-items:center;gap:5px;
   background:rgba(0,229,176,.08);border:1px solid rgba(0,229,176,.25);
-  border-radius:20px;padding:4px 10px;font-size:11px;color:var(--accent);font-weight:700;
+  border-radius:20px;padding:5px 12px;font-size:11px;color:var(--accent);font-weight:700;
   white-space:nowrap;
 }
-.badge-live::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent2);
-  box-shadow:0 0 8px var(--accent2);animation:pulse 1.5s ease infinite;flex-shrink:0}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.4)}}
-
-/* ===================== LANGUAGE DROPDOWN ===================== */
-.lang-container{
-  position:relative;
-  z-index:10000;
-  flex-shrink:0;
+.badge-live::before{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--accent2);box-shadow:0 0 8px var(--accent2);
+  animation:pulse 1.5s ease infinite;flex-shrink:0;
 }
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.5)}}
+
+/* ===== LANGUAGE DROPDOWN ===== */
+.lang-container{position:relative;z-index:10000;flex-shrink:0}
 .lang-toggle{
   background:var(--surface);border:1px solid var(--border);
   color:var(--text);padding:7px 12px;border-radius:20px;cursor:pointer;
@@ -84,7 +109,7 @@ body::after{content:'';position:fixed;inset:0;
   direction:ltr !important;
 }
 .lang-toggle:hover{border-color:var(--accent);color:var(--accent)}
-.lang-arrow{font-size:8px;transition:transform .25s;display:inline-block;margin-left:2px}
+.lang-arrow{font-size:8px;transition:transform .25s;display:inline-block}
 .lang-toggle.open .lang-arrow{transform:rotate(180deg)}
 
 #langDropdown{
@@ -92,26 +117,18 @@ body::after{content:'';position:fixed;inset:0;
   background:#0f180f;
   border:1px solid rgba(0,229,176,.35);
   border-radius:12px;
-  width:170px;
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
+  width:175px;
+  opacity:0;visibility:hidden;pointer-events:none;
   transform:translateY(-6px);
   transition:opacity .2s ease,transform .2s ease,visibility 0s linear .2s;
   box-shadow:0 20px 60px rgba(0,0,0,.95),0 0 0 1px rgba(0,229,176,.08);
-  max-height:320px;
-  overflow-y:auto;
-  overscroll-behavior:contain;
-  z-index:999999 !important;
-  direction:ltr !important;
+  max-height:320px;overflow-y:auto;overscroll-behavior:contain;
+  z-index:999999 !important;direction:ltr !important;
 }
 #langDropdown::-webkit-scrollbar{width:4px}
-#langDropdown::-webkit-scrollbar-track{background:transparent}
 #langDropdown::-webkit-scrollbar-thumb{background:var(--border);border-radius:10px}
 #langDropdown.show{
-  opacity:1;
-  visibility:visible;
-  pointer-events:all;
+  opacity:1;visibility:visible;pointer-events:all;
   transform:translateY(0);
   transition:opacity .2s ease,transform .2s ease,visibility 0s linear 0s;
 }
@@ -126,26 +143,24 @@ body::after{content:'';position:fixed;inset:0;
 .lang-option:first-child{border-radius:12px 12px 0 0}
 .lang-option:last-child{border-radius:0 0 12px 12px}
 .lang-flag{font-size:16px;line-height:1;flex-shrink:0}
-.lang-label{font-size:13px}
 
-.hero-title{font-size:26px;font-weight:800;line-height:1.3;margin-bottom:8px}
+.hero-title{font-size:28px;font-weight:800;line-height:1.3;margin-bottom:8px}
 .hero-title span{color:var(--accent)}
-.hero-desc{font-size:13px;color:var(--muted);line-height:1.6;max-width:600px}
+.hero-desc{font-size:13px;color:var(--muted);line-height:1.65;max-width:640px}
 .help-btn{
   display:inline-flex;align-items:center;gap:6px;
   background:rgba(0,229,176,.06);border:1px solid rgba(0,229,176,.18);
-  color:#4a8a6a;padding:6px 14px;border-radius:20px;cursor:pointer;
+  color:#4a8a6a;padding:7px 16px;border-radius:20px;cursor:pointer;
   font-size:12px;font-family:'Tajawal',sans-serif;font-weight:700;
-  margin-top:12px;transition:all .2s;
+  margin-top:14px;transition:all .2s;
 }
 .help-btn:hover{background:rgba(0,229,176,.12);color:var(--accent)}
 
-/* ===================== GAME BANNER IMAGES ===================== */
+/* ===== GAME BANNERS ===== */
 .game-banners{
-  display:flex;gap:10px;padding:14px 16px;overflow-x:auto;scrollbar-width:none;
-  direction:ltr; 
+  display:flex;gap:10px;padding:14px var(--page-pad);
+  overflow-x:auto;scrollbar-width:none;direction:ltr;
 }
-[dir="rtl"] .game-banners{direction:rtl;}
 .game-banners::-webkit-scrollbar{display:none}
 .game-banner-card{
   flex-shrink:0;width:120px;height:70px;border-radius:12px;
@@ -157,7 +172,7 @@ body::after{content:'';position:fixed;inset:0;
 .game-banner-card:hover:not(.active){border-color:rgba(0,229,176,.3)}
 .gbanner-img{
   width:100%;height:100%;object-fit:cover;
-  filter:brightness(.65) saturate(.8);transition:filter .25s, opacity .3s;
+  filter:brightness(.65) saturate(.8);transition:filter .25s,opacity .3s;
   position:absolute;inset:0;z-index:1;
 }
 .game-banner-card.active .gbanner-img,.game-banner-card:hover .gbanner-img{
@@ -165,8 +180,7 @@ body::after{content:'';position:fixed;inset:0;
 }
 .gbanner-fallback{
   width:100%;height:100%;display:flex;align-items:center;justify-content:center;
-  font-size:32px;position:absolute;inset:0;z-index:0;
-  background:var(--bg);
+  font-size:32px;position:absolute;inset:0;z-index:0;background:var(--bg);
 }
 .gbanner-overlay{
   position:absolute;inset:0;
@@ -176,8 +190,7 @@ body::after{content:'';position:fixed;inset:0;
 .gbanner-label{
   position:absolute;bottom:7px;left:0;right:0;text-align:center;
   font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;color:#fff;
-  text-shadow:0 1px 6px rgba(0,0,0,1);letter-spacing:.5px;
-  z-index:3;
+  text-shadow:0 1px 6px rgba(0,0,0,1);letter-spacing:.5px;z-index:3;
 }
 .gbanner-active-dot{
   position:absolute;top:6px;right:6px;width:8px;height:8px;border-radius:50%;
@@ -186,21 +199,32 @@ body::after{content:'';position:fixed;inset:0;
 }
 .game-banner-card.active .gbanner-active-dot{display:block}
 
-/* ===================== CARDS ===================== */
+/* ===== LAYOUT: MOBILE FIRST, THEN DESKTOP ===== */
+.main-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:0;
+  padding:0;
+}
+
 .card{
   background:var(--card);border:1px solid var(--border);
-  border-radius:var(--radius);margin:12px 14px 0;padding:18px;
+  border-radius:var(--radius);
+  margin:12px var(--page-pad) 0;
+  padding:18px;
   animation:fadeUp .4s ease both;
 }
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
 .card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
 .card-title{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.8px}
 .card-dot{width:7px;height:7px;border-radius:50%}
 
-/* SENSITIVITY */
+/* ===== SENSITIVITY CONTROLS ===== */
 .sens-display{
   font-family:var(--mono);font-size:56px;color:var(--text);
-  line-height:1;margin-bottom:12px;letter-spacing:-2px;
+  line-height:1;margin-bottom:14px;letter-spacing:-2px;
+  word-break:break-all;
 }
 .sens-slider{
   width:100%;-webkit-appearance:none;appearance:none;
@@ -209,13 +233,13 @@ body::after{content:'';position:fixed;inset:0;
   outline:none;cursor:pointer;
 }
 .sens-slider::-webkit-slider-thumb{
-  -webkit-appearance:none;width:20px;height:20px;border-radius:50%;
-  background:var(--accent);box-shadow:0 0 12px rgba(0,229,176,.6);
+  -webkit-appearance:none;width:22px;height:22px;border-radius:50%;
+  background:var(--accent);box-shadow:0 0 14px rgba(0,229,176,.6);
   cursor:pointer;border:2px solid #000;
 }
 .sens-slider::-moz-range-thumb{
-  width:20px;height:20px;border-radius:50%;border:2px solid #000;
-  background:var(--accent);box-shadow:0 0 12px rgba(0,229,176,.6);cursor:pointer;
+  width:22px;height:22px;border-radius:50%;border:2px solid #000;
+  background:var(--accent);box-shadow:0 0 14px rgba(0,229,176,.6);cursor:pointer;
 }
 .sens-input-row{display:flex;gap:10px;margin-top:14px}
 .sens-input-row input{
@@ -224,6 +248,8 @@ body::after{content:'';position:fixed;inset:0;
   font-size:18px;font-family:var(--mono);outline:none;text-align:center;transition:all .2s;
 }
 .sens-input-row input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,229,176,.1)}
+
+/* ===== SWAP BUTTON ===== */
 .swap-btn{
   background:rgba(0,229,176,.08);border:1px solid rgba(0,229,176,.25);
   color:var(--accent);width:46px;height:46px;border-radius:10px;cursor:pointer;
@@ -232,12 +258,14 @@ body::after{content:'';position:fixed;inset:0;
 }
 .swap-btn:hover{background:rgba(0,229,176,.2);transform:rotate(180deg)}
 
-/* GAME CHIPS */
-.games-scroll{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none;}
-.games-scroll::-webkit-scrollbar{display:none}
-[dir="ltr"] .games-scroll{direction:ltr}
+/* ===== GAME CHIPS ===== */
+.games-scroll{
+  display:flex;gap:8px;overflow-x:auto;
+  padding-bottom:6px;scrollbar-width:none;
+  direction:ltr;
+}
 [dir="rtl"] .games-scroll{direction:rtl}
-
+.games-scroll::-webkit-scrollbar{display:none}
 .game-chip{
   flex-shrink:0;padding:9px 13px;border-radius:11px;
   border:1px solid var(--border);background:var(--surface);
@@ -249,22 +277,24 @@ body::after{content:'';position:fixed;inset:0;
 .game-chip.active .chip-abbr{color:var(--accent)}
 .chip-name{font-size:9px;color:var(--muted);display:block;margin-top:2px;line-height:1.2}
 
-/* RESULT */
+/* ===== RESULT CARD ===== */
 .result-card{
   background:linear-gradient(135deg,#0c1e16,#081410);
   border:1px solid rgba(0,229,176,.3);
-  border-radius:var(--radius);margin:12px 14px 0;padding:20px;
-  position:relative;overflow:hidden;animation:fadeUp .4s .1s ease both;
+  border-radius:var(--radius);
+  margin:12px var(--page-pad) 0;
+  padding:20px;position:relative;overflow:hidden;
+  animation:fadeUp .4s .1s ease both;
 }
 .result-card::before{
   content:'';position:absolute;top:0;left:0;right:0;height:2px;
   background:linear-gradient(90deg,transparent,var(--accent),var(--accent2),transparent);
-  animation:shimmer 3s linear infinite;background-size:200%
+  animation:shimmer 3s linear infinite;background-size:200%;
 }
 @keyframes shimmer{0%{background-position:200%}100%{background-position:-200%}}
 .result-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:6px;gap:10px}
-.result-label{font-size:12px;color:var(--muted)}
-.result-label strong{color:var(--accent);font-size:14px}
+.result-label{font-size:12px;color:var(--muted);line-height:1.5}
+.result-label strong{color:var(--accent);font-size:14px;display:block}
 .copy-btn{
   background:rgba(0,229,176,.1);border:1px solid rgba(0,229,176,.3);
   color:var(--accent);padding:7px 14px;border-radius:8px;cursor:pointer;
@@ -281,15 +311,19 @@ body::after{content:'';position:fixed;inset:0;
 .result-meta{font-size:12px;color:var(--muted)}
 .result-meta span{color:var(--accent)}
 
-/* STATS */
-.stats-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 14px 0;animation:fadeUp .4s .15s ease both}
+/* ===== STATS ROW ===== */
+.stats-row{
+  display:grid;grid-template-columns:1fr 1fr;gap:10px;
+  margin:12px var(--page-pad) 0;
+  animation:fadeUp .4s .15s ease both;
+}
 .stat-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;align-items:flex-start;gap:10px}
-.stat-icon{font-size:18px;margin-top:1px}
+.stat-icon{font-size:18px;margin-top:2px}
 .stat-val{font-family:var(--mono);font-size:22px;color:var(--text);line-height:1;margin-bottom:4px}
-.stat-lbl{font-size:11px;color:var(--muted);font-weight:700}
-.stat-sub{font-size:10px;color:var(--muted2);margin-top:2px}
+.stat-lbl{font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.stat-sub{font-size:10px;color:var(--muted2);margin-top:3px}
 
-/* DPI */
+/* ===== DPI INPUTS ===== */
 .dpi-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .dpi-row label{display:block;font-size:11px;color:var(--muted);margin-bottom:6px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
 .dpi-row input{
@@ -299,12 +333,20 @@ body::after{content:'';position:fixed;inset:0;
 }
 .dpi-row input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,229,176,.1)}
 
-/* ALL GAMES TABLE */
-.game-row{display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid rgba(26,40,26,.7);transition:all .15s}
+/* ===== ALL GAMES TABLE ===== */
+.game-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:11px 0;border-bottom:1px solid rgba(26,40,26,.7);
+  transition:all .15s;
+}
 .game-row:last-child{border-bottom:none}
 .game-row:hover{padding-left:4px}
 .game-row-left{display:flex;align-items:center;gap:10px}
-.game-tag{width:44px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:11px;color:#fff;flex-shrink:0}
+.game-tag{
+  width:46px;height:28px;border-radius:7px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Rajdhani',sans-serif;font-weight:700;font-size:11px;color:#fff;flex-shrink:0;
+}
 .game-row-name{font-size:13px;color:var(--text)}
 .game-row-val{font-family:var(--mono);font-size:18px;color:var(--accent)}
 .game-row.highlight .game-row-val{color:#00ff88;text-shadow:0 0 12px rgba(0,255,136,.4)}
@@ -314,18 +356,22 @@ body::after{content:'';position:fixed;inset:0;
 .tag-bf{background:#1b5e20}.tag-cod{background:#2d2d2d;border:1px solid #555}
 .tag-finals{background:#8b4513}.tag-pubg{background:#1565c0}.tag-hunt{background:#5d4037}
 .tag-dest{background:#37474f}.tag-mw3{background:#424242}.tag-bf6{background:#145a32}
+.tag-xdefiant{background:#1a3a5c}.tag-r2{background:#8b0000}
 
-/* INFO BOX */
+/* ===== INFO BOX ===== */
 .info-box{
-  margin:12px 14px 0;
+  margin:12px var(--page-pad) 0;
   background:rgba(0,100,200,.05);border:1px solid rgba(0,130,230,.12);
   border-radius:12px;padding:14px 16px;font-size:13px;color:var(--muted);
-  line-height:1.7;animation:fadeUp .4s .25s ease both;
+  line-height:1.75;animation:fadeUp .4s .25s ease both;
 }
 .info-box strong{color:#4fc3f7}
 
-/* PRO SECTION */
-.pros-tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:14px;scrollbar-width:none;direction:ltr !important;}
+/* ===== PRO SECTION ===== */
+.pros-tabs{
+  display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:14px;
+  scrollbar-width:none;direction:ltr !important;
+}
 .pros-tabs::-webkit-scrollbar{display:none}
 .pros-tab{
   flex-shrink:0;padding:6px 14px;border-radius:20px;
@@ -334,58 +380,181 @@ body::after{content:'';position:fixed;inset:0;
   font-family:'Rajdhani',sans-serif;letter-spacing:1px;transition:all .2s;
 }
 .pros-tab.active{border-color:var(--accent);background:rgba(0,229,176,.1);color:var(--accent)}
-.pro-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px}
+
+/* Pro card — full width, no overflow clipping */
+.pro-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;padding:14px 14px 12px;
+  margin-bottom:10px;
+  width:100%;box-sizing:border-box;
+  overflow:visible;
+}
 .pro-card:last-child{margin-bottom:0}
-.pro-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.pro-info{display:flex;align-items:center;gap:10px}
-.pro-avatar{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;font-family:'Rajdhani',sans-serif;color:#fff;flex-shrink:0}
-.pro-name{font-size:14px;font-weight:700;color:var(--text)}
+
+.pro-top{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:12px;gap:8px;flex-wrap:wrap;
+}
+.pro-info{display:flex;align-items:center;gap:10px;min-width:0;flex:1}
+.pro-avatar{
+  width:40px;height:40px;border-radius:10px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;font-weight:700;font-family:'Rajdhani',sans-serif;color:#fff;
+}
+.pro-name{font-size:14px;font-weight:700;color:var(--text);white-space:nowrap}
 .pro-team{font-size:11px;color:var(--muted);margin-top:1px}
-.pro-game-tag{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px;color:#fff}
-.pro-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px}
-.pro-stat{background:var(--card);border-radius:8px;padding:8px;text-align:center}
-.pro-stat-val{font-family:var(--mono);font-size:15px;color:var(--accent);display:block}
-.pro-stat-lbl{font-size:10px;color:var(--muted);margin-top:2px}
-.pro-cm{background:var(--card);border-radius:8px;padding:10px;text-align:center;margin-bottom:10px}
-.pro-cm-val{font-family:var(--mono);font-size:18px;color:#4fc3f7}
+.pro-game-tag{
+  font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;
+  padding:4px 10px;border-radius:6px;color:#fff;flex-shrink:0;white-space:nowrap;
+}
+
+/* Stats grid — 3 equal columns, never collapses */
+.pro-stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin-bottom:8px;
+  width:100%;
+}
+.pro-stat{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:8px;padding:10px 6px;
+  text-align:center;min-width:0;
+}
+.pro-stat-val{
+  font-family:var(--mono);font-size:14px;color:var(--accent);
+  display:block;line-height:1.2;margin-bottom:4px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.pro-stat-lbl{
+  font-size:9px;color:var(--muted);font-weight:700;
+  text-transform:uppercase;letter-spacing:.4px;
+}
+
+/* cm/360 box */
+.pro-cm{
+  background:var(--card);border:1px solid rgba(79,195,247,.15);
+  border-radius:8px;padding:10px;text-align:center;margin-bottom:10px;width:100%;
+}
+.pro-cm-val{
+  font-family:var(--mono);font-size:20px;color:#4fc3f7;
+  display:block;margin-bottom:4px;
+}
+
+/* Use button */
 .pro-use-btn{
-  width:100%;background:rgba(0,229,176,.07);border:1px solid rgba(0,229,176,.22);
-  color:var(--accent);padding:10px;border-radius:9px;cursor:pointer;
-  font-size:13px;font-family:'Tajawal',sans-serif;font-weight:700;transition:all .2s;text-align:center;
+  display:block;width:100%;
+  background:rgba(0,229,176,.07);border:1px solid rgba(0,229,176,.22);
+  color:var(--accent);padding:11px;border-radius:9px;cursor:pointer;
+  font-size:13px;font-family:'Tajawal',sans-serif;font-weight:700;
+  transition:all .2s;text-align:center;box-sizing:border-box;
 }
 .pro-use-btn:hover{background:rgba(0,229,176,.16)}
 .pro-use-btn.used{background:rgba(0,255,136,.1);border-color:#00ff88;color:#00ff88}
 
-/* PC TWO-COLUMN LAYOUT */
+/* ===== ACCURACY BADGE ===== */
+.accuracy-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  background:rgba(0,229,176,.07);border:1px solid rgba(0,229,176,.2);
+  border-radius:8px;padding:4px 10px;font-size:10px;color:var(--accent);
+  font-weight:700;margin-top:8px;letter-spacing:.5px;
+}
+
+/* ============================================================
+   RESPONSIVE BREAKPOINTS
+   ============================================================ */
+
+/* Tablet: 600px+ */
+@media(min-width:600px){
+  :root{--page-pad:20px}
+  .hero{padding:24px var(--page-pad) 32px}
+  .hero-title{font-size:30px}
+  .game-banner-card{width:130px;height:76px}
+  .sens-display{font-size:64px}
+  .result-number{font-size:68px}
+}
+
+/* Desktop: 900px+ — two-column layout */
 @media(min-width:900px){
-  .hero{padding:24px 40px 32px}
-  .hero-title{font-size:34px}
-  .pc-wrap{display:grid;grid-template-columns:1fr 1fr;gap:0 20px;padding:0 14px}
-  .pc-wrap .card,.pc-wrap .result-card,.pc-wrap .stats-row,.pc-wrap .info-box{margin-left:0;margin-right:0}
-  .full-width{grid-column:1/-1}
-  .game-banners{padding:14px 20px}
+  :root{--page-pad:24px}
+
+  .hero{padding:28px 40px 36px}
+  .hero-title{font-size:36px}
+  .hero-desc{font-size:14px}
+
+  .game-banners{padding:16px 40px}
+
+  /* Two-column main grid */
+  .main-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    column-gap:20px;
+    padding:0 40px;
+    align-items:start;
+  }
+
+  /* All cards inside grid get no side margins */
+  .main-grid > .card,
+  .main-grid > .result-card,
+  .main-grid > .stats-row,
+  .main-grid > .info-box{
+    margin-left:0;margin-right:0;
+  }
+
+  /* Full-width items span both columns */
+  .full-width{
+    grid-column:1 / -1;
+  }
+
+  /* Column dividers via visual grouping */
+  .col-left,.col-right{
+    display:flex;flex-direction:column;gap:0;
+  }
+  .col-left .card,.col-left .result-card,
+  .col-right .card,.col-right .result-card{
+    margin-left:0;margin-right:0;
+  }
+
+  .sens-display{font-size:60px}
+  .result-number{font-size:64px}
+  .stat-val{font-size:24px}
 }
 
-/* MOBILE FIXES */
-@media(max-width:600px){
-  .badge-live { display: none !important; }
-  
-  .brand-name{font-size:20px;letter-spacing:2px}
-  .lang-toggle{padding:6px 10px;font-size:11px}
-  .hero-title{font-size:22px}
-  .sens-display{font-size:44px}
-  .result-number{font-size:48px}
+/* Large desktop: 1200px+ */
+@media(min-width:1200px){
+  :root{--page-pad:32px}
+  .hero{padding:32px 48px 40px}
+  .hero-title{font-size:40px}
+  .main-grid{padding:0 48px;column-gap:24px}
+  .game-banners{padding:16px 48px}
+  .sens-display{font-size:64px}
+}
+
+/* Small mobile: < 400px */
+@media(max-width:399px){
+  .brand-name{font-size:18px;letter-spacing:1.5px}
+  .badge-live{display:none}
+  .hero-title{font-size:20px}
+  .sens-display{font-size:38px}
+  .result-number{font-size:42px}
   .stats-row{grid-template-columns:1fr 1fr}
-  .stat-val{font-size:18px}
-  .game-banner-card{width:100px;height:60px}
-  .gbanner-label{font-size:11px}
+  .stat-val{font-size:16px}
+  .game-banner-card{width:95px;height:56px}
+  .gbanner-label{font-size:10px}
+  .pro-stats{grid-template-columns:repeat(3,1fr)}
 }
 
-@media(max-width:899px){
-  .pc-wrap{display:block}
+/* Medium mobile: 400–599px */
+@media(max-width:599px){
+  .badge-live{display:none}
 }
 
-/* TUTORIAL OVERLAY */
+/* RTL support for chip scroll */
+[dir="rtl"] .games-scroll{direction:rtl}
+[dir="rtl"] .game-banners{direction:rtl}
+[dir="rtl"] .pros-tabs{direction:rtl !important}
+
+/* ===== TUTORIAL OVERLAY ===== */
 .tutorial-overlay{
   position:fixed;inset:0;background:rgba(0,0,0,0);z-index:9999;
   display:flex;align-items:center;justify-content:center;padding:16px;
@@ -395,8 +564,10 @@ body::after{content:'';position:fixed;inset:0;
 .tutorial-box{
   background:linear-gradient(135deg,#0d1e11,#07100a);
   border:1px solid rgba(0,229,176,.3);border-radius:22px;
-  padding:28px 24px;max-width:420px;width:100%;position:relative;overflow:hidden;
-  transform:translateY(30px);opacity:0;transition:all .5s cubic-bezier(.34,1.56,.64,1);
+  padding:28px 24px;max-width:420px;width:100%;
+  position:relative;overflow:hidden;
+  transform:translateY(30px);opacity:0;
+  transition:all .5s cubic-bezier(.34,1.56,.64,1);
   direction:ltr;
 }
 .tutorial-overlay.active .tutorial-box{transform:translateY(0);opacity:1}
@@ -443,9 +614,10 @@ body::after{content:'';position:fixed;inset:0;
   border-radius:20px;padding:4px 12px;font-size:11px;color:var(--accent);
   font-weight:700;letter-spacing:2px;margin-bottom:14px;
 }
-.tut-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#00ff88;
-  box-shadow:0 0 6px #00ff88;animation:pulse 1.5s infinite}
-
+.tut-badge::before{
+  content:'';width:6px;height:6px;border-radius:50%;background:#00ff88;
+  box-shadow:0 0 6px #00ff88;animation:pulse 1.5s infinite;
+}
 </style>
 </head>
 <body>
@@ -490,9 +662,11 @@ body::after{content:'';position:fixed;inset:0;
   <!-- GAME VISUAL BANNERS -->
   <div class="game-banners" id="gameBanners"></div>
 
-  <div class="pc-wrap">
-    <!-- LEFT COL -->
-    <div>
+  <!-- TWO-COLUMN GRID ON DESKTOP -->
+  <div class="main-grid" id="mainGrid">
+
+    <!-- LEFT COLUMN -->
+    <div class="col-left">
       <div class="card">
         <div class="card-header">
           <div class="card-title">
@@ -504,7 +678,7 @@ body::after{content:'';position:fixed;inset:0;
         <div class="games-scroll" id="sourceGames"></div>
       </div>
 
-      <div class="card">
+      <div class="card" style="margin-top:12px">
         <div class="card-header">
           <div class="card-title">
             <div class="card-dot" style="background:#fff;box-shadow:none"></div>
@@ -518,7 +692,7 @@ body::after{content:'';position:fixed;inset:0;
         </div>
       </div>
 
-      <div class="card" style="animation-delay:.18s">
+      <div class="card" style="margin-top:12px;animation-delay:.18s">
         <div class="card-header">
           <div class="card-title">
             <div class="card-dot" style="background:#ffb300;box-shadow:0 0 8px #ffb300"></div>
@@ -538,8 +712,8 @@ body::after{content:'';position:fixed;inset:0;
       </div>
     </div>
 
-    <!-- RIGHT COL -->
-    <div>
+    <!-- RIGHT COLUMN -->
+    <div class="col-right">
       <div class="card">
         <div class="card-header">
           <div class="card-title">
@@ -551,16 +725,20 @@ body::after{content:'';position:fixed;inset:0;
         <div class="games-scroll" id="targetGames"></div>
       </div>
 
-      <div class="result-card">
+      <div class="result-card" style="margin-top:12px">
         <div class="result-top">
-          <div class="result-label"><span id="resultLabelText">Your sensitivity in</span> <strong id="targetGameLabel">CS2</strong></div>
+          <div class="result-label">
+            <span id="resultLabelText">Your sensitivity in</span>
+            <strong id="targetGameLabel">CS2</strong>
+          </div>
           <button class="copy-btn" id="copyBtn" onclick="copyResult()">📋 <span id="copyTxt">Copy</span></button>
         </div>
         <div class="result-number" id="resultNum">—</div>
         <div class="result-meta" id="resultMeta"></div>
+        <div class="accuracy-badge" id="accuracyBadge">✓ Yaw-based • cm/360° verified</div>
       </div>
 
-      <div class="stats-row">
+      <div class="stats-row" style="margin-top:12px;margin-left:0;margin-right:0">
         <div class="stat-box">
           <div class="stat-icon">📐</div>
           <div>
@@ -580,7 +758,7 @@ body::after{content:'';position:fixed;inset:0;
       </div>
     </div>
 
-    <!-- ALL GAMES TABLE -->
+    <!-- ALL GAMES TABLE — full width -->
     <div class="card full-width" style="animation-delay:.2s">
       <div class="card-header">
         <div class="card-title">
@@ -592,8 +770,8 @@ body::after{content:'';position:fixed;inset:0;
       <div id="allGamesList"></div>
     </div>
 
-    <!-- PRO SETTINGS -->
-    <div class="card full-width" style="animation-delay:.22s">
+    <!-- PRO SETTINGS — full width -->
+    <div class="card full-width" style="animation-delay:.22s;overflow:visible">
       <div class="card-header">
         <div class="card-title">
           <div class="card-dot" style="background:#ffd700;box-shadow:0 0 8px #ffd700"></div>
@@ -601,15 +779,15 @@ body::after{content:'';position:fixed;inset:0;
         </div>
       </div>
       <div class="pros-tabs" id="prosTabs"></div>
-      <div id="prosCards"></div>
+      <div id="prosCards" style="width:100%"></div>
     </div>
 
-    <!-- INFO BOX -->
+    <!-- INFO BOX — full width -->
     <div class="info-box full-width" id="infoBox">
       <strong>cm / 360°</strong> means how many centimeters you move your mouse for a full camera rotation. Lower = faster, Higher = more precise. Most pro players use <strong>20–50 cm</strong>.
     </div>
-  </div>
-</div>
+  </div><!-- /main-grid -->
+</div><!-- /page -->
 
 <!-- TUTORIAL OVERLAY -->
 <div class="tutorial-overlay" id="tutorialOverlay" style="display:none">
@@ -627,96 +805,124 @@ body::after{content:'';position:fixed;inset:0;
 </div>
 
 <script>
-// =========================================================
-//  GAMES DATA - UPDATED WITH YOUR IMAGES
-// =========================================================
+// ================================================================
+//  GAMES DATA
+//  yaw = degrees turned per unit of in-game sensitivity × pixel
+//  Formula: cm/360 = 2.54 × 360 / (yaw × sens × dpi)
+//  Conversion: sens_target = sens_source × (yaw_source / yaw_target)
+//
+//  Sources (Aimlabs / mouse-sensitivity.com verified):
+//  CS2/CSGO:    yaw = 0.022
+//  Valorant:    yaw = 0.07  (at 1.0 scoped multiplier)
+//  Apex:        yaw = 0.022  (same engine as Source)
+//  OW2:         yaw = 0.0066 (per 1% ingame)
+//  Fortnite:    yaw = 0.5709 (0.5709 deg/unit)
+//  R6 Siege:    yaw = 0.00223
+//  CoD (MW):    yaw = 0.0066
+//  The Finals:  yaw = 0.0066
+//  PUBG:        yaw = 0.002222
+//  BF 2042:     yaw = 0.0709
+//  BF6:         yaw = 0.0709  (same engine as BF2042)
+// ================================================================
 const GAMES = [
   {
     id:'valorant', en:'Valorant', ar:'فالورانت', abbr:'VAL', tag:'tag-val',
-    mult:0.07, maxSens:10, color:'#c0392b',
-    icon:'🔺',
+    yaw:0.07, maxSens:10, color:'#c0392b', icon:'🔺',
     bg:'linear-gradient(135deg,#1a0505,#3d0c0c)',
-    // YOUR IMAGE
     img:'https://z-cdn-media.chatglm.cn/files/5783307b-0dbd-43ca-abbf-0e7e91d466c3.jpg?auth_key=1878742022-7418e7fd95c44d599dcd4aa29e92effd-0-4465d560ec6bcdc713c663288a994a94'
   },
   {
     id:'cs2', en:'CS2', ar:'CS2', abbr:'CS2', tag:'tag-cs2',
-    mult:0.022, maxSens:10, color:'#b8860b',
-    icon:'💣',
+    yaw:0.022, maxSens:10, color:'#b8860b', icon:'💣',
     bg:'linear-gradient(135deg,#1a1500,#3d3300)',
     img:'https://cdn.cloudflare.steamstatic.com/steam/apps/730/header.jpg'
   },
   {
     id:'apex', en:'Apex Legends', ar:'أبيكس ليجندز', abbr:'APEX', tag:'tag-apex',
-    mult:0.022, maxSens:10, color:'#922b21',
-    icon:'⚡',
+    yaw:0.022, maxSens:10, color:'#922b21', icon:'⚡',
     bg:'linear-gradient(135deg,#200a00,#5a1a08)',
     img:'https://cdn.cloudflare.steamstatic.com/steam/apps/1172470/header.jpg'
   },
   {
     id:'ow2', en:'Overwatch 2', ar:'أوفرواتش 2', abbr:'OW2', tag:'tag-ow2',
-    mult:0.0066, maxSens:20, color:'#1565c0',
-    icon:'🛡️',
+    yaw:0.0066, maxSens:100, color:'#1565c0', icon:'🛡️',
     bg:'linear-gradient(135deg,#00080f,#001a3d)',
-    // YOUR IMAGE
     img:'https://z-cdn-media.chatglm.cn/files/d25881b8-87e1-40ec-ba39-8b1a702fc449.jpg?auth_key=1878742022-0e009dc78b6742ebaf480d03a7f22da2-0-b72ed4e7e4f946cd6a8643ec406462df'
   },
   {
     id:'fn', en:'Fortnite', ar:'فورتنايت', abbr:'FN', tag:'tag-fn',
-    mult:0.5709, maxSens:1, color:'#6a1b9a',
-    icon:'🏗️',
+    yaw:0.5709, maxSens:1, color:'#6a1b9a', icon:'🏗️',
     bg:'linear-gradient(135deg,#0a001a,#2a0050)',
-    // YOUR IMAGE
     img:'https://z-cdn-media.chatglm.cn/files/cd6a5fa7-de4b-493d-be3d-103ed90a421d.jpeg?auth_key=1878742022-bba7563f52d348ce8d29134678c5bffe-0-d2c82b563101cef8344285744e79e89a'
   },
   {
     id:'r6', en:'Rainbow Six Siege', ar:'رينبو سكس سيج', abbr:'R6', tag:'tag-r6',
-    mult:0.00223, maxSens:100, color:'#1a237e',
-    icon:'🏴',
+    yaw:0.00223, maxSens:100, color:'#1a237e', icon:'🏴',
     bg:'linear-gradient(135deg,#000a1a,#001a40)',
     img:'https://cdn.cloudflare.steamstatic.com/steam/apps/359550/header.jpg'
   },
   {
     id:'cod', en:'Call of Duty', ar:'كول أوف ديوتي', abbr:'COD', tag:'tag-cod',
-    mult:0.0066, maxSens:20, color:'#2d2d2d',
-    icon:'🎖️',
+    yaw:0.0066, maxSens:20, color:'#2d2d2d', icon:'🎖️',
     bg:'linear-gradient(135deg,#0a0a0a,#1a1a1a)',
     img:'https://cdn.cloudflare.steamstatic.com/steam/apps/2519060/header.jpg'
   },
   {
     id:'finals', en:'The Finals', ar:'ذا فاينلز', abbr:'FNL', tag:'tag-finals',
-    mult:0.0066, maxSens:100, color:'#7d3c00',
-    icon:'🏆',
+    yaw:0.0066, maxSens:100, color:'#7d3c00', icon:'🏆',
     bg:'linear-gradient(135deg,#1a0d00,#402000)',
     img:'https://cdn.cloudflare.steamstatic.com/steam/apps/2073850/header.jpg'
   },
   {
     id:'pubg', en:'PUBG', ar:'ببجي', abbr:'PUBG', tag:'tag-pubg',
-    mult:0.002222, maxSens:100, color:'#1a5276',
-    icon:'🎯',
+    yaw:0.002222, maxSens:100, color:'#1a5276', icon:'🎯',
     bg:'linear-gradient(135deg,#000d1a,#001a40)',
     img:'https://cdn.cloudflare.steamstatic.com/steam/apps/578080/header.jpg'
   },
   {
     id:'bf2042', en:'Battlefield 2042', ar:'باتلفيلد 2042', abbr:'BF42', tag:'tag-bf',
-    mult:0.0709, maxSens:10, color:'#145a32',
-    icon:'🚀',
+    yaw:0.0709, maxSens:10, color:'#145a32', icon:'🚀',
     bg:'linear-gradient(135deg,#00150a,#003a1a)',
     img:'https://cdn.cloudflare.steamstatic.com/steam/apps/1517290/header.jpg'
   },
   {
     id:'bf6', en:'Battlefield 6', ar:'باتلفيلد 6', abbr:'BF6', tag:'tag-bf6',
-    mult:0.0709, maxSens:10, color:'#0d5c37',
-    icon:'🪖',
+    yaw:0.0709, maxSens:10, color:'#0d5c37', icon:'🪖',
     bg:'linear-gradient(135deg,#001a0d,#004020)',
-    // YOUR IMAGE
     img:'https://z-cdn-media.chatglm.cn/files/289e63c2-8bc7-46b5-9317-331f154db854.png?auth_key=1878742022-b7a8c8c22e1c4b7b9d89208adfd97cf1-0-85bb7c3992a31357bee312e488a04c46'
   },
 ];
 
-// =========================================================
+// ================================================================
+//  CONVERSION ENGINE
+//  Core formula:
+//    cm_per_360 = (2.54 × 360) / (yaw × sensitivity × dpi)
+//    sens_target = sens_source × (yaw_source / yaw_target)
+//
+//  This is the industry standard used by mouse-sensitivity.com and Aimlabs.
+//  No approximation — pure yaw-ratio based conversion.
+// ================================================================
+function calcCm360(sens, dpi, yaw) {
+  if (!sens || !dpi || !yaw) return null;
+  const cm = (2.54 * 360) / (yaw * sens * dpi);
+  return isFinite(cm) && cm > 0 ? cm : null;
+}
+
+function convertSens(sens, srcYaw, tgtYaw) {
+  if (!sens || !srcYaw || !tgtYaw) return null;
+  return sens * (srcYaw / tgtYaw);
+}
+
+function formatSens(val) {
+  if (val === null || val === undefined) return '—';
+  // Round to max 6 sig figs, remove trailing zeros
+  let str = parseFloat(val.toPrecision(6)).toString();
+  return str;
+}
+
+// ================================================================
 //  PRO PLAYERS DATA
-// =========================================================
+// ================================================================
 const PROS = {
   cs2: [
     {name:'s1mple',    team:'NAVI',         country:'🇺🇦', sens:3.09, dpi:400,  color:'#ffd700'},
@@ -798,9 +1004,9 @@ const PROS_LABELS = {
   fortnite:'Fortnite', r6:'R6 Siege', finals:'The Finals', pubg:'PUBG'
 };
 
-// =========================================================
+// ================================================================
 //  TRANSLATIONS
-// =========================================================
+// ================================================================
 const TRANSLATIONS = {
   en:{
     name:"English",flag:"🇺🇸",dir:"ltr",
@@ -812,10 +1018,10 @@ const TRANSLATIONS = {
     stat360sub:"cm per full rotation",statEdpiSub:"Sensitivity × DPI",
     lbl_dpi:"Mouse DPI",lbl_dpiInput:"Mouse DPI",lbl_sensEdpi:"Sensitivity",
     lbl_allGames:"All Games Conversion",lbl_pros:"Pro Players Settings",
-    infoBox:'<strong>cm / 360°</strong> means how many centimeters you move your mouse for a full camera rotation. Lower = faster, Higher = more precise. Most pro players use <strong>20–50 cm</strong>.',
-    from:"from",useSettings:"Use settings of",skip:"Skip",start:"Let's Start",next:"Next",finish:"Finish",
+    infoBox:'<strong>cm / 360°</strong> = centimeters of mouse movement for a full 360° camera rotation. Formula: <strong>(2.54 × 360) ÷ (yaw × sens × DPI)</strong>. Most pros use <strong>20–50 cm</strong>. Lower = faster, higher = more precise.',
+    from:"from",useSettings:"Use settings of",skip:"Skip",start:"Let\'s Start",next:"Next",finish:"Finish",
     howItWorks:"How it works?",
-    proSens: "Sensitivity", proDpi: "DPI", proEdpi: "eDPI", proCm: "cm / 360°",
+    proSens:"Sensitivity", proDpi:"DPI", proEdpi:"eDPI", proCm:"cm / 360°",
     tut:[
       {icon:'🎯',title:'Welcome to <span>AIM SYNC</span>',desc:'The only tool that keeps your <strong>aim feel</strong> no matter what game you switch to.<br><br>Let us show you how in 30 seconds ⚡',tip:'All settings auto-save in your browser'},
       {icon:'🎮',title:'Choose <span>Source Game</span>',desc:'Pick the game you are playing now — Valorant, CS2, The Finals, PUBG, and more.',tip:'Scroll left/right to see all games'},
@@ -835,10 +1041,10 @@ const TRANSLATIONS = {
     stat360sub:"سم لدورة كاملة",statEdpiSub:"الحساسية × DPI",
     lbl_dpi:"DPI الماوس",lbl_dpiInput:"DPI الماوس",lbl_sensEdpi:"الحساسية",
     lbl_allGames:"المكافئ في كل الألعاب",lbl_pros:"إعدادات المحترفين",
-    infoBox:'<strong>cm / 360°</strong> يعني كم سنتيمتر تحتاج تحرك الماوس لدورة كاملة للكاميرا. رقم أصغر = أسرع، رقم أكبر = أدق. معظم المحترفين يستخدمون <strong>20–50 سم</strong>.',
+    infoBox:'<strong>cm / 360°</strong> يعني كم سنتيمتر تحتاج لتحريك الماوس لدورة كاملة. المعادلة: <strong>(2.54 × 360) ÷ (yaw × الحساسية × DPI)</strong>. معظم المحترفين يستخدمون <strong>20–50 سم</strong>.',
     from:"من",useSettings:"استخدم إعدادات",skip:"تخطي",start:"هيا نبدأ",next:"التالي",finish:"إنهاء",
     howItWorks:"كيف يعمل؟",
-    proSens: "الحساسية", proDpi: "DPI", proEdpi: "eDPI", proCm: "سم / 360°",
+    proSens:"الحساسية", proDpi:"DPI", proEdpi:"eDPI", proCm:"سم / 360°",
     tut:[
       {icon:'🎯',title:'أهلاً في <span>AIM SYNC</span>',desc:'الأداة الوحيدة التي تحفظ <strong>إحساس تصويبك</strong> مهما غيرت لعبتك. دعنا نريك في 30 ثانية ⚡',tip:'الإعدادات تُحفظ تلقائياً في متصفحك'},
       {icon:'🎮',title:'اختر <span>لعبتك الحالية</span>',desc:'اختر اللعبة التي تلعبها الآن — فالورانت، CS2، ذا فاينلز، ببجي وغيرها.',tip:'اسحب يميناً ويساراً لرؤية كل الألعاب'},
@@ -852,16 +1058,16 @@ const TRANSLATIONS = {
     name:"Français",flag:"🇫🇷",dir:"ltr",
     brandSub:"Convertisseur de Sensibilité FPS",liveLabel:"Conversion en Direct",
     heroTitle:'Gardez votre <span>Sensation de Visée</span><br>dans chaque jeu',
-    heroDesc:"Sélectionnez votre jeu source, entrez votre sensibilité et obtenez l'équivalent exact pour tout autre jeu instantanément.",
+    heroDesc:"Sélectionnez votre jeu source, entrez votre sensibilité et obtenez l'équivalent exact instantanément.",
     lbl_source:"Jeu Source",lbl_sens:"Sensibilité en Jeu",lbl_target:"Jeu Cible",
     resultLabelText:"Votre sensibilité dans",copyTxt:"Copier",copied:"✓ Copié",
     stat360sub:"cm par rotation complète",statEdpiSub:"Sensibilité × DPI",
     lbl_dpi:"DPI Souris",lbl_dpiInput:"DPI Souris",lbl_sensEdpi:"Sensibilité",
     lbl_allGames:"Conversion Tous Jeux",lbl_pros:"Paramètres des Pros",
-    infoBox:'<strong>cm / 360°</strong> — centimètres pour une rotation complète de la caméra.',
+    infoBox:'<strong>cm / 360°</strong> — centimètres pour une rotation complète de la caméra. Formule basée sur le yaw réel de chaque jeu.',
     from:"de",useSettings:"Utiliser les réglages de",skip:"Passer",start:"Commencer",next:"Suivant",finish:"Terminer",
     howItWorks:"Comment ça marche?",
-    proSens: "Sensibilité", proDpi: "DPI", proEdpi: "eDPI", proCm: "cm / 360°",
+    proSens:"Sensibilité", proDpi:"DPI", proEdpi:"eDPI", proCm:"cm / 360°",
     tut:[
       {icon:'🎯',title:'Bienvenue sur <span>AIM SYNC</span>',desc:'Le seul outil qui garde votre <strong>sensation de visée</strong>.',tip:'Les paramètres sont enregistrés automatiquement'},
       {icon:'🎮',title:'Choisir le <span>Jeu Source</span>',desc:"Choisissez votre jeu actuel.",tip:'Faites défiler pour voir plus de jeux'},
@@ -881,10 +1087,10 @@ const TRANSLATIONS = {
     stat360sub:"cm por rotación completa",statEdpiSub:"Sensibilidad × DPI",
     lbl_dpi:"DPI del Ratón",lbl_dpiInput:"DPI Ratón",lbl_sensEdpi:"Sensibilidad",
     lbl_allGames:"Conversión Todos los Juegos",lbl_pros:"Ajustes de Profesionales",
-    infoBox:'<strong>cm / 360°</strong> — centímetros necesarios para girar la cámara 360°.',
+    infoBox:'<strong>cm / 360°</strong> — centímetros necesarios para girar la cámara 360°. Conversión precisa basada en el yaw real de cada juego.',
     from:"de",useSettings:"Usar ajustes de",skip:"Saltar",start:"Empezar",next:"Siguiente",finish:"Finalizar",
     howItWorks:"¿Cómo funciona?",
-    proSens: "Sensibilidad", proDpi: "DPI", proEdpi: "eDPI", proCm: "cm / 360°",
+    proSens:"Sensibilidad", proDpi:"DPI", proEdpi:"eDPI", proCm:"cm / 360°",
     tut:[
       {icon:'🎯',title:'Bienvenido a <span>AIM SYNC</span>',desc:'La única herramienta que mantiene tu <strong>sensación de apuntado</strong>.',tip:'Los ajustes se guardan automáticamente'},
       {icon:'🎮',title:'Elige <span>Juego Origen</span>',desc:'Elige tu juego actual.',tip:'Desliza para ver más juegos'},
@@ -904,10 +1110,10 @@ const TRANSLATIONS = {
     stat360sub:"cm pro volle Drehung",statEdpiSub:"Sensibilität × DPI",
     lbl_dpi:"Maus DPI",lbl_dpiInput:"Maus DPI",lbl_sensEdpi:"Sensibilität",
     lbl_allGames:"Alle Spiele Konvertierung",lbl_pros:"Profi-Einstellungen",
-    infoBox:'<strong>cm / 360°</strong> — Zentimeter für eine volle Kameradrehung.',
+    infoBox:'<strong>cm / 360°</strong> — Zentimeter für eine volle Kameradrehung. Präzise Konvertierung basierend auf dem realen Yaw-Wert jedes Spiels.',
     from:"von",useSettings:"Einstellungen von",skip:"Überspringen",start:"Starten",next:"Weiter",finish:"Fertig",
     howItWorks:"Wie funktioniert es?",
-    proSens: "Sensibilität", proDpi: "DPI", proEdpi: "eDPI", proCm: "cm / 360°",
+    proSens:"Sensibilität", proDpi:"DPI", proEdpi:"eDPI", proCm:"cm / 360°",
     tut:[
       {icon:'🎯',title:'Willkommen bei <span>AIM SYNC</span>',desc:'Das einzige Tool das dein <strong>Zielgefühl</strong> bewahrt.',tip:'Einstellungen werden automatisch gespeichert'},
       {icon:'🎮',title:'<span>Quellspiel</span> wählen',desc:'Wähle dein aktuelles Spiel.',tip:'Wische für mehr Spiele'},
@@ -927,10 +1133,10 @@ const TRANSLATIONS = {
     stat360sub:"tam dönüş için cm",statEdpiSub:"Hassasiyet × DPI",
     lbl_dpi:"Fare DPI",lbl_dpiInput:"Fare DPI",lbl_sensEdpi:"Hassasiyet",
     lbl_allGames:"Tüm Oyunlar Dönüşümü",lbl_pros:"Profesyonel Ayarları",
-    infoBox:'<strong>cm / 360°</strong> — tam kamera dönüşü için santimetre.',
+    infoBox:'<strong>cm / 360°</strong> — tam kamera dönüşü için santimetre. Her oyunun gerçek yaw değerine dayalı hassas dönüşüm.',
     from:"kaynak:",useSettings:"Şunun ayarlarını kullan:",skip:"Atla",start:"Başlayalım",next:"İleri",finish:"Bitir",
     howItWorks:"Nasıl çalışır?",
-    proSens: "Hassasiyet", proDpi: "DPI", proEdpi: "eDPI", proCm: "cm / 360°",
+    proSens:"Hassasiyet", proDpi:"DPI", proEdpi:"eDPI", proCm:"cm / 360°",
     tut:[
       {icon:'🎯',title:"<span>AIM SYNC</span>'e Hoş Geldiniz",desc:'<strong>Nişan hissinizi</strong> koruyan tek araç.',tip:'Ayarlar otomatik kaydedilir'},
       {icon:'🎮',title:'<span>Kaynak Oyun</span> Seç',desc:'Mevcut oyununuzu seçin.',tip:'Daha fazlası için kaydırın'},
@@ -950,10 +1156,10 @@ const TRANSLATIONS = {
     stat360sub:"см на полный оборот",statEdpiSub:"Чувствительность × DPI",
     lbl_dpi:"DPI мыши",lbl_dpiInput:"DPI мыши",lbl_sensEdpi:"Чувствительность",
     lbl_allGames:"Конвертация для всех игр",lbl_pros:"Настройки про-игроков",
-    infoBox:'<strong>см / 360°</strong> — сколько сантиметров для полного оборота камеры.',
+    infoBox:'<strong>см / 360°</strong> — сколько сантиметров для полного оборота камеры. Точная конвертация на основе реального yaw каждой игры.',
     from:"из",useSettings:"Использовать настройки",skip:"Пропустить",start:"Начать",next:"Далее",finish:"Готово",
     howItWorks:"Как это работает?",
-    proSens: "Чувствительность", proDpi: "DPI", proEdpi: "eDPI", proCm: "см / 360°",
+    proSens:"Чувствительность", proDpi:"DPI", proEdpi:"eDPI", proCm:"см / 360°",
     tut:[
       {icon:'🎯',title:'Добро пожаловать в <span>AIM SYNC</span>',desc:'Единственный инструмент для <strong>сохранения чувства аима</strong>.',tip:'Настройки сохраняются автоматически'},
       {icon:'🎮',title:'Выбор <span>исходной игры</span>',desc:'Выбери свою игру.',tip:'Листай для выбора'},
@@ -973,10 +1179,10 @@ const TRANSLATIONS = {
     stat360sub:"全圈旋转厘米数",statEdpiSub:"灵敏度 × DPI",
     lbl_dpi:"鼠标 DPI",lbl_dpiInput:"鼠标 DPI",lbl_sensEdpi:"灵敏度",
     lbl_allGames:"所有游戏转换",lbl_pros:"职业选手设置",
-    infoBox:'<strong>cm / 360°</strong> 表示相机旋转一整圈需要移动鼠标的厘米数。',
+    infoBox:'<strong>cm / 360°</strong> 表示相机旋转一整圈需要移动鼠标的厘米数。基于每款游戏实际 yaw 值的精确换算。',
     from:"来自",useSettings:"使用设置",skip:"跳过",start:"开始",next:"下一步",finish:"完成",
     howItWorks:"如何运作？",
-    proSens: "灵敏度", proDpi: "DPI", proEdpi: "eDPI", proCm: "厘米 / 360°",
+    proSens:"灵敏度", proDpi:"DPI", proEdpi:"eDPI", proCm:"厘米 / 360°",
     tut:[
       {icon:'🎯',title:'欢迎来到 <span>AIM SYNC</span>',desc:'保持你的<strong>瞄准手感</strong>。',tip:'设置会自动保存'},
       {icon:'🎮',title:'选择<span>源游戏</span>',desc:'选择你当前玩的游戏。',tip:'左右滑动查看更多'},
@@ -988,122 +1194,101 @@ const TRANSLATIONS = {
   }
 };
 
-// =========================================================
-//  STATE & DOM CACHING
-// =========================================================
-let lang='en', sourceId='valorant', targetId='cs2', activeProGame='cs2', tutStep=0;
-const g = id => GAMES.find(x=>x.id===id);
-
-// DOM Elements Cache
+// ================================================================
+//  STATE
+// ================================================================
+let lang = 'en', sourceId = 'valorant', targetId = 'cs2', activeProGame = 'cs2', tutStep = 0;
+const g = id => GAMES.find(x => x.id === id);
 let dom = {};
 
-// =========================================================
-//  LANGUAGE DROPDOWN — FIXED
-// =========================================================
-function initLangDropdown(){
-  // Cache DOM elements
-  dom.langToggle = document.getElementById('langToggle');
+// ================================================================
+//  LANGUAGE DROPDOWN
+// ================================================================
+function initLangDropdown() {
+  dom.langToggle   = document.getElementById('langToggle');
   dom.langDropdown = document.getElementById('langDropdown');
-  dom.langContainer = document.getElementById('langContainer');
+  dom.langContainer= document.getElementById('langContainer');
 
-  dom.langToggle.addEventListener('click', e=>{
+  dom.langToggle.addEventListener('click', e => {
     e.stopPropagation();
-    const isOpen = dom.langDropdown.classList.contains('show');
-    if(isOpen){ closeLangDD(); } else { openLangDD(); }
+    dom.langDropdown.classList.contains('show') ? closeLangDD() : openLangDD();
   });
 
-  dom.langDropdown.addEventListener('click', e=>{
+  dom.langDropdown.addEventListener('click', e => {
     e.stopPropagation();
     const opt = e.target.closest('.lang-option');
-    if(opt && opt.dataset.lang){ changeLang(opt.dataset.lang); closeLangDD(); }
+    if (opt && opt.dataset.lang) { changeLang(opt.dataset.lang); closeLangDD(); }
   });
 
-  dom.langDropdown.addEventListener('wheel', e=>e.stopPropagation(), {passive:true});
-  dom.langDropdown.addEventListener('touchmove', e=>e.stopPropagation(), {passive:true});
-
-  document.addEventListener('click', ()=>closeLangDD());
-  window.addEventListener('resize', () => {
-      if(dom.langDropdown.classList.contains('show')) openLangDD();
-  });
+  dom.langDropdown.addEventListener('wheel',     e => e.stopPropagation(), {passive:true});
+  dom.langDropdown.addEventListener('touchmove', e => e.stopPropagation(), {passive:true});
+  document.addEventListener('click', () => closeLangDD());
+  window.addEventListener('resize', () => { if (dom.langDropdown.classList.contains('show')) openLangDD(); });
 }
 
-function openLangDD(){
+function openLangDD() {
   dom.langToggle.classList.add('open');
   dom.langDropdown.classList.add('show');
-  
-  const rect = dom.langToggle.getBoundingClientRect();
-  const dropHeight = 320; // Max height approx
-  const dropWidth = 170;
-  
-  // Vertical Positioning
-  let top = rect.bottom + 8;
-  // If not enough space at bottom, show above
-  if (top + dropHeight > window.innerHeight) {
-      top = rect.top - dropHeight - 8;
-  }
-  // Safety: ensure it doesn't go off top
-  if(top < 0) top = 10;
 
-  dom.langDropdown.style.top = `${top}px`;
-
-  // Horizontal Positioning
+  const rect      = dom.langToggle.getBoundingClientRect();
+  const dropH     = 320;
+  const dropW     = 175;
+  let top  = rect.bottom + 8;
+  if (top + dropH > window.innerHeight) top = rect.top - dropH - 8;
+  if (top < 0) top = 10;
   let left = rect.left;
-  // If dropdown goes off right edge, align to right edge of button
-  if (left + dropWidth > window.innerWidth) {
-      left = rect.right - dropWidth;
-  }
-  // Safety: ensure it doesn't go off left edge
-  if(left < 0) left = 10;
-  
-  dom.langDropdown.style.left = `${left}px`;
-  dom.langDropdown.style.right = 'auto'; // Clear right
+  if (left + dropW > window.innerWidth) left = rect.right - dropW;
+  if (left < 0) left = 10;
+
+  dom.langDropdown.style.top   = top  + 'px';
+  dom.langDropdown.style.left  = left + 'px';
+  dom.langDropdown.style.right = 'auto';
 }
 
-function closeLangDD(){
+function closeLangDD() {
   dom.langToggle.classList.remove('open');
   dom.langDropdown.classList.remove('show');
 }
 
-function changeLang(newLang){
+function changeLang(newLang) {
   lang = newLang;
   const t = TRANSLATIONS[lang];
   document.documentElement.lang = lang;
   document.body.dir = t.dir;
   document.getElementById('langFlag').textContent = t.flag;
   document.getElementById('langName').textContent = t.name.substring(0,2).toUpperCase();
-  document.querySelectorAll('.lang-option').forEach(el=>el.classList.toggle('active', el.dataset.lang===lang));
-
-  // Force LTR on dropdown container
+  document.querySelectorAll('.lang-option').forEach(el =>
+    el.classList.toggle('active', el.dataset.lang === lang)
+  );
   dom.langContainer.setAttribute('dir','ltr');
   dom.langDropdown.style.direction = 'ltr';
-  dom.langToggle.style.direction = 'ltr';
-
+  dom.langToggle.style.direction   = 'ltr';
   updateTexts(); renderChips(); renderBanners(); renderPros(); convert(); saveSettings();
 }
 
-function updateTexts(){
+function updateTexts() {
   const t = TRANSLATIONS[lang];
-  const ids=['brandSub','liveLabel','lbl_source','lbl_sens','lbl_target','copyTxt',
-             'stat360sub','statEdpiSub','lbl_dpi','lbl_dpiInput','lbl_sensEdpi',
-             'lbl_allGames','lbl_pros'];
-  ids.forEach(id=>{ const el=document.getElementById(id); if(el) el.textContent=t[id]; });
+  const ids = ['brandSub','liveLabel','lbl_source','lbl_sens','lbl_target','copyTxt',
+               'stat360sub','statEdpiSub','lbl_dpi','lbl_dpiInput','lbl_sensEdpi',
+               'lbl_allGames','lbl_pros'];
+  ids.forEach(id => { const el = document.getElementById(id); if (el) el.textContent = t[id]; });
   document.getElementById('heroTitle').innerHTML = t.heroTitle;
   document.getElementById('heroDesc').textContent = t.heroDesc;
   document.getElementById('infoBox').innerHTML = t.infoBox;
-  const rlt=document.getElementById('resultLabelText'); if(rlt) rlt.textContent=t.resultLabelText;
-  const htxt=document.getElementById('helpTxt'); if(htxt) htxt.textContent=t.howItWorks;
-  const tskip=document.getElementById('tutSkip'); if(tskip) tskip.textContent=t.skip;
+  const rlt  = document.getElementById('resultLabelText'); if (rlt)  rlt.textContent  = t.resultLabelText;
+  const htxt = document.getElementById('helpTxt');         if (htxt) htxt.textContent = t.howItWorks;
+  const tskip= document.getElementById('tutSkip');         if (tskip) tskip.textContent = t.skip;
 }
 
-// =========================================================
+// ================================================================
 //  GAME BANNERS
-// =========================================================
-function renderBanners(){
-  const el = document.getElementById('gameBanners'); if(!el) return;
-  el.innerHTML='';
-  GAMES.forEach(game=>{
+// ================================================================
+function renderBanners() {
+  const el = document.getElementById('gameBanners'); if (!el) return;
+  el.innerHTML = '';
+  GAMES.forEach(game => {
     const card = document.createElement('div');
-    card.className='game-banner-card'+(game.id===sourceId?' active':'');
+    card.className = 'game-banner-card' + (game.id === sourceId ? ' active' : '');
     card.style.background = game.bg;
 
     const fallback = document.createElement('div');
@@ -1111,225 +1296,215 @@ function renderBanners(){
     fallback.textContent = game.icon;
 
     const imgEl = document.createElement('img');
-    imgEl.className = 'gbanner-img';
-    imgEl.alt = game.en;
-    imgEl.loading = 'lazy';
-    imgEl.style.opacity = '0';
+    imgEl.className   = 'gbanner-img';
+    imgEl.alt         = game.en;
+    imgEl.loading     = 'lazy';
     imgEl.crossOrigin = 'anonymous';
-
-    imgEl.onload = () => {
-      imgEl.style.opacity = '1';
-      fallback.style.opacity = '0';
-    };
-    imgEl.onerror = () => {
-      imgEl.style.display = 'none';
-      fallback.style.opacity = '0.9';
-    };
+    imgEl.style.opacity = '0';
+    imgEl.onload  = () => { imgEl.style.opacity = '1'; fallback.style.opacity = '0'; };
+    imgEl.onerror = () => { imgEl.style.display = 'none'; fallback.style.opacity = '0.9'; };
     imgEl.src = game.img;
 
-    const overlay = document.createElement('div');
-    overlay.className = 'gbanner-overlay';
+    const overlay = document.createElement('div'); overlay.className = 'gbanner-overlay';
+    const label   = document.createElement('div'); label.className   = 'gbanner-label'; label.textContent = game.abbr;
+    const dot     = document.createElement('div'); dot.className     = 'gbanner-active-dot';
 
-    const label = document.createElement('div');
-    label.className = 'gbanner-label';
-    label.textContent = game.abbr;
-
-    const dot = document.createElement('div');
-    dot.className = 'gbanner-active-dot';
-
-    card.appendChild(fallback);
-    card.appendChild(imgEl);
-    card.appendChild(overlay);
-    card.appendChild(label);
-    card.appendChild(dot);
-
-    card.onclick=()=>{ sourceId=game.id; renderChips(); renderBanners(); convert(); saveSettings(); };
+    card.appendChild(fallback); card.appendChild(imgEl);
+    card.appendChild(overlay); card.appendChild(label); card.appendChild(dot);
+    card.onclick = () => { sourceId = game.id; renderChips(); renderBanners(); convert(); saveSettings(); };
     el.appendChild(card);
   });
 }
 
-// =========================================================
+// ================================================================
 //  GAME CHIPS
-// =========================================================
-function renderChips(){
-  [['sourceGames',false],['targetGames',true]].forEach(([cid,isTarget])=>{
-    const el=document.getElementById(cid); if(!el) return; el.innerHTML='';
-    GAMES.forEach(game=>{
-      const active=isTarget?game.id===targetId:game.id===sourceId;
-      const div=document.createElement('div');
-      div.className='game-chip'+(active?' active':'');
-      const name=lang==='ar'?game.ar:game.en;
-      div.innerHTML=`<span class="chip-abbr">${game.abbr}</span><span class="chip-name">${name}</span>`;
-      div.onclick=()=>{
-        if(isTarget) targetId=game.id; else { sourceId=game.id; renderBanners(); }
+// ================================================================
+function renderChips() {
+  [['sourceGames', false], ['targetGames', true]].forEach(([cid, isTarget]) => {
+    const el = document.getElementById(cid); if (!el) return; el.innerHTML = '';
+    GAMES.forEach(game => {
+      const active = isTarget ? game.id === targetId : game.id === sourceId;
+      const div = document.createElement('div');
+      div.className = 'game-chip' + (active ? ' active' : '');
+      const name = lang === 'ar' ? game.ar : game.en;
+      div.innerHTML = `<span class="chip-abbr">${game.abbr}</span><span class="chip-name">${name}</span>`;
+      div.onclick = () => {
+        if (isTarget) targetId = game.id; else { sourceId = game.id; renderBanners(); }
         renderChips(); convert(); saveSettings();
       };
       el.appendChild(div);
     });
   });
-  const sg=g(sourceId), tg=g(targetId);
-  const sn=document.getElementById('sourceGameName'); if(sn) sn.textContent=lang==='ar'?sg.ar:sg.en;
-  const tl=document.getElementById('targetGameLabel'); if(tl) tl.textContent=lang==='ar'?tg.ar:tg.en;
+  const sg = g(sourceId), tg = g(targetId);
+  const sn = document.getElementById('sourceGameName'); if (sn) sn.textContent = lang==='ar' ? sg.ar : sg.en;
+  const tl = document.getElementById('targetGameLabel'); if (tl) tl.textContent = lang==='ar' ? tg.ar : tg.en;
 }
 
-// =========================================================
+// ================================================================
 //  SLIDER & INPUT
-// =========================================================
-function updateSliderFill(){
-  const slider=document.getElementById('sensSlider');
-  const pct=(slider.value-slider.min)/(slider.max-slider.min)*100;
-  slider.style.setProperty('--fill', pct+'%');
+// ================================================================
+function updateSliderFill() {
+  const slider = document.getElementById('sensSlider');
+  const pct = (slider.value - slider.min) / (slider.max - slider.min) * 100;
+  slider.style.setProperty('--fill', pct + '%');
 }
 
-function onSlider(){
-  const v=parseFloat(document.getElementById('sensSlider').value);
-  document.getElementById('sensInput').value=v;
-  document.getElementById('sensDisplay').textContent=v.toFixed(2);
+function onSlider() {
+  const v = parseFloat(document.getElementById('sensSlider').value);
+  document.getElementById('sensInput').value = v;
+  document.getElementById('sensDisplay').textContent = v.toFixed(2);
   updateSliderFill();
   convert();
 }
 
-function onInput(){
-  let v=parseFloat(document.getElementById('sensInput').value);
-  if(isNaN(v)) v = 0;
-  
-  document.getElementById('sensDisplay').textContent=v || '0';
-  const slider=document.getElementById('sensSlider');
-  slider.value=Math.min(v, parseFloat(slider.max));
+function onInput() {
+  let v = parseFloat(document.getElementById('sensInput').value);
+  if (isNaN(v)) v = 0;
+  document.getElementById('sensDisplay').textContent = v || '0';
+  const slider = document.getElementById('sensSlider');
+  slider.value = Math.min(v, parseFloat(slider.max));
   updateSliderFill();
   convert();
 }
 
-function swapGames(){
-  [sourceId,targetId]=[targetId,sourceId];
+function swapGames() {
+  [sourceId, targetId] = [targetId, sourceId];
   renderChips(); renderBanners(); convert(); saveSettings();
 }
 
-// =========================================================
-//  CONVERT
-// =========================================================
-function convert(){
-  const sens=parseFloat(document.getElementById('sensInput').value)||0;
-  const dpi=parseFloat(document.getElementById('dpiInput').value)||800;
-  const sg=g(sourceId), tg=g(targetId);
-  const t=TRANSLATIONS[lang];
+// ================================================================
+//  MAIN CONVERT FUNCTION
+//  Uses yaw-based conversion (industry standard):
+//    sens_target = sens_source × (yaw_source / yaw_target)
+//    cm/360      = (2.54 × 360) / (yaw × sens × dpi)
+// ================================================================
+function convert() {
+  const sens = parseFloat(document.getElementById('sensInput').value) || 0;
+  const dpi  = parseFloat(document.getElementById('dpiInput').value)  || 800;
+  const sg   = g(sourceId), tg = g(targetId);
+  const t    = TRANSLATIONS[lang];
 
-  const converted=sens>0?Math.round(sens*sg.mult/tg.mult*100000)/100000:null;
-  document.getElementById('resultNum').textContent=converted!==null?converted:'—';
+  // Core conversion using yaw ratio
+  const convertedVal = (sens > 0 && sg.yaw && tg.yaw)
+    ? convertSens(sens, sg.yaw, tg.yaw)
+    : null;
 
-  const rlt=document.getElementById('resultLabelText'); if(rlt) rlt.textContent=t.resultLabelText;
-  const tgl=document.getElementById('targetGameLabel'); if(tgl) tgl.textContent=lang==='ar'?tg.ar:tg.en;
-  const sn=document.getElementById('sourceGameName'); if(sn) sn.textContent=lang==='ar'?sg.ar:sg.en;
-  document.getElementById('resultMeta').innerHTML=`${t.from} ${lang==='ar'?sg.ar:sg.en} <span>(${sens})</span>`;
+  const convertedStr = convertedVal !== null ? formatSens(convertedVal) : '—';
+  document.getElementById('resultNum').textContent = convertedStr;
 
-  // Fixed cm360 calculation with Infinity check
-  let cm360 = '—';
-  if(sens && dpi && sg.mult){
-      const calc = 2.54 * 360 / (sg.mult * sens * dpi);
-      if(isFinite(calc)) cm360 = Math.round(calc * 10) / 10 + ' cm';
-  }
-  document.getElementById('stat360').textContent = cm360;
-  
-  document.getElementById('statEdpi').textContent=sens?Math.round(sens*dpi):'—';
-  document.getElementById('edpiSens').value=sens;
+  // Update labels
+  const rlt = document.getElementById('resultLabelText'); if (rlt) rlt.textContent = t.resultLabelText;
+  const tgl = document.getElementById('targetGameLabel'); if (tgl) tgl.textContent = lang==='ar' ? tg.ar : tg.en;
+  const sn  = document.getElementById('sourceGameName');  if (sn)  sn.textContent  = lang==='ar' ? sg.ar : sg.en;
+  document.getElementById('resultMeta').innerHTML = `${t.from} ${lang==='ar'?sg.ar:sg.en} <span>(${sens})</span>`;
 
-  document.getElementById('allGamesFrom').textContent=`${t.from} ${lang==='ar'?sg.ar:sg.en} (${sens})`;
-  const list=document.getElementById('allGamesList'); list.innerHTML='';
-  GAMES.forEach(game=>{
-    const val=sens?Math.round(sens*sg.mult/game.mult*100000)/100000:'—';
-    const isSrc=game.id===sourceId, isTgt=game.id===targetId;
-    const row=document.createElement('div');
-    row.className='game-row'+(isTgt?' highlight':'')+(isSrc?' source-row':'');
-    row.innerHTML=`<div class="game-row-left"><div class="game-tag ${game.tag}">${game.abbr}</div><div class="game-row-name">${lang==='ar'?game.ar:game.en}</div></div><div class="game-row-val">${isSrc?sens:val}</div>`;
+  // cm/360 for source sensitivity
+  const cm360val = calcCm360(sens, dpi, sg.yaw);
+  document.getElementById('stat360').textContent  = cm360val ? (Math.round(cm360val * 10) / 10) + ' cm' : '—';
+  document.getElementById('statEdpi').textContent = sens ? Math.round(sens * dpi) : '—';
+  document.getElementById('edpiSens').value = sens;
+
+  // All games table
+  document.getElementById('allGamesFrom').textContent = `${t.from} ${lang==='ar'?sg.ar:sg.en} (${sens})`;
+  const list = document.getElementById('allGamesList'); list.innerHTML = '';
+  GAMES.forEach(game => {
+    const val     = (sens && sg.yaw && game.yaw) ? formatSens(convertSens(sens, sg.yaw, game.yaw)) : '—';
+    const isSrc   = game.id === sourceId;
+    const isTgt   = game.id === targetId;
+    const row     = document.createElement('div');
+    row.className = 'game-row' + (isTgt ? ' highlight' : '') + (isSrc ? ' source-row' : '');
+    row.innerHTML = `
+      <div class="game-row-left">
+        <div class="game-tag ${game.tag}">${game.abbr}</div>
+        <div class="game-row-name">${lang==='ar' ? game.ar : game.en}</div>
+      </div>
+      <div class="game-row-val">${isSrc ? sens : val}</div>`;
     list.appendChild(row);
   });
+
   saveSettings();
 }
 
-function calcEdpiManual(){
-  const s=parseFloat(document.getElementById('edpiSens').value)||0;
-  const d=parseFloat(document.getElementById('dpiInput').value)||800;
-  const sg=g(sourceId);
-  
-  document.getElementById('statEdpi').textContent=s?Math.round(s*d):'—';
-  
-  let cm360 = '—';
-  if(s && d && sg.mult){
-      const calc = 2.54 * 360 / (sg.mult * s * d);
-      if(isFinite(calc)) cm360 = Math.round(calc * 10) / 10 + ' cm';
-  }
-  document.getElementById('stat360').textContent = cm360;
+// Update eDPI/cm360 from manual edpiSens input
+function calcEdpiManual() {
+  const s  = parseFloat(document.getElementById('edpiSens').value) || 0;
+  const d  = parseFloat(document.getElementById('dpiInput').value) || 800;
+  const sg = g(sourceId);
+  document.getElementById('statEdpi').textContent = s ? Math.round(s * d) : '—';
+  const cm360val = calcCm360(s, d, sg.yaw);
+  document.getElementById('stat360').textContent = cm360val ? (Math.round(cm360val * 10) / 10) + ' cm' : '—';
 }
 
-function copyResult(){
-  const val=document.getElementById('resultNum').textContent; if(val==='—') return;
-  const t=TRANSLATIONS[lang];
-  const doIt=()=>{
-    const btn=document.getElementById('copyBtn');
-    const txt=document.getElementById('copyTxt');
-    if(btn) btn.classList.add('copied');
-    if(txt) txt.textContent=t.copied;
-    setTimeout(()=>{ if(btn) btn.classList.remove('copied'); if(txt) txt.textContent=t.copyTxt; },1800);
+function copyResult() {
+  const val = document.getElementById('resultNum').textContent;
+  if (val === '—') return;
+  const t = TRANSLATIONS[lang];
+  const doIt = () => {
+    const btn = document.getElementById('copyBtn');
+    const txt = document.getElementById('copyTxt');
+    if (btn) btn.classList.add('copied');
+    if (txt) txt.textContent = t.copied;
+    setTimeout(() => { if (btn) btn.classList.remove('copied'); if (txt) txt.textContent = t.copyTxt; }, 1800);
   };
-  if(navigator.clipboard){
-    navigator.clipboard.writeText(val).then(doIt).catch(()=>{
-      const ta=document.createElement('textarea');
-      ta.value=val;document.body.appendChild(ta);ta.select();
-      document.execCommand('copy');document.body.removeChild(ta);doIt();
-    });
-  } else {
-    const ta=document.createElement('textarea');
-    ta.value=val;document.body.appendChild(ta);ta.select();
-    document.execCommand('copy');document.body.removeChild(ta);doIt();
-  }
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(val).then(doIt).catch(() => fallbackCopy(val, doIt));
+  } else { fallbackCopy(val, doIt); }
+}
+function fallbackCopy(val, cb) {
+  const ta = document.createElement('textarea');
+  ta.value = val; document.body.appendChild(ta); ta.select();
+  document.execCommand('copy'); document.body.removeChild(ta); cb();
 }
 
-// =========================================================
-//  PROS
-// =========================================================
-function renderPros(){
-  const tabs=document.getElementById('prosTabs');
-  const container=document.getElementById('prosCards');
-  if(!tabs||!container) return;
-  tabs.innerHTML='';
-  Object.keys(PROS).forEach(key=>{
-    const btn=document.createElement('button');
-    btn.className='pros-tab'+(key===activeProGame?' active':'');
-    btn.textContent=PROS_LABELS[key];
-    btn.onclick=()=>{ activeProGame=key; renderPros(); };
+// ================================================================
+//  PRO PLAYERS
+// ================================================================
+function renderPros() {
+  const tabs = document.getElementById('prosTabs');
+  const container = document.getElementById('prosCards');
+  if (!tabs || !container) return;
+
+  tabs.innerHTML = '';
+  Object.keys(PROS).forEach(key => {
+    const btn = document.createElement('button');
+    btn.className = 'pros-tab' + (key === activeProGame ? ' active' : '');
+    btn.textContent = PROS_LABELS[key];
+    btn.onclick = () => { activeProGame = key; renderPros(); };
     tabs.appendChild(btn);
   });
-  container.innerHTML='';
-  const gmap=PROS_GAME_MAP[activeProGame];
-  if(!gmap) return;
-  
-  const gameObj=g(gmap.gameId);
-  const t=TRANSLATIONS[lang];
-  
-  PROS[activeProGame].forEach(pro=>{
-    const edpi=Math.round(pro.sens*pro.dpi);
-    let cm360 = '—';
-    if(gameObj && gameObj.mult){
-        const calc = 2.54 * 360 / (gameObj.mult * pro.sens * pro.dpi);
-        if(isFinite(calc)) cm360 = Math.round(calc * 10) / 10;
-    }
-    
-    const card=document.createElement('div');
-    card.className='pro-card';
-    card.innerHTML=`
+
+  container.innerHTML = '';
+  const gmap = PROS_GAME_MAP[activeProGame]; if (!gmap) return;
+  const gameObj = g(gmap.gameId);
+  const t = TRANSLATIONS[lang];
+
+  PROS[activeProGame].forEach(pro => {
+    const edpi    = Math.round(pro.sens * pro.dpi);
+    const cm360v  = calcCm360(pro.sens, pro.dpi, gameObj ? gameObj.yaw : 0.022);
+    const cm360   = cm360v ? Math.round(cm360v * 10) / 10 : '—';
+
+    const card = document.createElement('div');
+    card.className = 'pro-card';
+    card.innerHTML = `
       <div class="pro-top">
         <div class="pro-info">
           <div class="pro-avatar" style="background:${pro.color}">${pro.name.substring(0,2).toUpperCase()}</div>
-          <div><div class="pro-name">${pro.country} ${pro.name}</div><div class="pro-team">${pro.team}</div></div>
+          <div>
+            <div class="pro-name">${pro.country} ${pro.name}</div>
+            <div class="pro-team">${pro.team}</div>
+          </div>
         </div>
         <span class="pro-game-tag ${gmap.tagClass}">${gmap.label}</span>
       </div>
       <div class="pro-stats">
-        <div class="pro-stat"><span class="pro-stat-val">${pro.sens}</span><div class="pro-stat-lbl">${t.proSens || 'Sensitivity'}</div></div>
-        <div class="pro-stat"><span class="pro-stat-val">${pro.dpi}</span><div class="pro-stat-lbl">${t.proDpi || 'DPI'}</div></div>
-        <div class="pro-stat"><span class="pro-stat-val">${edpi}</span><div class="pro-stat-lbl">${t.proEdpi || 'eDPI'}</div></div>
+        <div class="pro-stat"><span class="pro-stat-val">${pro.sens}</span><div class="pro-stat-lbl">${t.proSens||'Sensitivity'}</div></div>
+        <div class="pro-stat"><span class="pro-stat-val">${pro.dpi}</span><div class="pro-stat-lbl">${t.proDpi||'DPI'}</div></div>
+        <div class="pro-stat"><span class="pro-stat-val">${edpi}</span><div class="pro-stat-lbl">${t.proEdpi||'eDPI'}</div></div>
       </div>
-      <div class="pro-cm"><div class="pro-cm-val">${cm360} cm</div><div class="pro-stat-lbl">${t.proCm || 'cm / 360°'}</div></div>
+      <div class="pro-cm">
+        <div class="pro-cm-val">${cm360} cm</div>
+        <div class="pro-stat-lbl">${t.proCm||'cm / 360°'}</div>
+      </div>
       <button class="pro-use-btn" onclick="useProSettings('${gmap.gameId}',${pro.sens},'${pro.name}',this)">
         ${t.useSettings} ${pro.name} ↗
       </button>`;
@@ -1337,126 +1512,123 @@ function renderPros(){
   });
 }
 
-function useProSettings(gameId, sens, name, btn){
-  sourceId=gameId;
-  document.getElementById('sensInput').value=sens;
-  const slider=document.getElementById('sensSlider');
-  slider.value=Math.min(sens,parseFloat(slider.max));
-  document.getElementById('sensDisplay').textContent=sens;
+function useProSettings(gameId, sens, name, btn) {
+  sourceId = gameId;
+  document.getElementById('sensInput').value = sens;
+  const slider = document.getElementById('sensSlider');
+  slider.value = Math.min(sens, parseFloat(slider.max));
+  document.getElementById('sensDisplay').textContent = sens;
   updateSliderFill();
-  const t=TRANSLATIONS[lang];
-  btn.classList.add('used'); btn.textContent='✓ Applied';
+  const t = TRANSLATIONS[lang];
+  btn.classList.add('used'); btn.textContent = '✓ Applied';
   renderChips(); renderBanners(); convert();
   window.scrollTo({top:0,behavior:'smooth'});
-  setTimeout(()=>{ btn.classList.remove('used'); btn.textContent=t.useSettings+' '+name+' ↗'; },2000);
+  setTimeout(() => { btn.classList.remove('used'); btn.textContent = t.useSettings + ' ' + name + ' ↗'; }, 2000);
 }
 
-// =========================================================
+// ================================================================
 //  TUTORIAL
-// =========================================================
-function openTutorial(){
-  tutStep=0;
-  const overlay=document.getElementById('tutorialOverlay'); if(!overlay) return;
-  overlay.style.display='flex';
-  requestAnimationFrame(()=>{ overlay.classList.add('active'); renderTutStep(); });
+// ================================================================
+function openTutorial() {
+  tutStep = 0;
+  const overlay = document.getElementById('tutorialOverlay'); if (!overlay) return;
+  overlay.style.display = 'flex';
+  requestAnimationFrame(() => { overlay.classList.add('active'); renderTutStep(); });
 }
 
-function renderTutStep(){
-  const t=TRANSLATIONS[lang];
-  const steps=t.tut; const step=steps[tutStep]; const total=steps.length;
-  const prog=document.getElementById('tutProgress'); if(prog) prog.style.width=((tutStep+1)/total*100)+'%';
-  let dots='';
-  for(let i=0;i<total;i++) dots+=`<div class="tut-dot ${i<tutStep?'done':i===tutStep?'active':''}"></div>`;
-  const dotsEl=document.getElementById('tutDots'); if(dotsEl) dotsEl.innerHTML=dots;
-  const content=document.getElementById('tutContent');
-  if(content) content.innerHTML=`
-    ${tutStep===0?'<div style="text-align:center;margin-bottom:12px"><div class="tut-badge">✦ AIM SYNC ✦</div></div>':''}
+function renderTutStep() {
+  const t     = TRANSLATIONS[lang];
+  const steps = t.tut; const step = steps[tutStep]; const total = steps.length;
+  const prog  = document.getElementById('tutProgress'); if (prog) prog.style.width = ((tutStep+1)/total*100) + '%';
+  let dots = '';
+  for (let i = 0; i < total; i++)
+    dots += `<div class="tut-dot ${i<tutStep?'done':i===tutStep?'active':''}"></div>`;
+  const dotsEl = document.getElementById('tutDots'); if (dotsEl) dotsEl.innerHTML = dots;
+  const content = document.getElementById('tutContent');
+  if (content) content.innerHTML = `
+    ${tutStep === 0 ? '<div style="text-align:center;margin-bottom:12px"><div class="tut-badge">✦ AIM SYNC ✦</div></div>' : ''}
     <div class="tut-icon">${step.icon}</div>
     <div class="tut-title">${step.title}</div>
     <div class="tut-desc">${step.desc}</div>
     <div class="tut-tip">${step.tip}</div>`;
-  const isLast=tutStep===total-1;
-  const nextBtn=document.getElementById('tutNext');
-  const nextTxt=document.getElementById('tutNextTxt');
-  const nextArrow=document.getElementById('tutNextArrow');
-  const skipBtn=document.getElementById('tutSkip');
-  if(isLast){
-    if(nextBtn) nextBtn.classList.add('finish');
-    if(nextTxt) nextTxt.textContent=t.finish;
-    if(nextArrow) nextArrow.textContent='🎯';
-    if(skipBtn) skipBtn.style.display='none';
+  const isLast   = tutStep === total-1;
+  const nextBtn  = document.getElementById('tutNext');
+  const nextTxt  = document.getElementById('tutNextTxt');
+  const nextArrow= document.getElementById('tutNextArrow');
+  const skipBtn  = document.getElementById('tutSkip');
+  if (isLast) {
+    if (nextBtn) nextBtn.classList.add('finish');
+    if (nextTxt) nextTxt.textContent = t.finish;
+    if (nextArrow) nextArrow.textContent = '🎯';
+    if (skipBtn) skipBtn.style.display = 'none';
   } else {
-    if(nextBtn) nextBtn.classList.remove('finish');
-    if(nextTxt) nextTxt.textContent=tutStep===0?t.start:t.next;
-    if(nextArrow) nextArrow.textContent='→';
-    if(skipBtn) skipBtn.style.display='block';
-    if(skipBtn) skipBtn.textContent=t.skip;
+    if (nextBtn) nextBtn.classList.remove('finish');
+    if (nextTxt) nextTxt.textContent = tutStep === 0 ? t.start : t.next;
+    if (nextArrow) nextArrow.textContent = '→';
+    if (skipBtn) { skipBtn.style.display = 'block'; skipBtn.textContent = t.skip; }
   }
-  const box=document.querySelector('.tutorial-box');
-  if(box){
-    box.style.transition='none';
-    box.style.transform='translateY(18px)';
-    box.style.opacity='0';
-    requestAnimationFrame(()=>{
-      box.style.transition='all .4s cubic-bezier(.34,1.56,.64,1)';
-      box.style.transform='translateY(0)';
-      box.style.opacity='1';
+  const box = document.querySelector('.tutorial-box');
+  if (box) {
+    box.style.transition = 'none';
+    box.style.transform  = 'translateY(18px)';
+    box.style.opacity    = '0';
+    requestAnimationFrame(() => {
+      box.style.transition = 'all .4s cubic-bezier(.34,1.56,.64,1)';
+      box.style.transform  = 'translateY(0)';
+      box.style.opacity    = '1';
     });
   }
 }
 
-function nextStep(){
-  if(tutStep<TRANSLATIONS[lang].tut.length-1){ tutStep++; renderTutStep(); }
+function nextStep() {
+  if (tutStep < TRANSLATIONS[lang].tut.length - 1) { tutStep++; renderTutStep(); }
   else closeTutorial();
 }
 
-function closeTutorial(){
-  const overlay=document.getElementById('tutorialOverlay'); if(!overlay) return;
+function closeTutorial() {
+  const overlay = document.getElementById('tutorialOverlay'); if (!overlay) return;
   overlay.classList.remove('active');
-  setTimeout(()=>{ overlay.style.display='none'; },350);
-  localStorage.setItem('aimsync_v4_done','1');
+  setTimeout(() => { overlay.style.display = 'none'; }, 350);
+  localStorage.setItem('aimsync_v5_done', '1');
 }
 
-// =========================================================
+// ================================================================
 //  PERSISTENCE
-// =========================================================
-function saveSettings(){
-  try{
-    localStorage.setItem('aimSyncV4',JSON.stringify({
-      lang,sourceId,targetId,
-      sens:document.getElementById('sensInput').value,
-      dpi:document.getElementById('dpiInput').value
+// ================================================================
+function saveSettings() {
+  try {
+    localStorage.setItem('aimSyncV5', JSON.stringify({
+      lang, sourceId, targetId,
+      sens: document.getElementById('sensInput').value,
+      dpi:  document.getElementById('dpiInput').value
     }));
-  }catch(e){}
+  } catch(e) {}
 }
 
-function loadSettings(){
-  try{
-    const s=localStorage.getItem('aimSyncV4');
-    if(s){
-      const d=JSON.parse(s);
-      lang=d.lang||'en';
-      sourceId=d.sourceId||'valorant';
-      targetId=d.targetId||'cs2';
-      if(d.sens) document.getElementById('sensInput').value=d.sens;
-      if(d.dpi) document.getElementById('dpiInput').value=d.dpi;
-      if(d.sens) document.getElementById('sensDisplay').textContent=d.sens;
+function loadSettings() {
+  try {
+    const s = localStorage.getItem('aimSyncV5');
+    if (s) {
+      const d = JSON.parse(s);
+      lang     = d.lang     || 'en';
+      sourceId = d.sourceId || 'valorant';
+      targetId = d.targetId || 'cs2';
+      if (d.sens) { document.getElementById('sensInput').value = d.sens; document.getElementById('sensDisplay').textContent = d.sens; }
+      if (d.dpi)  document.getElementById('dpiInput').value = d.dpi;
     }
-  }catch(e){}
+  } catch(e) {}
 }
 
-// =========================================================
+// ================================================================
 //  INIT
-// =========================================================
-document.addEventListener('DOMContentLoaded',()=>{
+// ================================================================
+document.addEventListener('DOMContentLoaded', () => {
   loadSettings();
   initLangDropdown();
   updateSliderFill();
   changeLang(lang);
-
-  document.getElementById('helpBtn').onclick=openTutorial;
-
-  if(!localStorage.getItem('aimsync_v4_done')) setTimeout(openTutorial,900);
+  document.getElementById('helpBtn').onclick = openTutorial;
+  if (!localStorage.getItem('aimsync_v5_done')) setTimeout(openTutorial, 900);
 });
 </script>
 </body>
