@@ -2373,36 +2373,6 @@
     </div>
 
     <script>
-        async function addGameByAI(gameName) {
-    if (!gameName) return;
-    const existing = GAMES.find(g => g.en.toLowerCase() === gameName.toLowerCase());
-    if (existing) { showToast('⚠️ Game already exists'); return; }
-    showToast('🔍 Searching...');
-    try {
-        const res = await fetch('/api/gemini', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ gameName })
-        });
-        const data = await res.json();
-        if (data.mult) {
-            GAMES.push({
-                id: gameName.toLowerCase().replace(/\s/g, '_'),
-                en: gameName, ar: gameName, es: gameName, fr: gameName, de: gameName, ru: gameName,
-                abbr: gameName.substring(0, 3).toUpperCase(),
-                tag: 'tag-cod', mult: data.mult,
-                img: https://img.icons8.com/color/48/${gameName.toLowerCase().replace(/\s/g, '-')}.png
-            });
-            renderChips();
-            convert();
-            showToast('✅ Game added!');
-        } else {
-            showToast('❌ Game not found');
-        }
-    } catch (e) {
-        showToast('❌ Error occurred');
-    }
-}
         // ===== GAME DATA =====
         const GAMES = [
             { id: 'valorant', en: 'Valorant', ar: 'فالورانت', es: 'Valorant', fr: 'Valorant', de: 'Valorant',
