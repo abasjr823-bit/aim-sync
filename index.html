@@ -2130,6 +2130,13 @@
 
         <!-- NAVIGATION PILLS - Rendered by JS -->
         <div class="nav-pills" id="navPills"></div>
+        <div style="display:flex;gap:8px;margin:14px 14px 0;">
+    <input id="addGameInput" type="text" placeholder="Add new game..." 
+    style="flex:1;background:var(--surface);border:1px solid var(--border);color:var(--text);padding:10px 14px;border-radius:10px;font-size:14px;font-family:Tajawal,sans-serif;outline:none;">
+    <button onclick="addGameByAI(document.getElementById('addGameInput').value)" 
+    style="background:rgba(0,229,176,.1);border:1px solid rgba(0,229,176,.3);color:var(--accent);padding:10px 16px;border-radius:10px;cursor:pointer;font-size:13px;font-family:Tajawal,sans-serif;font-weight:700;white-space:nowrap;">
+    ➕ Add</button>
+</div>
 
         <!-- CONVERTER SECTION -->
         <div class="page-section active" id="section-converter">
