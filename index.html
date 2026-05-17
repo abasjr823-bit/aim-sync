@@ -2130,13 +2130,6 @@
 
         <!-- NAVIGATION PILLS - Rendered by JS -->
         <div class="nav-pills" id="navPills"></div>
-        <div style="display:flex;gap:8px;margin:14px 14px 0;">
-    <input id="addGameInput" type="text" placeholder="Add new game..." 
-    style="flex:1;background:var(--surface);border:1px solid var(--border);color:var(--text);padding:10px 14px;border-radius:10px;font-size:14px;font-family:Tajawal,sans-serif;outline:none;">
-    <button onclick="addGameByAI(document.getElementById('addGameInput').value)" 
-    style="background:rgba(0,229,176,.1);border:1px solid rgba(0,229,176,.3);color:var(--accent);padding:10px 16px;border-radius:10px;cursor:pointer;font-size:13px;font-family:Tajawal,sans-serif;font-weight:700;white-space:nowrap;">
-    ➕ Add</button>
-</div>
 
         <!-- CONVERTER SECTION -->
         <div class="page-section active" id="section-converter">
@@ -2407,36 +2400,7 @@
                 ru: 'THE FINALS', abbr: 'FIN', tag: 'tag-finals', mult: 0.022,
                 img: 'https://img.icons8.com/color/48/final-lap.png' },
         ];
-async function addGameByAI(gameName) {
-    if (!gameName) return;
-    const existing = GAMES.find(g => g.en.toLowerCase() === gameName.toLowerCase());
-    if (existing) { showToast('⚠️ Game already exists'); return; }
-    showToast('🔍 Searching...');
-    try {
-        const res = await fetch('/api/gemini', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ gameName })
-        });
-        const data = await res.json();
-        if (data.mult) {
-            GAMES.push({
-                id: gameName.toLowerCase().replace(/\s/g, '_'),
-                en: gameName, ar: gameName, es: gameName, fr: gameName, de: gameName, ru: gameName,
-                abbr: gameName.substring(0, 3).toUpperCase(),
-                tag: 'tag-cod', mult: data.mult,
-                img: https://img.icons8.com/color/48/${gameName.toLowerCase().replace(/\s/g, '-')}.png
-            });
-            renderChips();
-            convert();
-            showToast('✅ Game added!');
-        } else {
-            showToast('❌ Game not found');
-        }
-    } catch (e) {
-        showToast('❌ Error occurred');
-    }
-}
+
         // ===== PROS DATA =====
         const PROS = {
             cs2: [
